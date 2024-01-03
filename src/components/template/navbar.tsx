@@ -1,6 +1,6 @@
 export function Navbar() {
   return (
-    <header className="w-full h-6 flex items-center mb-4">
+    <header className="w-full h-6 flex items-center mb-4 mt-8">
       <nav className="mx-auto flex items-center justify-between py-2 text-black gap-8">
         <div className="flex gap-4">
           <h1 className="text-white">logo</h1>

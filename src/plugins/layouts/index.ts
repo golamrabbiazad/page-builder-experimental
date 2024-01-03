@@ -5,15 +5,6 @@ function loadBlocks(editor: Editor, opts: Required<PluginOptions>) {
   const { category, blocks, stylePrefix, flexGrid, rowHeight, addBasicStyle } =
     opts;
 
-  console.log(
-    category,
-    blocks,
-    stylePrefix,
-    flexGrid,
-    rowHeight,
-    addBasicStyle
-  );
-
   const clsRow = `${stylePrefix}row`;
   const clsCell = `${stylePrefix}cell`;
   const styleRow = flexGrid

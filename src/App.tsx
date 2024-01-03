@@ -12,13 +12,13 @@ import { MAIN_BORDER_COLOR } from "./utils";
 import { LeftSidbar } from "./components/leftside-bar";
 import { CustomModal } from "./components/custom-modal";
 import { RightSidebar } from "./components/rightside-bar";
+import { CustomAssetManager } from "./components/custom-asset-manager";
 
 import assetData from "../image-data.json";
 import layoutPlugin from "./plugins/layouts";
-import { CustomAssetManager } from "./components/custom-asset-manager";
+// import tailwindPlugin from "grapesjs-tailwind";
 
 import { htmlString } from "./components/template/render";
-import tailwindPlugin from "grapesjs-tailwind";
 
 const theme = createTheme({
   palette: {
@@ -48,6 +48,7 @@ const gjsOptions: EditorConfig = {
 
 export default function App() {
   function onEditor(editor: Editor) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).editor = editor;
 
     editor.StyleManager.addSector(
@@ -95,7 +96,7 @@ export default function App() {
               labelColumn1: "Column",
             }),
           usePlugin(layoutPlugin),
-          usePlugin(tailwindPlugin),
+          // (editor) => tailwindPlugin(editor, { blocks: [] }),
         ]}
       >
         <div className={`flex h-full border-t ${MAIN_BORDER_COLOR}`}>

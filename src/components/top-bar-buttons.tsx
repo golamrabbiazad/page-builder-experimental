@@ -25,35 +25,38 @@ export default function TopbarButtons({
   const editor = useEditor();
   const [, setUpdateCounter] = useState(0);
   const { UndoManager, Commands } = editor;
-  const cmdButtons: CommandButton[] = [
-    {
-      id: "core:component-outline",
-      iconPath: mdiBorderRadius,
-    },
-    {
-      id: "core:fullscreen",
-      iconPath: mdiFullscreen,
-      options: { target: "#root" },
-    },
-    {
-      id: "core:open-code",
-      iconPath: mdiXml,
-    },
-    {
-      id: "core:undo",
-      iconPath: mdiArrowULeftTop,
-      disabled: () => !UndoManager.hasUndo(),
-    },
-    {
-      id: "core:redo",
-      iconPath: mdiArrowURightTop,
-      disabled: () => !UndoManager.hasRedo(),
-    },
-    {
-      id: "core:preview",
-      iconPath: mdiEye,
-    },
-  ];
+  const cmdButtons: CommandButton[] = React.useMemo(
+    () => [
+      {
+        id: "core:component-outline",
+        iconPath: mdiBorderRadius,
+      },
+      {
+        id: "core:fullscreen",
+        iconPath: mdiFullscreen,
+        options: { target: "#root" },
+      },
+      {
+        id: "core:open-code",
+        iconPath: mdiXml,
+      },
+      {
+        id: "core:undo",
+        iconPath: mdiArrowULeftTop,
+        disabled: () => !UndoManager.hasUndo(),
+      },
+      {
+        id: "core:redo",
+        iconPath: mdiArrowURightTop,
+        disabled: () => !UndoManager.hasRedo(),
+      },
+      {
+        id: "core:preview",
+        iconPath: mdiEye,
+      },
+    ],
+    [UndoManager]
+  );
 
   useEffect(() => {
     const cmdEvent = "run stop";
@@ -71,7 +74,7 @@ export default function TopbarButtons({
       editor.off(cmdEvent, onCommand);
       editor.off(updateEvent, updateCounter);
     };
-  }, []);
+  }, [cmdButtons, editor]);
 
   return (
     <div className={cx("flex gap-3", className)}>
