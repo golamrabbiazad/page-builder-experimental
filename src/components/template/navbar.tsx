@@ -1,34 +1,31 @@
 export function Navbar() {
   return (
-    <header className="w-[594px] h-12">
-      <nav className="flex items-center justify-between py-2 text-black">
-        <div className="flex justify-between">
-          <div>Logo</div>
-          <ul className="flex items-center gap-2">
-            <li>Service</li>
+    <header className="w-full h-6 flex items-center mb-4">
+      <nav className="mx-auto flex items-center justify-between py-2 text-black gap-8">
+        <div className="flex gap-4">
+          <h1 className="text-white">logo</h1>
+          <ul className="flex items-center gap-2 text-gray-400">
+            <li>Services</li>
             <li>Pricing</li>
             <li>Portfolio</li>
             <li>Contact us</li>
             <li>About us</li>
           </ul>
         </div>
-        {/* <div className="flex items-center">
-        <div className="w-[100px] h-5">
-          <label htmlFor="search">
-            <input
-              type="text"
-              id="search"
-              placeholder="Search"
-              className="bg-white rounded-full p-4"
-            />
-          </label>
-        </div>
-        <div className="w-20 h-5">
-          <button className="text-white bg-blue-600 rounded-full p-4">
+        <div className="flex gap-2">
+          <input
+            type="text"
+            placeholder="Search"
+            id="search"
+            className="p-2 rounded-full bg-white border border-gray-200 w-full"
+          />
+          <button
+            type="submit"
+            className="bg-blue-600 rounded-full p-2 text-white w-full font-medium"
+          >
             Register/Login
           </button>
         </div>
-      </div> */}
       </nav>
     </header>
   );
