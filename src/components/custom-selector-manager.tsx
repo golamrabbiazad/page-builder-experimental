@@ -4,6 +4,7 @@ import { MAIN_BORDER_COLOR } from "../utils";
 import { mdiClose, mdiPlus } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { cx } from "../utils";
+import { useState } from "react";
 
 export function CustomSelectorManager({
   selectors,
@@ -14,10 +15,19 @@ export function CustomSelectorManager({
   addSelector,
   removeSelector,
 }: Omit<SelectorsResultProps, "Container">) {
-  const addNewSelector = () => {
+  // const [selectorValue, setSelectorValue] = useState("");
+
+  const addNewSelector = (ev) => {
     const next = selectors.length + 1;
-    addSelector({ name: `new-${next}`, label: `New ${next}` });
+    addSelector({ name: `next-${next}`, label: `next-${next}` });
+
+    console.log(ev);
   };
+
+  // const updateSelector = (ev: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSelectorValue(ev.target.value);
+  //   // setState(sele);
+  // };
 
   const targetStr = targets.join(", ");
 
@@ -60,9 +70,15 @@ export function CustomSelectorManager({
         {selectors.map((selector) => (
           <div
             key={selector.toString()}
-            className="px-2 py-1 flex items-center gap-1 whitespace-nowrap bg-sky-500 rounded"
+            className="px-2 py-1 flex flex-wrap justify-start items-center w-max gap-1 whitespace-nowrap bg-sky-500 rounded"
           >
-            <div>{selector.getLabel()}</div>
+            <input
+              type="text"
+              value={selector.getName()}
+              // onChange={updateSelector}
+              className="text-white bg-inherit border-none focus:outline-none"
+            />
+
             <button type="button" onClick={() => removeSelector(selector)}>
               <Icon size={0.7} path={mdiClose} />
             </button>

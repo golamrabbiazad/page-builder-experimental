@@ -1,7 +1,7 @@
 export function Main() {
   return (
     <main className="w-full mx-auto flex justify-center">
-      <section className="text-[#536136] relative">
+      <section className="relative">
         <img
           src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="office-slider"
@@ -17,7 +17,7 @@ export function Main() {
             the majority have suffered altertion in some form, by injected
             humour.
           </p>
-          <button className="bg-[#536136] text-white p-2 w-1/3 rounded-md">
+          <button className="uppercase bg-green-900 text-white p-2 w-1/3 rounded-md">
             Shop Gifts
           </button>
         </div>

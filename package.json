@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "api-server": "npx json-server --watch db.json"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -19,9 +20,7 @@
     "grapejs": "^2.1.2",
     "grapesjs": "^0.21.8",
     "grapesjs-blocks-basic": "^1.0.2",
-    "grapesjs-plugin-forms": "^2.0.6",
-    "grapesjs-preset-webpage": "^1.0.3",
-    "grapesjs-tailwind": "^1.0.10",
+    "json-server": "^0.17.4",
     "react": "^18",
     "react-dom": "^18"
   },

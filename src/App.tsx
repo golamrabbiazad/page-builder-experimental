@@ -14,11 +14,10 @@ import { CustomModal } from "./components/custom-modal";
 import { RightSidebar } from "./components/rightside-bar";
 import { CustomAssetManager } from "./components/custom-asset-manager";
 
-import assetData from "../image-data.json";
+// import assetData from "../image-data.json";
 import layoutPlugin from "./plugins/layouts";
-// import tailwindPlugin from "grapesjs-tailwind";
 
-import { htmlString } from "./components/template/render";
+// import { htmlString } from "./components/template/render";
 
 const theme = createTheme({
   palette: {
@@ -26,24 +25,81 @@ const theme = createTheme({
   },
 });
 
+const projectId = 1;
+const projectEndPoint = `http://localhost:3000/projects/${projectId}`;
+
 const gjsOptions: EditorConfig = {
   height: "100vh",
-  storageManager: false,
+  storageManager: {
+    type: "remote",
+    autoload: true,
+    autosave: true,
+    stepsBeforeSave: 1,
+
+    options: {
+      local: {
+        key: `gjsProject-${projectId}`,
+        checkLocal: true,
+      },
+
+      remote: {
+        urlLoad: projectEndPoint,
+        urlStore: projectEndPoint,
+
+        fetchOptions: (opts) =>
+          opts.method === "POST" ? { method: "PATCH" } : {},
+
+        onStore: (data, editor) => {
+          const pagesHtml = editor.Pages.getAll().map((page) => {
+            const component = page.getMainComponent();
+
+            return {
+              html: editor.getHtml({ component }),
+              css: editor.getCss({ component }),
+            };
+          });
+
+          return {
+            id: projectId,
+            data,
+            pagesHtml,
+          };
+        },
+
+        onLoad: (result) => result.data,
+      },
+    },
+  },
   undoManager: {
     trackSelection: false,
   },
   selectorManager: {
     componentFirst: true,
   },
-  projectData: {
-    assets: assetData.map((asset) => asset.src),
-    pages: [
-      {
-        name: "Home page",
-        component: htmlString,
-      },
+
+  canvas: {
+    scripts: [
+      "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp",
     ],
   },
+
+  /**
+   * Initialize the projectData when layout paints the screen.
+   */
+
+  // projectData: JSON.parse(localStorage.getItem("gjsProject-1")!) || {
+  //   assets: assetData.map((asset) => asset.src),
+  //   pages: [
+  //     {
+  //       name: "Home page",
+  //       component: htmlString,
+  //     },
+  //     {
+  //       name: "Index page",
+  //       component: htmlString,
+  //     },
+  //   ],
+  // },
 };
 
 export default function App() {
@@ -93,10 +149,8 @@ export default function App() {
                 "video",
                 "map",
               ],
-              labelColumn1: "Column",
             }),
           usePlugin(layoutPlugin),
-          // (editor) => tailwindPlugin(editor, { blocks: [] }),
         ]}
       >
         <div className={`flex h-full border-t ${MAIN_BORDER_COLOR}`}>
