@@ -18,6 +18,7 @@ import { CustomAssetManager } from "./components/custom-asset-manager";
 import layoutPlugin from "./plugins/layouts";
 
 // import { htmlString } from "./components/template/render";
+import { storageManagerConfig } from "./configs/storage-manager";
 
 const theme = createTheme({
   palette: {
@@ -25,51 +26,9 @@ const theme = createTheme({
   },
 });
 
-const projectId = 1;
-const projectEndPoint = `http://localhost:3000/projects/${projectId}`;
-
 const gjsOptions: EditorConfig = {
   height: "100vh",
-  storageManager: {
-    type: "remote",
-    autoload: true,
-    autosave: true,
-    stepsBeforeSave: 1,
-
-    options: {
-      local: {
-        key: `gjsProject-${projectId}`,
-        checkLocal: true,
-      },
-
-      remote: {
-        urlLoad: projectEndPoint,
-        urlStore: projectEndPoint,
-
-        fetchOptions: (opts) =>
-          opts.method === "POST" ? { method: "PATCH" } : {},
-
-        onStore: (data, editor) => {
-          const pagesHtml = editor.Pages.getAll().map((page) => {
-            const component = page.getMainComponent();
-
-            return {
-              html: editor.getHtml({ component }),
-              css: editor.getCss({ component }),
-            };
-          });
-
-          return {
-            id: projectId,
-            data,
-            pagesHtml,
-          };
-        },
-
-        onLoad: (result) => result.data,
-      },
-    },
-  },
+  storageManager: storageManagerConfig,
   undoManager: {
     trackSelection: false,
   },
@@ -79,7 +38,7 @@ const gjsOptions: EditorConfig = {
 
   canvas: {
     scripts: [
-      "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp",
+      "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio",
     ],
   },
 
@@ -130,7 +89,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <GjsEditor
-        className="gjs-custom-editor text-white bg-slate-900 "
+        className="gjs-custom-editor text-white bg-slate-900"
         grapesjs={grapesjs}
         grapesjsCss="https://unpkg.com/grapesjs/dist/css/grapes.min.css"
         options={gjsOptions}
@@ -143,7 +102,6 @@ export default function App() {
                 "column2",
                 "column3",
                 "column3-7",
-                "text",
                 "link",
                 "image",
                 "video",

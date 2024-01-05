@@ -4,7 +4,7 @@ import { MAIN_BORDER_COLOR } from "../utils";
 import { mdiClose, mdiPlus } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { cx } from "../utils";
-import { useState } from "react";
+import { ElementRef, useRef, useState } from "react";
 
 export function CustomSelectorManager({
   selectors,
@@ -15,26 +15,18 @@ export function CustomSelectorManager({
   addSelector,
   removeSelector,
 }: Omit<SelectorsResultProps, "Container">) {
-  // const [selectorValue, setSelectorValue] = useState("");
-
-  const addNewSelector = (ev) => {
-    const next = selectors.length + 1;
-    addSelector({ name: `next-${next}`, label: `next-${next}` });
-
-    console.log(ev);
-  };
-
-  // const updateSelector = (ev: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSelectorValue(ev.target.value);
-  //   // setState(sele);
-  // };
+  const [newSelector, setNewSelector] = useState({
+    name: "",
+    label: "",
+  });
 
   const targetStr = targets.join(", ");
+  const customInputRef = useRef<ElementRef<"input">>(null);
 
   return (
     <div className="gjs-custom-selector-manager p-2 flex flex-col gap-2 text-left">
       <div className="flex items-center">
-        <div className="flex-grow">Selectors</div>
+        <div className="flex-grow">Classes</div>
         <FormControl size="small">
           <Select
             value={selectedState}
@@ -59,7 +51,9 @@ export function CustomSelectorManager({
         {targetStr ? (
           <button
             type="button"
-            onClick={addNewSelector}
+            onClick={() => {
+              customInputRef.current?.classList.toggle("hidden");
+            }}
             className={cx("border rounded px-2 py-1")}
           >
             <Icon size={0.7} path={mdiPlus} />
@@ -67,22 +61,49 @@ export function CustomSelectorManager({
         ) : (
           <div className="opacity-70">Select a component</div>
         )}
+
+        <div
+          onClick={(ev) => {
+            console.log(ev);
+          }}
+        >
+          <input
+            type="text"
+            ref={customInputRef}
+            className="bg-inherit border rounded text-white hidden"
+            onChange={(e) => {
+              // stored in variable
+              setNewSelector({
+                name: e.target.value,
+                label: e.target.value,
+              });
+            }}
+            onKeyDown={(ev) => {
+              // on enter keypress add button
+              if (ev.key === "Enter") {
+                addSelector(newSelector);
+                customInputRef.current?.classList.toggle("hidden");
+              }
+            }}
+          />
+        </div>
         {selectors.map((selector) => (
           <div
             key={selector.toString()}
-            className="px-2 py-1 flex flex-wrap justify-start items-center w-max gap-1 whitespace-nowrap bg-sky-500 rounded"
+            className="px-2 py-1 flex flex-wrap justify-start items-center w-max gap-1 rounded-md whitespace-nowrap bg-blue-500"
           >
-            <input
-              type="text"
-              value={selector.getName()}
-              // onChange={updateSelector}
-              className="text-white bg-inherit border-none focus:outline-none"
-            />
-
+            <div>{selector.getLabel()}</div>
             <button type="button" onClick={() => removeSelector(selector)}>
               <Icon size={0.7} path={mdiClose} />
             </button>
           </div>
+
+          // <EditableSelector
+          //   key={selector.toString()}
+          //   selector={selector}
+          //   addSelector={addSelector}
+          //   removeSelector={removeSelector}
+          // />
         ))}
       </div>
       <div>

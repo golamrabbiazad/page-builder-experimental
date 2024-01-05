@@ -288,15 +288,16 @@
                                   "tagName": "button",
                                   "type": "text",
                                   "classes": [
-                                    "bg-blue-600",
                                     "rounded-full",
                                     "p-2",
                                     "text-white",
                                     "w-full",
-                                    "font-medium"
+                                    "font-medium",
+                                    "bg-black"
                                   ],
                                   "attributes": {
-                                    "type": "submit"
+                                    "type": "submit",
+                                    "id": "ihryk"
                                   },
                                   "components": [
                                     {
@@ -338,9 +339,6 @@
                               "resizable": {
                                 "ratioDefault": 1
                               },
-                              "classes": [
-                                "next-1"
-                              ],
                               "attributes": {
                                 "src": "https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                                 "alt": "office-slider",
@@ -381,9 +379,9 @@
                                   "tagName": "h1",
                                   "type": "text",
                                   "classes": [
+                                    "tracking-tighter",
                                     "text-6xl",
                                     "font-bold",
-                                    "tracking-tighter",
                                     "pb-2"
                                   ],
                                   "attributes": {
@@ -419,7 +417,7 @@
                                     "text-white",
                                     "p-2",
                                     "w-1/3",
-                                    "rounded-md"
+                                    "rounded-full"
                                   ],
                                   "attributes": {
                                     "id": "i0vee"
@@ -436,15 +434,6 @@
                           ]
                         }
                       ]
-                    },
-                    {
-                      "tagName": "section",
-                      "classes": [
-                        "bdg-sect"
-                      ],
-                      "attributes": {
-                        "id": "ivmaj"
-                      }
                     }
                   ]
                 },
@@ -457,7 +446,7 @@
       },
       "pagesHtml": [
         {
-          "html": "<body id=\"ixwx\"><header class=\"w-full h-6 flex items-center mb-4 mt-8\"><nav class=\"mx-auto flex items-center justify-between py-2 text-black gap-8\"><div id=\"iv57\" class=\"flex gap-4\"><h1 class=\"text-white\">logo</h1><ul class=\"flex items-center gap-2 text-gray-400\"><li>Services</li><li>Pricing</li><li>Portfolio</li><li id=\"igadk\">Contact us</li><li id=\"ixijs\">About us</li></ul></div><div class=\"flex gap-2\"><input type=\"text\" placeholder=\"Search\" id=\"search\" class=\"p-2 rounded-full bg-white border border-gray-200 w-full\"/><button type=\"submit\" class=\"bg-blue-600 rounded-full p-2 text-white w-full font-medium\">Register/Login</button></div></nav></header><main id=\"ijjr6\" class=\"w-full mx-auto flex justify-center\"><section class=\"text--536136- relative\"><img src=\"https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"office-slider\" id=\"izjlf\" class=\"next-1\"/><div id=\"ieqlx\" class=\"max-w-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center\"><h2 class=\"uppercase text-xl font-medium\">Gift Guide</h2><h1 id=\"i48h6\" class=\"text-6xl font-bold tracking-tighter pb-2\">Here is to Joy's</h1><p id=\"iwjmi\" class=\"pb-4\">There are many variations of passages of Lorem ipsum available, but the majority have suffered alteration in some form, by injected humor.</p><button id=\"i0vee\" class=\"text-white p-2 w-1/3 rounded-md\">Shop Gifts</button></div></section></main><section id=\"ivmaj\" class=\"bdg-sect\"></section></body>",
+          "html": "<body id=\"ixwx\"><header class=\"w-full h-6 flex items-center mb-4 mt-8\"><nav class=\"mx-auto flex items-center justify-between py-2 text-black gap-8\"><div id=\"iv57\" class=\"flex gap-4\"><h1 class=\"text-white\">logo</h1><ul class=\"flex items-center gap-2 text-gray-400\"><li>Services</li><li>Pricing</li><li>Portfolio</li><li id=\"igadk\">Contact us</li><li id=\"ixijs\">About us</li></ul></div><div class=\"flex gap-2\"><input type=\"text\" placeholder=\"Search\" id=\"search\" class=\"p-2 rounded-full bg-white border border-gray-200 w-full\"/><button type=\"submit\" class=\"rounded-full p-2 text-white w-full font-medium bg-black\" id=\"ihryk\">Register/Login</button></div></nav></header><main id=\"ijjr6\" class=\"w-full mx-auto flex justify-center\"><section class=\"text--536136- relative\"><img src=\"https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"office-slider\" id=\"izjlf\"/><div id=\"ieqlx\" class=\"max-w-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center\"><h2 class=\"uppercase text-xl font-medium\">Gift Guide</h2><h1 id=\"i48h6\" class=\"tracking-tighter text-6xl font-bold pb-2\">Here is to Joy's</h1><p id=\"iwjmi\" class=\"pb-4\">There are many variations of passages of Lorem ipsum available, but the majority have suffered alteration in some form, by injected humor.</p><button id=\"i0vee\" class=\"text-white p-2 w-1/3 rounded-full\">Shop Gifts</button></div></section></main></body>",
           "css": "* { box-sizing: border-box; } body {margin: 0;}#izjlf{width:900px;}#i0vee{color:#ffffff;background-color:#000000;}"
         }
       ]
