@@ -8,7 +8,7 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 ## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
 - Configure the top-level `parserOptions` property like this:
 
@@ -23,6 +23,9 @@ export default {
   },
 };
 ```
+
+- Container `height` should be `h-[200px]` and width should be `w-full`. Container name change to `Box`.
+- On layout, click on the ➕ button in the components panel popup and click to insert components.
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
