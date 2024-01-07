@@ -23,6 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 
+# env files
+.env
+.env.local
+.env.production
+.env.test
 
 db.json
 image-data.json

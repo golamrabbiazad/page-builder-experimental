@@ -1,7 +1,8 @@
-import { Box, Fade, Modal, ModalProps } from "@mui/material";
-import { MAIN_BG_COLOR, MAIN_TXT_COLOR, cx } from "../utils";
-import { mdiClose } from "@mdi/js";
 import { Icon } from "@mdi/react";
+import { mdiClose } from "@mdi/js";
+import { Box, Fade, Modal, ModalProps } from "@mui/material";
+
+import { MAIN_BG_COLOR, MAIN_TXT_COLOR, cn } from "@/lib/utils";
 
 const style = {
   position: "absolute",
@@ -34,7 +35,7 @@ export function CustomModal({
       <Fade in={props.open}>
         <Box
           sx={style}
-          className={cx(MAIN_BG_COLOR, MAIN_TXT_COLOR, "rounded")}
+          className={cn(MAIN_BG_COLOR, MAIN_TXT_COLOR, "rounded")}
         >
           <div className="flex pb-3">
             <div className="flex-grow text-lg">{title}</div>

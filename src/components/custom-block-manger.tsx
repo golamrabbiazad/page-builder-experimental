@@ -1,5 +1,5 @@
+import { MAIN_BORDER_COLOR, cn } from "@/lib/utils";
 import { BlocksResultProps } from "@grapesjs/react";
-import { MAIN_BORDER_COLOR, cx } from "../utils";
 
 export type CustomBlockManagerProps = Pick<
   BlocksResultProps,
@@ -15,7 +15,7 @@ export function CustomBlockManager({
     <div className="gjs-custom-block-manager text-left">
       {Array.from(mapCategoryBlocks).map(([category, blocks]) => (
         <div key={category}>
-          <div className={cx("py-2 px-4 border-y", MAIN_BORDER_COLOR)}>
+          <div className={cn("py-2 px-4 border-y", MAIN_BORDER_COLOR)}>
             {category}
           </div>
           <div className="grid grid-cols-2 gap-2 p-2">
@@ -23,7 +23,7 @@ export function CustomBlockManager({
               <div
                 key={block.getId()}
                 draggable
-                className={cx(
+                className={cn(
                   "flex flex-col items-center border rounded cursor-pointer py-2 px-5 transition-colors",
                   MAIN_BORDER_COLOR
                 )}

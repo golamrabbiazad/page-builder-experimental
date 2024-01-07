@@ -1,12 +1,12 @@
 import { DevicesProvider, WithEditor } from "@grapesjs/react";
 import { FormControl, MenuItem, Select } from "@mui/material";
-import { cx } from "../utils";
 import TopbarButtons from "./top-bar-buttons";
+import { cn } from "@/lib/utils";
 
 export function Topbar({ className }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cx(
+      className={cn(
         "gjs-top-sidebar flex items-center justify-between p-1",
         className
       )}

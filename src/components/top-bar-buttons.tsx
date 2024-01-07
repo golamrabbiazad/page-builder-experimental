@@ -10,7 +10,7 @@ import {
 } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useEffect, useState } from "react";
-import { cx, BTN_CLS, MAIN_BORDER_COLOR } from "../utils";
+import { BTN_CLS, MAIN_BORDER_COLOR, cn } from "@/lib/utils";
 
 interface CommandButton {
   id: string;
@@ -77,12 +77,12 @@ export default function TopbarButtons({
   }, [cmdButtons, editor]);
 
   return (
-    <div className={cx("flex gap-3", className)}>
+    <div className={cn("flex gap-3", className)}>
       {cmdButtons.map(({ id, iconPath, disabled, options = {} }) => (
         <button
           key={id}
           type="button"
-          className={cx(
+          className={cn(
             BTN_CLS,
             MAIN_BORDER_COLOR,
             Commands.isActive(id) && "text-sky-300",

@@ -1,10 +1,9 @@
+import { ElementRef, useRef, useState } from "react";
+import { Icon } from "@mdi/react";
+import { mdiClose, mdiPlus } from "@mdi/js";
 import { SelectorsResultProps } from "@grapesjs/react";
 import { FormControl, Select, MenuItem } from "@mui/material";
-import { MAIN_BORDER_COLOR } from "../utils";
-import { mdiClose, mdiPlus } from "@mdi/js";
-import { Icon } from "@mdi/react";
-import { cx } from "../utils";
-import { ElementRef, useRef, useState } from "react";
+import { MAIN_BORDER_COLOR, cn } from "@/lib/utils";
 
 export function CustomSelectorManager({
   selectors,
@@ -43,7 +42,7 @@ export function CustomSelectorManager({
         </FormControl>
       </div>
       <div
-        className={cx(
+        className={cn(
           "flex items-center gap-2 flex-wrap p-2 bg-black/30 border rounded min-h-[45px]",
           MAIN_BORDER_COLOR
         )}
@@ -54,7 +53,7 @@ export function CustomSelectorManager({
             onClick={() => {
               customInputRef.current?.classList.toggle("hidden");
             }}
-            className={cx("border rounded px-2 py-1")}
+            className={cn("border rounded px-2 py-1")}
           >
             <Icon size={0.7} path={mdiPlus} />
           </button>

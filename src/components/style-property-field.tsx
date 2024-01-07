@@ -26,7 +26,7 @@ import type {
   PropertySlider,
   PropertyStack,
 } from "grapesjs";
-import { BTN_CLS, ROUND_BORDER_COLOR, cx } from "../utils";
+import { BTN_CLS, ROUND_BORDER_COLOR, cn } from "@/lib/utils";
 
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
   prop: Property;
@@ -180,7 +180,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
         const compositeProp = prop as PropertyComposite;
         inputToRender = (
           <div
-            className={cx("flex flex-wrap p-2 bg-black/20", ROUND_BORDER_COLOR)}
+            className={cn("flex flex-wrap p-2 bg-black/20", ROUND_BORDER_COLOR)}
           >
             {compositeProp.getProperties().map((prop) => (
               <StylePropertyField key={prop.getId()} prop={prop} />
@@ -196,7 +196,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
         const isTextShadow = stackProp.getName() === "text-shadow";
         inputToRender = (
           <div
-            className={cx(
+            className={cn(
               "flex flex-col p-2 gap-2 bg-black/20 min-h-[54px]",
               ROUND_BORDER_COLOR
             )}
@@ -220,7 +220,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
                     {layer.getLabel()}
                   </button>
                   <div
-                    className={cx(
+                    className={cn(
                       "bg-white min-w-[17px] min-h-[17px] text-black text-sm flex justify-center",
                       ROUND_BORDER_COLOR
                     )}
@@ -253,9 +253,9 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
   return (
     <div
       {...rest}
-      className={cx("mb-3 px-1", prop.isFull() ? "w-full" : "w-1/2")}
+      className={cn("mb-3 px-1", prop.isFull() ? "w-full" : "w-1/2")}
     >
-      <div className={cx("flex mb-2 items-center", canClear && "text-sky-300")}>
+      <div className={cn("flex mb-2 items-center", canClear && "text-sky-300")}>
         <div className="flex-grow capitalize">{prop.getLabel()}</div>
         {canClear && (
           <button onClick={() => prop.clear()}>

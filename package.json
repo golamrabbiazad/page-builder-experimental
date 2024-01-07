@@ -1,41 +1,46 @@
 {
   "name": "ts-grapejs-react",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "api-server": "npx json-server --watch db.json"
+    "server": "npx json-server --watch db.json"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@grapesjs/react": "^1.0.0",
-    "@mdi/js": "^7.4.47",
-    "@mdi/react": "^1.6.1",
-    "@mui/material": "^5.15.2",
-    "grapejs": "^2.1.2",
+    "@mdi/js": "^7",
+    "@mdi/react": "^1",
+    "@mui/material": "^5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "grapesjs": "^0.21.8",
     "grapesjs-blocks-basic": "^1.0.2",
     "json-server": "^0.17.4",
+    "lucide-react": "^0.307.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "@vitejs/plugin-react-swc": "^3",
-    "autoprefixer": "^10.4.16",
+    "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-plugin-react-hooks": "^4",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.4.0",
+    "postcss": "^8",
+    "tailwindcss": "^3",
     "typescript": "^5",
     "vite": "^5"
   }

@@ -1,7 +1,7 @@
 import { RemoteStorageConfig } from "grapesjs";
 
-export const projectId = 1;
-export const projectEndPoint = `http://localhost:3000/projects/${projectId}`;
+export const projectId = 2;
+export const projectEndPoint = `http://localhost:5173/api/v1/projects/${projectId}`;
 
 export const remoteStorageConfigs: RemoteStorageConfig = {
   urlLoad: projectEndPoint,

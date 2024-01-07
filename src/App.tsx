@@ -3,22 +3,26 @@ import GjsEditor, {
   Canvas,
   ModalProvider,
 } from "@grapesjs/react";
-import grapesjs, { Editor, EditorConfig, usePlugin } from "grapesjs";
+import grapesjs, { Editor, EditorConfig } from "grapesjs";
 import { ThemeProvider, createTheme } from "@mui/material";
-import basicBlockPlugin from "grapesjs-blocks-basic";
 
-import { Topbar } from "./components/top-bar";
-import { MAIN_BORDER_COLOR } from "./utils";
-import { LeftSidbar } from "./components/leftside-bar";
-import { CustomModal } from "./components/custom-modal";
-import { RightSidebar } from "./components/rightside-bar";
-import { CustomAssetManager } from "./components/custom-asset-manager";
+import { Topbar } from "@/components/top-bar";
+import { MAIN_BORDER_COLOR } from "@/lib/utils";
+import { LeftSidbar } from "@/components/leftside-bar";
+import { CustomModal } from "@/components/custom-modal";
+import { RightSidebar } from "@/components/rightside-bar";
+import { CustomAssetManager } from "@/components/custom-asset-manager";
 
 // import assetData from "../image-data.json";
-import layoutPlugin from "./plugins/layouts";
 
 // import { htmlString } from "./components/template/render";
 import { storageManagerConfig } from "./configs/storage-manager";
+import { editorPluginConfig } from "./configs/editor-plugins";
+import {
+  CSSICONS,
+  INTER_VAR_CSS,
+  TAILWINDCSS_SCRIPT,
+} from "./lib/external-urls";
 
 const theme = createTheme({
   palette: {
@@ -35,11 +39,10 @@ const gjsOptions: EditorConfig = {
   selectorManager: {
     componentFirst: true,
   },
-
+  cssIcons: CSSICONS,
   canvas: {
-    scripts: [
-      "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio",
-    ],
+    styles: [INTER_VAR_CSS],
+    scripts: [TAILWINDCSS_SCRIPT],
   },
 
   /**
@@ -65,25 +68,6 @@ export default function App() {
   function onEditor(editor: Editor) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).editor = editor;
-
-    editor.StyleManager.addSector(
-      "layout-sector",
-      {
-        name: "Customize Layout",
-      },
-      { at: 0 }
-    );
-
-    editor.StyleManager.addProperty("layout-sector", {
-      label: "Number of Column",
-      default: "1",
-      property: "column",
-      type: "select",
-      options: [
-        { id: "2", label: "2 Column" },
-        { id: "3", label: "3 Column" },
-      ],
-    });
   }
 
   return (
@@ -94,22 +78,7 @@ export default function App() {
         grapesjsCss="https://unpkg.com/grapesjs/dist/css/grapes.min.css"
         options={gjsOptions}
         onEditor={onEditor}
-        plugins={[
-          (editor) =>
-            basicBlockPlugin(editor, {
-              blocks: [
-                "column1",
-                "column2",
-                "column3",
-                "column3-7",
-                "link",
-                "image",
-                "video",
-                "map",
-              ],
-            }),
-          usePlugin(layoutPlugin),
-        ]}
+        plugins={editorPluginConfig}
       >
         <div className={`flex h-full border-t ${MAIN_BORDER_COLOR}`}>
           <div className="gjs-column-m flex flex-col flex-grow">

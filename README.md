@@ -1,9 +1,10 @@
-# React + TypeScript + Vite
+# Page Builder
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- https://github.com/GrapesJS/react/tree/main/packages/grapesjs-react-app
-- https://github.com/Ju99ernaut/grapesjs-tailwind/
+- <https://github.com/GrapesJS/react/tree/main/packages/grapesjs-react-app>
+- <https://github.com/Ju99ernaut/grapesjs-tailwind/>
+- <https://github.com/GrapesJS/grapesjs/issues/2170>
 
 ## Expanding the ESLint configuration
 

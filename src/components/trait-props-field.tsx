@@ -1,3 +1,4 @@
+import { ROUND_BORDER_COLOR, cn } from "@/lib/utils";
 import { useEditor } from "@grapesjs/react";
 import {
   TextField,
@@ -8,7 +9,6 @@ import {
   Checkbox,
   Button,
 } from "@mui/material";
-import { ROUND_BORDER_COLOR, cx } from "../utils";
 import { Trait } from "grapesjs";
 
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
@@ -124,8 +124,8 @@ export function TraitPropertyField({
   }
 
   return (
-    <div {...rest} className={cx("mb-3 px-1 w-full")}>
-      <div className={cx("flex mb-2 items-center")}>
+    <div {...rest} className={cn("mb-3 px-1 w-full")}>
+      <div className={cn("flex mb-2 items-center")}>
         <div className="flex-grow capitalize">{trait.getLabel()}</div>
       </div>
       {inputToRender}
