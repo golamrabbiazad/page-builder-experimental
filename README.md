@@ -5,6 +5,7 @@ This template provides a minimal setup to get React working in Vite with HMR and
 - <https://github.com/GrapesJS/react/tree/main/packages/grapesjs-react-app>
 - <https://github.com/Ju99ernaut/grapesjs-tailwind/>
 - <https://github.com/GrapesJS/grapesjs/issues/2170>
+- <https://github.com/GrapesJS/grapesjs/blob/dev/src/selector_manager/model/Selector.ts#L194C37-L194C63> open PR to fix the `[] and .` arbitrary value to the selector section.
 
 ## Expanding the ESLint configuration
 

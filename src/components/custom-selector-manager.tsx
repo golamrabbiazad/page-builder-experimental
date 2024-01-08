@@ -2,15 +2,11 @@ import { ElementRef, useRef, useState } from "react";
 import { Icon } from "@mdi/react";
 import { mdiClose, mdiPlus } from "@mdi/js";
 import { SelectorsResultProps } from "@grapesjs/react";
-import { FormControl, Select, MenuItem } from "@mui/material";
 import { MAIN_BORDER_COLOR, cn } from "@/lib/utils";
 
 export function CustomSelectorManager({
   selectors,
-  selectedState,
-  states,
   targets,
-  setState,
   addSelector,
   removeSelector,
 }: Omit<SelectorsResultProps, "Container">) {
@@ -26,20 +22,6 @@ export function CustomSelectorManager({
     <div className="gjs-custom-selector-manager p-2 flex flex-col gap-2 text-left">
       <div className="flex items-center">
         <div className="flex-grow">Classes</div>
-        <FormControl size="small">
-          <Select
-            value={selectedState}
-            onChange={(ev) => setState(ev.target.value)}
-            displayEmpty
-          >
-            <MenuItem value="">- State -</MenuItem>
-            {states.map((state) => (
-              <MenuItem value={state.id} key={state.id}>
-                {state.getName()}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
       </div>
       <div
         className={cn(
@@ -61,15 +43,12 @@ export function CustomSelectorManager({
           <div className="opacity-70">Select a component</div>
         )}
 
-        <div
-          onClick={(ev) => {
-            console.log(ev);
-          }}
-        >
+        <div>
           <input
             type="text"
             ref={customInputRef}
-            className="bg-inherit border rounded text-white hidden"
+            className="bg-inherit border rounded text-white hidden caret-current p-1"
+            placeholder="text-center"
             onChange={(e) => {
               // stored in variable
               setNewSelector({
@@ -80,8 +59,14 @@ export function CustomSelectorManager({
             onKeyDown={(ev) => {
               // on enter keypress add button
               if (ev.key === "Enter") {
-                addSelector(newSelector);
-                customInputRef.current?.classList.toggle("hidden");
+                addSelector({
+                  name: newSelector.name.toString(),
+                  label: newSelector.label.toString(),
+                  type: 1,
+                });
+                if (customInputRef.current) {
+                  customInputRef.current.value = "";
+                }
               }
             }}
           />
@@ -96,13 +81,6 @@ export function CustomSelectorManager({
               <Icon size={0.7} path={mdiClose} />
             </button>
           </div>
-
-          // <EditableSelector
-          //   key={selector.toString()}
-          //   selector={selector}
-          //   addSelector={addSelector}
-          //   removeSelector={removeSelector}
-          // />
         ))}
       </div>
       <div>

@@ -82,8 +82,6 @@ function loadBlocks(editor: Editor, opts: Required<PluginOptions>) {
   const attrsRow = attrsToString(rowAttr);
   const attrsCell = attrsToString(columnAttr);
 
-  console.log(attrsRow);
-
   const commonBlockProps: Partial<BlockProperties> = {
     category,
     select: true,
@@ -112,26 +110,6 @@ function loadBlocks(editor: Editor, opts: Required<PluginOptions>) {
       </svg>`,
       content: `<p>Insert your text here</p>`,
     });
-
-  toAdd("column") &&
-    bm.add("column", {
-      ...commonBlockProps,
-      label: opts.column,
-      activate: true,
-      media: `<svg viewBox="0 0 23 24">
-        <path fill="currentColor" d="M2 20h8V4H2v16Zm-1 0V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1ZM13 20h8V4h-8v16Zm-1 0V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-8a1 1 0 0 1-1-1Z"/>
-      </svg>`,
-      content: `<div data-gjs-type="cmp-Y"></div>`,
-    });
-
-  editor.Components.addType("el-X", {
-    model: {
-      defaults: {
-        name: "Column",
-        draggable: "el-Y",
-      },
-    },
-  });
 }
 
 type PluginOptions = {

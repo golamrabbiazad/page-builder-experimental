@@ -5,3 +5,6 @@ export const INTER_VAR_CSS = "https://rsms.me/inter/inter.css";
 
 export const TAILWINDCSS_SCRIPT =
   "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio";
+
+export const GRAPESJS_CSS =
+  "https://unpkg.com/grapesjs/dist/css/grapes.min.css";

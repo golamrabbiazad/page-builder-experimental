@@ -20,6 +20,7 @@ import { storageManagerConfig } from "./configs/storage-manager";
 import { editorPluginConfig } from "./configs/editor-plugins";
 import {
   CSSICONS,
+  GRAPESJS_CSS,
   INTER_VAR_CSS,
   TAILWINDCSS_SCRIPT,
 } from "./lib/external-urls";
@@ -31,7 +32,6 @@ const theme = createTheme({
 });
 
 const gjsOptions: EditorConfig = {
-  height: "100vh",
   storageManager: storageManagerConfig,
   undoManager: {
     trackSelection: false,
@@ -75,24 +75,20 @@ export default function App() {
       <GjsEditor
         className="gjs-custom-editor text-white bg-slate-900"
         grapesjs={grapesjs}
-        grapesjsCss="https://unpkg.com/grapesjs/dist/css/grapes.min.css"
+        grapesjsCss={GRAPESJS_CSS}
         options={gjsOptions}
         onEditor={onEditor}
         plugins={editorPluginConfig}
       >
-        <div className={`flex h-full border-t ${MAIN_BORDER_COLOR}`}>
+        <div className={`flex border-t ${MAIN_BORDER_COLOR}`}>
           <div className="gjs-column-m flex flex-col flex-grow">
             <Topbar className="min-h-[48px]" />
 
-            <div className="flex">
-              <LeftSidbar
-                className={`gjs-column-r w-[400px] ${MAIN_BORDER_COLOR}`}
-              />
+            <div className="flex h-screen">
+              <LeftSidbar className={`w-96 ${MAIN_BORDER_COLOR}`} />
               <Canvas className="flex-grow gjs-custom-editor-canvas" />
 
-              <RightSidebar
-                className={`gjs-column-r w-[400px] ${MAIN_BORDER_COLOR}`}
-              />
+              <RightSidebar className={`w-96 ${MAIN_BORDER_COLOR}`} />
             </div>
           </div>
         </div>
