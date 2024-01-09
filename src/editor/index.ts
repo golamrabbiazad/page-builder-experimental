@@ -2,12 +2,11 @@ import { storageManagerConfig } from "@/configs/storage-manager";
 import {
   CSSICONS,
   GRAPESJS_CSS,
-  INTER_VAR_CSS,
   TAILWINDCSS_SCRIPT,
 } from "@/lib/external-urls";
 import { plugins } from "@/plugins";
 import { EditorProps } from "@grapesjs/react";
-import { EditorConfig } from "grapesjs";
+import grapesjs, { EditorConfig } from "grapesjs";
 
 // const gjsOptions: EditorConfig = {
 /**
@@ -56,13 +55,22 @@ export const defaultOptions: EditorConfig = {
   },
   cssIcons: CSSICONS,
   canvas: {
-    styles: [INTER_VAR_CSS],
+    styles: ["https://rsms.me/", "https://rsms.me/inter/inter.css"],
     scripts: [TAILWINDCSS_SCRIPT],
   },
+  canvasCss: `
+  :root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  }
+  @supports (font-variation-settings: normal) {
+    :root { font-family: InterVariable, sans-serif; }
+  }
+  `,
 };
 
 export const defaultEditorProps: EditorProps = {
-  grapesjs: window.grapesjs,
+  grapesjs,
   plugins: plugins,
   grapesjsCss: GRAPESJS_CSS,
   options: defaultOptions,

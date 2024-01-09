@@ -1,10 +1,11 @@
+import { StorageManagerConfig } from "grapesjs";
 import { projectId, remoteStorageConfigs } from "./storage-config";
 
-export const storageManagerConfig = {
+export const storageManagerConfig: StorageManagerConfig = {
   type: "remote",
   autoload: true,
   autosave: true,
-  stepsBeforeSave: 1,
+  stepsBeforeSave: 3,
 
   options: {
     local: {

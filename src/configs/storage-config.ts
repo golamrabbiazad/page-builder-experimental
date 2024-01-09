@@ -1,6 +1,6 @@
 import { RemoteStorageConfig } from "grapesjs";
 
-export const projectId = 2;
+export const projectId = 1;
 export const projectEndPoint = `http://localhost:5173/api/v1/projects/${projectId}`;
 
 export const remoteStorageConfigs: RemoteStorageConfig = {
@@ -26,5 +26,13 @@ export const remoteStorageConfigs: RemoteStorageConfig = {
     };
   },
 
-  onLoad: (result) => result.data,
+  onLoad: (result) => ({
+    pages: result.pagesHtml.map(
+      ({ html, css }: { html: string; css: string }) => ({
+        component: `
+        ${html}
+        <style>${css}</style>`,
+      })
+    ),
+  }),
 };
