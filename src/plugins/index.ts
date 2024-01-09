@@ -1,9 +1,11 @@
-import { myCustomPlugin } from "@/plugins/custom-plugin";
-
 import { Editor } from "grapesjs";
+import { EditorProps } from "@grapesjs/react";
 import basicBlockPlugin from "grapesjs-blocks-basic";
 
-export const editorPluginConfig = [
+import { layoutPlugin } from "./layouts";
+import { ComponentPlugin } from "./components";
+
+export const plugins: EditorProps["plugins"] = [
   (editor: Editor) =>
     basicBlockPlugin(editor, {
       blocks: [
@@ -11,11 +13,13 @@ export const editorPluginConfig = [
         "column2",
         "column3",
         "column3-7",
+        "text",
         "link",
         "image",
         "video",
         "map",
       ],
     }),
-  myCustomPlugin,
+  layoutPlugin,
+  ComponentPlugin,
 ];

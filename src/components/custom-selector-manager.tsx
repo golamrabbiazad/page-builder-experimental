@@ -2,7 +2,8 @@ import { ElementRef, useRef, useState } from "react";
 import { Icon } from "@mdi/react";
 import { mdiClose, mdiPlus } from "@mdi/js";
 import { SelectorsResultProps } from "@grapesjs/react";
-import { MAIN_BORDER_COLOR, cn } from "@/lib/utils";
+import { MAIN_BORDER_COLOR } from "@/lib/common";
+import { cn } from "@/lib/utils";
 
 export function CustomSelectorManager({
   selectors,

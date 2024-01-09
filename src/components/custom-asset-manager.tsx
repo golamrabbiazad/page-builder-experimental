@@ -1,6 +1,6 @@
 import { AssetsResultProps, useEditor } from "@grapesjs/react";
 import { Asset } from "grapesjs";
-import { BTN_CLS } from "@/lib/utils";
+import { BTN_CLS } from "@/lib/common";
 import { Icon } from "@mdi/react";
 import { mdiClose } from "@mdi/js";
 
@@ -12,8 +12,7 @@ export type CustomAssetManagerProps = Pick<
 export function CustomAssetManager({
   assets,
   select,
-}: // close,
-CustomAssetManagerProps) {
+}: CustomAssetManagerProps) {
   const editor = useEditor();
 
   const remove = (asset: Asset) => {

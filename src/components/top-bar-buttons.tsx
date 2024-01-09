@@ -10,7 +10,8 @@ import {
 } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useEffect, useState } from "react";
-import { BTN_CLS, MAIN_BORDER_COLOR, cn } from "@/lib/utils";
+import { BTN_CLS, MAIN_BORDER_COLOR } from "@/lib/common";
+import { cn } from "@/lib/utils";
 
 interface CommandButton {
   id: string;

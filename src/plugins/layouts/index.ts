@@ -1,191 +1,150 @@
-import type { Editor, BlockProperties, Plugin } from "grapesjs";
+import { Editor } from "grapesjs";
 
-function loadBlocks(editor: Editor, opts: Required<PluginOptions>) {
-  const bm = editor.BlockManager;
-  const { category, blocks, stylePrefix, flexGrid } = opts;
+const containerIcon = `
+<svg xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="#ffffff" 
+    stroke-width="2" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    class="lucide lucide-square">
+        <rect width="20" height="20" x="3" y="3" rx="2"/>
+</svg>
+`;
 
-  const clsRow = `${stylePrefix}row`;
-  const clsCell = `${stylePrefix}cell`;
-  const clsText = `${stylePrefix}text`;
+const sectionIcon = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers-3"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m6.08 9.5-3.5 1.6a1 1 0 0 0 0 1.81l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9a1 1 0 0 0 0-1.83l-3.5-1.59"/><path d="m6.08 14.5-3.5 1.6a1 1 0 0 0 0 1.81l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9a1 1 0 0 0 0-1.83l-3.5-1.59"/></svg>`;
 
-  const step = 0.2;
-  const minDim = 1;
-  const currentUnit = 1;
-  const resizerBtm: Record<string, any> = {
-    tl: 0,
-    tc: 0,
-    tr: 0,
-    cl: 0,
-    cr: 0,
-    bl: 0,
-    br: 0,
-    minDim,
-  };
+const h1HeadingIcon = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heading-1"><path d="M4 12h8"/><path d="M4 18V6"/><path d="M12 18V6"/><path d="m17 12 3-2v8"/></svg>
+`;
 
-  const resizerRight: Record<string, any> = {
-    ...resizerBtm,
-    cr: 1,
-    bc: 0,
-    currentUnit,
-    minDim,
-    step,
-  };
-
-  // Flex elements do not react on width style change therefore I use
-  // 'flex-basis' as keyWidth for the resizer on columns
-  if (flexGrid) {
-    resizerRight.keyWidth = "flex-basis";
-  }
-
-  const rowAttr = {
-    class: clsRow,
-    "data-gjs-droppable": `.${clsCell} .${clsText} ${clsRow}`,
-    "data-gjs-resizable": resizerBtm,
-    "data-gjs-name": "Row",
-  };
-
-  const columnAttr: Record<string, any> = {
-    class: clsCell,
-    "data-gjs-draggable": `.${clsRow}`,
-    "data-gjs-resizable": resizerRight,
-    "data-gjs-name": "Column",
-  };
-
-  if (flexGrid) {
-    columnAttr["data-gjs-unstylable"] = ["width"];
-    columnAttr["data-gjs-stylable-require"] = ["flex-basis"];
-  }
-
-  // Make row and column classes private
-  const privateCls = [`.${clsRow}`, `.${clsCell}`];
-  editor.on(
-    "selector:add",
-    (selector) =>
-      privateCls.indexOf(selector.getFullName()) >= 0 &&
-      selector.set("private", 1)
-  );
-
-  const attrsToString = (attrs: Record<string, any>) => {
-    const result = [];
-
-    for (const key in attrs) {
-      let value = attrs[key];
-      const toParse = value instanceof Array || value instanceof Object;
-      value = toParse ? JSON.stringify(value) : value;
-      result.push(`${key}=${toParse ? `'${value}'` : `'${value}'`}`);
-    }
-
-    return result.length ? ` ${result.join(" ")}` : "";
-  };
-
-  const toAdd = (name: string) => blocks.indexOf(name) >= 0;
-  const attrsRow = attrsToString(rowAttr);
-  const attrsCell = attrsToString(columnAttr);
-
-  const commonBlockProps: Partial<BlockProperties> = {
-    category,
+export function layoutPlugin(editor: Editor) {
+  editor.Blocks.add("section-block", {
+    label: "Section",
+    content: `<section class="h-96"></section>`,
     select: true,
-  };
-
-  toAdd("container") &&
-    bm.add("container", {
-      ...commonBlockProps,
-      label: opts.container,
-      activate: true,
-      media: `<svg viewBox="0 0 24 24">
-        <path fill="currentColor" d="M2 20h20V4H2v16Zm-1 0V4a1 1 0 0 1 1-1h20a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Z"/>
-      </svg>`,
-      content: `<section ${attrsRow}>
-      <div ${attrsCell}></div>
-    </section>`,
-    });
-
-  toAdd("text") &&
-    bm.add("text", {
-      ...commonBlockProps,
-      label: opts.text,
-      activate: true,
-      media: `<svg viewBox="0 0 24 24">
-        <path fill="currentColor" d="M18.5,4L19.66,8.35L18.7,8.61C18.25,7.74 17.79,6.87 17.26,6.43C16.73,6 16.11,6 15.5,6H13V16.5C13,17 13,17.5 13.33,17.75C13.67,18 14.33,18 15,18V19H9V18C9.67,18 10.33,18 10.67,17.75C11,17.5 11,17 11,16.5V6H8.5C7.89,6 7.27,6 6.74,6.43C6.21,6.87 5.75,7.74 5.3,8.61L4.34,8.35L5.5,4H18.5Z" />
-      </svg>`,
-      content: `<p>Insert your text here</p>`,
-    });
-}
-
-type PluginOptions = {
-  /**
-   * Which blocks to add.
-   * @default ['column1', 'column2', 'column3', 'column3-7', 'text', 'link', 'image', 'video', 'map']
-   */
-  blocks?: string[];
-
-  /**
-   * Make use of flexbox for the grid
-   * @default false
-   */
-  flexGrid?: boolean;
-
-  /**
-   * Classes prefix
-   * @default 'gjs-'
-   */
-  stylePrefix?: string;
-
-  /**
-   * Use basic CSS for blocks
-   * @default true
-   */
-  addBasicStyle?: boolean;
-
-  /**
-   * Blocks category name
-   * @default 'Layout'
-   */
-  category?: string;
-
-  /**
-   * Container label
-   * @default 'container'
-   */
-  container?: string;
-
-  /**
-   * 2 Columns label
-   * @default 'column'
-   */
-  column?: string;
-
-  /**
-   * 3 Columns label
-   * @default '3 Columns'
-   */
-  row?: string;
-
-  text?: string;
-
-  /**
-   * Initial row height
-   * @default 75
-   */
-  rowHeight?: number;
-};
-
-const layoutPlugin: Plugin<PluginOptions> = (editor, opts = {}) => {
-  const config: Required<PluginOptions> = {
-    blocks: ["container", "column", "row", "text"],
-    flexGrid: false,
-    stylePrefix: "gjs-",
-    addBasicStyle: true,
+    activate: true,
+    attributes: {},
+    media: sectionIcon,
     category: "Layouts",
-    container: "Container",
-    column: "Column",
-    text: "Text",
-    row: "Row",
-    rowHeight: 75,
-    ...opts,
-  };
+  });
 
-  loadBlocks(editor, config);
-};
+  editor.DomComponents.addType("section", {
+    isComponent: (el) => el.tagName === "section",
 
-export default layoutPlugin;
+    model: {
+      defaults: {
+        tagName: "Section",
+        droppable: true,
+        resizable: true,
+      },
+    },
+  });
+
+  editor.Blocks.add("container-block", {
+    label: "Container",
+    content: `<div class="h-80 flex flex-grow">
+    <div class="min-h-[50px] w-full"></div>
+    <div class="min-h-[50px] w-full"></div>
+    </div>`,
+    select: true,
+    activate: true,
+    attributes: {},
+    media: containerIcon,
+    category: "Layouts",
+  });
+
+  editor.DomComponents.addType("container-type", {
+    isComponent: (el) => el.tagName === "div",
+
+    model: {
+      defaults: {
+        tagName: "div",
+        droppable: true,
+        resizable: true,
+      },
+    },
+  });
+
+  editor.Blocks.add("div-block", {
+    label: "Box",
+    content: `<div class="min-h-[50px] w-full"></div>`,
+    select: true,
+    activate: true,
+    attributes: {},
+    media: containerIcon,
+    category: "Layouts",
+  });
+
+  editor.DomComponents.addType("container-type", {
+    isComponent: (el) => el.tagName === "div",
+
+    model: {
+      defaults: {
+        tagName: "div",
+        droppable: true,
+      },
+    },
+  });
+
+  editor.Blocks.add("h1-block", {
+    label: "Heading",
+    content: "<h1>Put your title here</h1>",
+    category: "Basic",
+    attributes: {
+      title: "Insert h1 block",
+    },
+    select: true,
+    activate: true,
+    media: h1HeadingIcon,
+  });
+
+  editor.DomComponents.addType("h1", {
+    isComponent: (el) => el.tagName === "h1",
+
+    model: {
+      defaults: {
+        tagName: "H1",
+        draggable: `section`,
+      },
+    },
+  });
+
+  //   editor.addComponents(`
+  //     <div>
+  //         <img src="https://path/image" />
+  //         <span title="foo">Hello world!!!</span>
+  //     </div>
+  //   `);
+
+  //   editor.getSelected()!.append(`<div>...`);
+
+  //   editor.DomComponents.addType("div", {
+  //     model: {
+  //       defaults: {
+  //         tagName: "div",
+  //         editable: true,
+  //         droppable: true,
+  //       },
+  //     },
+
+  //     view: {
+  //       events: {
+  //         dblclick: "onActive",
+  //         focusout: "onDisable",
+  //       },
+
+  //       onActive() {
+  //         const { el } = this;
+  //         el.contentEditable = "true";
+  //       },
+
+  //       onDisable() {
+  //         const { el, model } = this;
+  //         (el.contentEditable = "false"), model.set("content", el.innerHTML);
+  //       },
+  //     },
+  //   });
+}

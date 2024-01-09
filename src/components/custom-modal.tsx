@@ -2,7 +2,8 @@ import { Icon } from "@mdi/react";
 import { mdiClose } from "@mdi/js";
 import { Box, Fade, Modal, ModalProps } from "@mui/material";
 
-import { MAIN_BG_COLOR, MAIN_TXT_COLOR, cn } from "@/lib/utils";
+import { MAIN_BG_COLOR, MAIN_TXT_COLOR } from "@/lib/common";
+import { cn } from "@/lib/utils";
 
 const style = {
   position: "absolute",

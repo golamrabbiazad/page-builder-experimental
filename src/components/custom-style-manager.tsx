@@ -3,7 +3,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { mdiMenuDown } from "@mdi/js";
 import Icon from "@mdi/react";
 import { StylePropertyField } from "./style-property-field";
-import { MAIN_BG_COLOR } from "@/lib/utils";
+import { MAIN_BG_COLOR } from "@/lib/common";
 
 const accordionIcon = <Icon path={mdiMenuDown} size={0.7} />;
 

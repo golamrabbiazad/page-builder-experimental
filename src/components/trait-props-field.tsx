@@ -1,4 +1,5 @@
-import { ROUND_BORDER_COLOR, cn } from "@/lib/utils";
+import { ROUND_BORDER_COLOR } from "@/lib/common";
+import { cn } from "@/lib/utils";
 import { useEditor } from "@grapesjs/react";
 import {
   TextField,
