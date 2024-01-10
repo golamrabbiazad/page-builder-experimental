@@ -2,360 +2,88 @@
   "projects": [
     {
       "id": "1",
-      "data": {
-        "assets": [],
-        "styles": [
-          {
-            "selectors": [],
-            "selectorsAdd": "*",
-            "style": {
-              "box-sizing": "border-box"
-            }
-          },
-          {
-            "selectors": [],
-            "selectorsAdd": "body",
-            "style": {
-              "margin-top": "0px",
-              "margin-right": "0px",
-              "margin-bottom": "0px",
-              "margin-left": "0px"
-            }
-          },
-          {
-            "selectors": [
-              "#izjlf"
-            ],
-            "style": {
-              "width": "1013px"
-            }
-          }
-        ],
-        "pages": [
-          {
-            "frames": [
-              {
-                "component": {
-                  "type": "wrapper",
-                  "stylable": [
-                    "background",
-                    "background-color",
-                    "background-image",
-                    "background-repeat",
-                    "background-attachment",
-                    "background-position",
-                    "background-size"
-                  ],
-                  "components": [
-                    {
-                      "tagName": "header",
-                      "classes": [
-                        "w-full",
-                        "h-6",
-                        "flex",
-                        "items-center",
-                        "mb-4",
-                        "mt-8"
-                      ],
-                      "attributes": {
-                        "id": "ig2d"
-                      },
-                      "components": [
-                        {
-                          "tagName": "nav",
-                          "classes": [
-                            "mx-auto",
-                            "flex",
-                            "items-center",
-                            "justify-between",
-                            "py-2",
-                            "text-black",
-                            "gap-8"
-                          ],
-                          "components": [
-                            {
-                              "classes": [
-                                "flex",
-                                "gap-4"
-                              ],
-                              "attributes": {
-                                "id": "iv57"
-                              },
-                              "components": [
-                                {
-                                  "tagName": "h1",
-                                  "type": "text",
-                                  "classes": [
-                                    "text-slate-900",
-                                    "hover:text-slate-300"
-                                  ],
-                                  "attributes": {
-                                    "id": "i1wk"
-                                  },
-                                  "components": [
-                                    {
-                                      "type": "textnode",
-                                      "content": "logo"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "tagName": "ul",
-                                  "classes": [
-                                    "flex",
-                                    "items-center",
-                                    "gap-2",
-                                    "text-gray-400"
-                                  ],
-                                  "components": [
-                                    {
-                                      "tagName": "li",
-                                      "type": "text",
-                                      "attributes": {
-                                        "id": "nav-2"
-                                      },
-                                      "components": [
-                                        {
-                                          "type": "textnode",
-                                          "content": "Services"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "tagName": "li",
-                                      "type": "text",
-                                      "components": [
-                                        {
-                                          "type": "textnode",
-                                          "content": "Pricing"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "tagName": "li",
-                                      "type": "text",
-                                      "components": [
-                                        {
-                                          "type": "textnode",
-                                          "content": "Portfolio"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "tagName": "li",
-                                      "type": "text",
-                                      "attributes": {
-                                        "id": "igadk"
-                                      },
-                                      "components": [
-                                        {
-                                          "type": "textnode",
-                                          "content": "Contact us"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "tagName": "li",
-                                      "type": "text",
-                                      "attributes": {
-                                        "id": "ixijs"
-                                      },
-                                      "components": [
-                                        {
-                                          "type": "textnode",
-                                          "content": "About us"
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "classes": [
-                                "flex",
-                                "gap-2"
-                              ],
-                              "components": [
-                                {
-                                  "tagName": "input",
-                                  "void": true,
-                                  "classes": [
-                                    "p-2",
-                                    "rounded-full",
-                                    "bg-white",
-                                    "border",
-                                    "border-gray-200",
-                                    "w-full"
-                                  ],
-                                  "attributes": {
-                                    "type": "text",
-                                    "placeholder": "Search",
-                                    "id": "search"
-                                  }
-                                },
-                                {
-                                  "tagName": "button",
-                                  "type": "text",
-                                  "classes": [
-                                    "rounded-full",
-                                    "p-2",
-                                    "text-white",
-                                    "w-full",
-                                    "font-medium",
-                                    "bg-black"
-                                  ],
-                                  "attributes": {
-                                    "type": "submit",
-                                    "id": "ihryk"
-                                  },
-                                  "components": [
-                                    {
-                                      "type": "textnode",
-                                      "content": "Register/Login"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "tagName": "main",
-                      "classes": [
-                        "w-full",
-                        "mx-auto",
-                        "flex",
-                        "justify-center"
-                      ],
-                      "attributes": {
-                        "id": "ijjr6"
-                      },
-                      "components": [
-                        {
-                          "tagName": "section",
-                          "classes": [
-                            "text--536136-",
-                            "relative"
-                          ],
-                          "components": [
-                            {
-                              "type": "image",
-                              "resizable": {
-                                "ratioDefault": 1
-                              },
-                              "attributes": {
-                                "src": "https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                                "alt": "office-slider",
-                                "id": "izjlf"
-                              }
-                            },
-                            {
-                              "classes": [
-                                "max-w-xl",
-                                "absolute",
-                                "top-1/2",
-                                "left-1/2",
-                                "transform",
-                                "-translate-x-1/2",
-                                "-translate-y-1/2",
-                                "text-center"
-                              ],
-                              "attributes": {
-                                "id": "ieqlx"
-                              },
-                              "components": [
-                                {
-                                  "tagName": "h2",
-                                  "type": "text",
-                                  "classes": [
-                                    "uppercase",
-                                    "text-xl",
-                                    "font-medium"
-                                  ],
-                                  "components": [
-                                    {
-                                      "type": "textnode",
-                                      "content": "Gift Guide"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "tagName": "h1",
-                                  "type": "text",
-                                  "classes": [
-                                    "tracking-tighter",
-                                    "font-bold",
-                                    "pb-2",
-                                    "lg:text-6xl"
-                                  ],
-                                  "attributes": {
-                                    "id": "i48h6"
-                                  },
-                                  "components": [
-                                    {
-                                      "type": "textnode",
-                                      "content": "Here is to Joy's"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "tagName": "p",
-                                  "type": "text",
-                                  "classes": [
-                                    "pb-4"
-                                  ],
-                                  "attributes": {
-                                    "id": "iwjmi"
-                                  },
-                                  "components": [
-                                    {
-                                      "type": "textnode",
-                                      "content": "There are many variations of passages of Lorem ipsum available, but the majority have suffered alteration in some form, by injected humor."
-                                    }
-                                  ]
-                                },
-                                {
-                                  "tagName": "button",
-                                  "type": "text",
-                                  "classes": [
-                                    "text-white",
-                                    "p-2",
-                                    "w-1/3",
-                                    "rounded-full",
-                                    "hover:bg-gray-500"
-                                  ],
-                                  "attributes": {
-                                    "id": "i0vee"
-                                  },
-                                  "components": [
-                                    {
-                                      "type": "textnode",
-                                      "content": "Shop Gifts"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                "id": "1eat292jDCpXIZaA"
-              }
-            ],
-            "id": "ARWYx2hFEIi5ZlUs"
-          }
-        ]
-      },
       "pagesHtml": [
         {
-          "html": "<body><header id=\"ig2d\" class=\"w-full h-6 flex items-center mb-4 mt-8\"><nav class=\"mx-auto flex items-center justify-between py-2 text-black gap-8\"><div id=\"iv57\" class=\"flex gap-4\"><h1 id=\"i1wk\" class=\"text-slate-900 hover:text-slate-300\">logo</h1><ul class=\"flex items-center gap-2 text-gray-400\"><li id=\"nav-2\">Services</li><li>Pricing</li><li>Portfolio</li><li id=\"igadk\">Contact us</li><li id=\"ixijs\">About us</li></ul></div><div class=\"flex gap-2\"><input type=\"text\" placeholder=\"Search\" id=\"search\" class=\"p-2 rounded-full bg-white border border-gray-200 w-full\"/><button type=\"submit\" id=\"ihryk\" class=\"rounded-full p-2 text-white w-full font-medium bg-black\">Register/Login</button></div></nav></header><main id=\"ijjr6\" class=\"w-full mx-auto flex justify-center\"><section class=\"text--536136- relative\"><img src=\"https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"office-slider\" id=\"izjlf\"/><div id=\"ieqlx\" class=\"max-w-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center\"><h2 class=\"uppercase text-xl font-medium\">Gift Guide</h2><h1 id=\"i48h6\" class=\"tracking-tighter font-bold pb-2 lg:text-6xl\">Here is to Joy's</h1><p id=\"iwjmi\" class=\"pb-4\">There are many variations of passages of Lorem ipsum available, but the majority have suffered alteration in some form, by injected humor.</p><button id=\"i0vee\" class=\"text-white p-2 w-1/3 rounded-full hover:bg-gray-500\">Shop Gifts</button></div></section></main></body>",
-          "css": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#izjlf{width:1013px;}"
+          "html": "<body><header id=\"ig2d\" class=\"w-full h-6 flex items-center mb-4 mt-8\"><nav id=\"i4boa\" class=\"mx-auto flex items-center justify-between py-2 text-black gap-8\"><div id=\"iv57\" class=\"flex gap-4\"><h1 id=\"i1wk\" class=\"text-slate-900 hover:text-slate-300\">logo</h1><ul class=\"flex items-center gap-2 text-gray-400\"><li id=\"nav-2\">Services</li><li id=\"in1sy\">Pricing</li><li id=\"inn31\">Portfolio</li><li id=\"igadk\">Contact us</li><li id=\"ixijs\">About us</li></ul></div><div class=\"flex gap-2\"><input type=\"text\" placeholder=\"Search\" id=\"search\" class=\"p-2 rounded-full bg-white border border-gray-200 w-full\"/><button type=\"submit\" id=\"ihryk\" class=\"rounded-full p-2 text-white w-full font-medium bg-black\">Register/Login</button></div></nav></header><main id=\"ijjr6\" class=\"w-full mx-auto flex justify-center\"><section class=\"text--536136- relative\"><img src=\"https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"office-slider\" id=\"izjlf\"/><div id=\"ieqlx\" class=\"max-w-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center\"><h2 id=\"itcnv\" class=\"uppercase text-xl font-medium\">Gift Guide</h2><h1 id=\"i48h6\" class=\"tracking-tighter font-bold pb-2 lg:text-6xl\">Here is to Joy's</h1><p id=\"iwjmi\" class=\"pb-4\">There are many variations of passages of Lorem ipsum available, but the majority have suffered alteration in some form, by injected humor.</p><button id=\"i0vee\" class=\"text-white p-2 w-1/3 rounded-full hover:bg-gray-500 bg-gray-900\">Shop Gifts</button></div></section></main><section id=\"desher-khobor\" type=\"4\"><h2 id=\"idv7b\" class=\"ml-2 text-3xl font-bold\">দেশের খবর</h2><div class=\"grid-col-1 grid gap-2 p-2 md:grid-cols-2 lg:grid-cols-2\"><div class=\"mb-4\"><img src=\"https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650\n    &auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"\" class=\"object-cover\"/><h2 class=\"mt-2 text-xl font-bold\">নৌকা ও ঈগল ঘিরে বিভক্ত আওয়ামী লীগ, সমানতালে চলছে প্রচারণা</h2><p class=\"text-md\">কক্সবাজার সদর, রামু ও ঈদগাঁও উপজেলা নিয়ে কক্সবাজার-৩ সংসদীয় আসন। দশম ও একাদশ সংসদ নির্বাচনে এ আসনে আওয়ামী লীগের সাইমুম সরওয়ার কমল সংসদ সদস্য নির্বাচিত হয়েছেন।</p><p class=\"mt-2 text-sm\">ডিসেম্বর ২৭,২০২৩</p></div><div class=\"grid justify-center gap-2 space-y-2 md:grid-cols-2\"><div id=\"i8cdd\" class=\"min-h-min\"><img src=\"https://images.unsplash.com/photo-1704732510471-5a99789c6123?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"\"/><p>দেশের সর্বনিম্ন তাপমাত্রা আজ সৈয়দপুরে, চলছে মৃদু শৈত্যপ্রবাহ</p></div><div><img src=\"https://images.unsplash.com/photo-1704732510471-5a99789c6123?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"\"/><p>দেশের সর্বনিম্ন তাপমাত্রা আজ সৈয়দপুরে, চলছে মৃদু শৈত্যপ্রবাহ</p></div><div><img src=\"https://images.unsplash.com/photo-1704732510471-5a99789c6123?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"\"/><p>দেশের সর্বনিম্ন তাপমাত্রা আজ সৈয়দপুরে, চলছে মৃদু শৈত্যপ্রবাহ</p></div><div><img src=\"https://images.unsplash.com/photo-1704732510471-5a99789c6123?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"\"/><p>দেশের সর্বনিম্ন তাপমাত্রা আজ সৈয়দপুরে, চলছে মৃদু শৈত্যপ্রবাহ</p></div></div></div></section></body>",
+          "css": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#izjlf{width:1235px;}"
+        },
+        {
+          "html": "<body id=\"ize4x\"><div id=\"layout-1-5\" type=\"শীর্ষ খবর\"><section id=\"শীর্ষ-খবর\"><h2 class=\"ml-2 text-3xl font-bold\">শীর্ষ খবর</h2><div class=\"grid-col-1 grid gap-2 p-2 md:grid-cols-2 lg:grid-cols-2\" id=\"isx9lg\"><div class=\"mb-4\"><img src=\"https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"গ্রহণযোগ্য নির্বাচন করতে ব্যর্থ হলে রাষ্ট্র নিজেই ব্যর্থ হয়ে যাবে: কমিশনার আনিছুর\" class=\"object-cover\"/><h2 class=\"mt-2 text-xl font-bold\">গ্রহণযোগ্য নির্বাচন করতে ব্যর্থ হলে রাষ্ট্র নিজেই ব্যর্থ হয়ে যাবে: কমিশনার আনিছুর</h2><p class=\"text-md\">এবার নির্বাচনে সবচেয়ে বেশি নির্বাহী ম্যাজিস্ট্রেট নিয়োগ করার কথা উল্লেখ করে আনিছুর রহমান বলেন, এর উদ্দেশ্য একটাই, তা হলো অবাধ, সুষ্ঠু ও নিরপেক্ষ নির্বাচন আয়োজন করা। তাঁরা যদি অবাধ, সুষ্ঠু ও গ্রহণযোগ্য নির্বাচন না করতে পারেন, কোনো কারণে যদি তাঁরা ব্যর্থ হন, তাহলে রাষ্ট্র নিজেই ব্যর্থ রাষ্ট্র হয়ে যাবে। তাঁরা সেটা চাইবেন না। কারণ, এতে বাংলাদেশ সমগ্র বিশ্ব থেকে বিচ্ছিন্ন হয়ে যাব।</p><p class=\"mt-2 text-sm\" id=\"i76g5g\">ডিসেম্বর ২৭,২০২৩</p></div><div class=\"flex flex-wrap items-center justify-center gap-4\" id=\"i9rvsf\"><div class=\"w-full md:w-72 lg:w-72\"><img src=\"https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"ফরিদপুর-৩: শামীমের প্রার্থিতার বিরুদ্ধে এ কে আজাদের আবেদনের শুনানি\"/><p>ফরিদপুর-৩: শামীমের প্রার্থিতার বিরুদ্ধে এ কে আজাদের আবেদনের শুনানি</p></div>\n      ,\n          <div class=\"w-full md:w-72 lg:w-72\"><img src=\"https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"কলাবাগান মাঠে আওয়ামী লীগের নির্বাচনী জনসভায় বক্তব্য চলছে\"/><p>কলাবাগান মাঠে আওয়ামী লীগের নির্বাচনী জনসভায় বক্তব্য চলছে</p></div>\n      ,\n          <div class=\"w-full md:w-72 lg:w-72\"><img src=\"https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"ভোট দিয়ে অগ্নিসন্ত্রাসের উপযুক্ত জবাব দিন: প্রধানমন্ত্রী শেখ হাসিনা\"/><p id=\"if1xdf\">ভোট দিয়ে অগ্নিসন্ত্রাসের উপযুক্ত জবাব দিন: প্রধানমন্ত্রী শেখ হাসিনা</p></div>\n      ,\n          <div class=\"w-full md:w-72 lg:w-72\"><img src=\"https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"গাজীপুরে প্রার্থী না হয়েও নৌকার জাহিদের ‘প্রতিদ্বন্দ্বী’ জাহাঙ্গীর\"/><p>গাজীপুরে প্রার্থী না হয়েও নৌকার জাহিদের ‘প্রতিদ্বন্দ্বী’ জাহাঙ্গীর</p></div></div></div></section></div><div class=\"h-80 flex flex-grow flex-row\" id=\"ig2ra6\"><div class=\"min-h--50px- w-full\" id=\"isf2iv\"></div><div class=\"min-h--50px- w-full\" id=\"ijvctk\"></div><div class=\"min-h--50px- w-full\" id=\"i33mef\"></div></div></body>",
+          "css": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#i33mef{display:none;}"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "দেশের খবর",
+      "news": [
+        {
+          "title": "নৌকা ও ঈগল ঘিরে বিভক্ত আওয়ামী লীগ, সমানতালে চলছে প্রচারণা",
+          "subtitle": "কক্সবাজার সদর, রামু ও ঈদগাঁও উপজেলা নিয়ে কক্সবাজার-৩ সংসদীয় আসন। দশম ও একাদশ সংসদ নির্বাচনে এ আসনে আওয়ামী লীগের সাইমুম সরওয়ার কমল সংসদ সদস্য নির্বাচিত হয়েছেন।",
+          "image": "https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "published_date": "ডিসেম্বর ২৭,২০২৩"
+        },
+        {
+          "title": "দেশের সর্বনিম্ন তাপমাত্রা আজ সৈয়দপুরে, চলছে মৃদু শৈত্যপ্রবাহ",
+          "subtitle": "কক্সবাজার সদর, রামু ও ঈদগাঁও উপজেলা নিয়ে কক্সবাজার-৩ সংসদীয় আসন। দশম ও একাদশ সংসদ নির্বাচনে এ আসনে আওয়ামী লীগের সাইমুম সরওয়ার কমল সংসদ সদস্য নির্বাচিত হয়েছেন।",
+          "image": "https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "published_date": "ডিসেম্বর ২৭,২০২৩"
+        },
+        {
+          "title": "দেশের সর্বনিম্ন তাপমাত্রা আজ সৈয়দপুরে, চলছে মৃদু শৈত্যপ্রবাহ",
+          "subtitle": "কক্সবাজার সদর, রামু ও ঈদগাঁও উপজেলা নিয়ে কক্সবাজার-৩ সংসদীয় আসন। দশম ও একাদশ সংসদ নির্বাচনে এ আসনে আওয়ামী লীগের সাইমুম সরওয়ার কমল সংসদ সদস্য নির্বাচিত হয়েছেন।",
+          "image": "https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "published_date": "ডিসেম্বর ২৭,২০২৩"
+        },
+        {
+          "title": "দেশের সর্বনিম্ন তাপমাত্রা আজ সৈয়দপুরে, চলছে মৃদু শৈত্যপ্রবাহ",
+          "subtitle": "কক্সবাজার সদর, রামু ও ঈদগাঁও উপজেলা নিয়ে কক্সবাজার-৩ সংসদীয় আসন। দশম ও একাদশ সংসদ নির্বাচনে এ আসনে আওয়ামী লীগের সাইমুম সরওয়ার কমল সংসদ সদস্য নির্বাচিত হয়েছেন।",
+          "image": "https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "published_date": "ডিসেম্বর ২৭,২০২৩"
+        },
+        {
+          "title": "দেশের সর্বনিম্ন তাপমাত্রা আজ সৈয়দপুরে, চলছে মৃদু শৈত্যপ্রবাহ",
+          "subtitle": "কক্সবাজার সদর, রামু ও ঈদগাঁও উপজেলা নিয়ে কক্সবাজার-৩ সংসদীয় আসন। দশম ও একাদশ সংসদ নির্বাচনে এ আসনে আওয়ামী লীগের সাইমুম সরওয়ার কমল সংসদ সদস্য নির্বাচিত হয়েছেন।",
+          "image": "https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "published_date": "ডিসেম্বর ২৭,২০২৩"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "শীর্ষ খবর",
+      "news": [
+        {
+          "title": "গ্রহণযোগ্য নির্বাচন করতে ব্যর্থ হলে রাষ্ট্র নিজেই ব্যর্থ হয়ে যাবে: কমিশনার আনিছুর",
+          "subtitle": "এবার নির্বাচনে সবচেয়ে বেশি নির্বাহী ম্যাজিস্ট্রেট নিয়োগ করার কথা উল্লেখ করে আনিছুর রহমান বলেন, এর উদ্দেশ্য একটাই, তা হলো অবাধ, সুষ্ঠু ও নিরপেক্ষ নির্বাচন আয়োজন করা। তাঁরা যদি অবাধ, সুষ্ঠু ও গ্রহণযোগ্য নির্বাচন না করতে পারেন, কোনো কারণে যদি তাঁরা ব্যর্থ হন, তাহলে রাষ্ট্র নিজেই ব্যর্থ রাষ্ট্র হয়ে যাবে। তাঁরা সেটা চাইবেন না। কারণ, এতে বাংলাদেশ সমগ্র বিশ্ব থেকে বিচ্ছিন্ন হয়ে যাব।",
+          "image": "https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "published_date": "ডিসেম্বর ২৭,২০২৩"
+        },
+        {
+          "title": "ফরিদপুর-৩: শামীমের প্রার্থিতার বিরুদ্ধে এ কে আজাদের আবেদনের শুনানি",
+          "subtitle": "এবার নির্বাচনে সবচেয়ে বেশি নির্বাহী ম্যাজিস্ট্রেট নিয়োগ করার কথা উল্লেখ করে আনিছুর রহমান বলেন, এর উদ্দেশ্য একটাই, তা হলো অবাধ, সুষ্ঠু ও নিরপেক্ষ নির্বাচন আয়োজন করা। তাঁরা যদি অবাধ, সুষ্ঠু ও গ্রহণযোগ্য নির্বাচন না করতে পারেন, কোনো কারণে যদি তাঁরা ব্যর্থ হন, তাহলে রাষ্ট্র নিজেই ব্যর্থ রাষ্ট্র হয়ে যাবে। তাঁরা সেটা চাইবেন না। কারণ, এতে বাংলাদেশ সমগ্র বিশ্ব থেকে বিচ্ছিন্ন হয়ে যাব।",
+          "image": "https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "published_date": "ডিসেম্বর ২৭,২০২৩"
+        },
+        {
+          "title": "কলাবাগান মাঠে আওয়ামী লীগের নির্বাচনী জনসভায় বক্তব্য চলছে",
+          "subtitle": "এবার নির্বাচনে সবচেয়ে বেশি নির্বাহী ম্যাজিস্ট্রেট নিয়োগ করার কথা উল্লেখ করে আনিছুর রহমান বলেন, এর উদ্দেশ্য একটাই, তা হলো অবাধ, সুষ্ঠু ও নিরপেক্ষ নির্বাচন আয়োজন করা। তাঁরা যদি অবাধ, সুষ্ঠু ও গ্রহণযোগ্য নির্বাচন না করতে পারেন, কোনো কারণে যদি তাঁরা ব্যর্থ হন, তাহলে রাষ্ট্র নিজেই ব্যর্থ রাষ্ট্র হয়ে যাবে। তাঁরা সেটা চাইবেন না। কারণ, এতে বাংলাদেশ সমগ্র বিশ্ব থেকে বিচ্ছিন্ন হয়ে যাব।",
+          "image": "https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "published_date": "ডিসেম্বর ২৭,২০২৩"
+        },
+        {
+          "title": "ভোট দিয়ে অগ্নিসন্ত্রাসের উপযুক্ত জবাব দিন: প্রধানমন্ত্রী শেখ হাসিনা",
+          "subtitle": "এবার নির্বাচনে সবচেয়ে বেশি নির্বাহী ম্যাজিস্ট্রেট নিয়োগ করার কথা উল্লেখ করে আনিছুর রহমান বলেন, এর উদ্দেশ্য একটাই, তা হলো অবাধ, সুষ্ঠু ও নিরপেক্ষ নির্বাচন আয়োজন করা। তাঁরা যদি অবাধ, সুষ্ঠু ও গ্রহণযোগ্য নির্বাচন না করতে পারেন, কোনো কারণে যদি তাঁরা ব্যর্থ হন, তাহলে রাষ্ট্র নিজেই ব্যর্থ রাষ্ট্র হয়ে যাবে। তাঁরা সেটা চাইবেন না। কারণ, এতে বাংলাদেশ সমগ্র বিশ্ব থেকে বিচ্ছিন্ন হয়ে যাব।",
+          "image": "https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "published_date": "ডিসেম্বর ২৭,২০২৩"
+        },
+        {
+          "title": "গাজীপুরে প্রার্থী না হয়েও নৌকার জাহিদের ‘প্রতিদ্বন্দ্বী’ জাহাঙ্গীর",
+          "subtitle": "এবার নির্বাচনে সবচেয়ে বেশি নির্বাহী ম্যাজিস্ট্রেট নিয়োগ করার কথা উল্লেখ করে আনিছুর রহমান বলেন, এর উদ্দেশ্য একটাই, তা হলো অবাধ, সুষ্ঠু ও নিরপেক্ষ নির্বাচন আয়োজন করা। তাঁরা যদি অবাধ, সুষ্ঠু ও গ্রহণযোগ্য নির্বাচন না করতে পারেন, কোনো কারণে যদি তাঁরা ব্যর্থ হন, তাহলে রাষ্ট্র নিজেই ব্যর্থ রাষ্ট্র হয়ে যাবে। তাঁরা সেটা চাইবেন না। কারণ, এতে বাংলাদেশ সমগ্র বিশ্ব থেকে বিচ্ছিন্ন হয়ে যাব।",
+          "image": "https://images.unsplash.com/photo-1704689941627-baac4b423411?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "published_date": "ডিসেম্বর ২৭,২০২৩"
         }
       ]
     }

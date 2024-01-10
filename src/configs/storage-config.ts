@@ -9,7 +9,7 @@ export const remoteStorageConfigs: RemoteStorageConfig = {
 
   fetchOptions: (opts) => (opts.method === "POST" ? { method: "PATCH" } : {}),
 
-  onStore: (data, editor) => {
+  onStore: (_, editor) => {
     const pagesHtml = editor.Pages.getAll().map((page) => {
       const component = page.getMainComponent();
 
@@ -21,7 +21,6 @@ export const remoteStorageConfigs: RemoteStorageConfig = {
 
     return {
       id: projectId,
-      data,
       pagesHtml,
     };
   },

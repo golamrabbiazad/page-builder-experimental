@@ -55,7 +55,11 @@ export const defaultOptions: EditorConfig = {
   },
   cssIcons: CSSICONS,
   canvas: {
-    styles: ["https://rsms.me/", "https://rsms.me/inter/inter.css"],
+    styles: [
+      "https://rsms.me/",
+      "https://rsms.me/inter/inter.css",
+      "https://fonts.maateen.me/kalpurush/font.css",
+    ],
     scripts: [TAILWINDCSS_SCRIPT],
   },
   canvasCss: `
@@ -65,6 +69,10 @@ export const defaultOptions: EditorConfig = {
   }
   @supports (font-variation-settings: normal) {
     :root { font-family: InterVariable, sans-serif; }
+  }
+
+  body {
+    font-family: 'Kalpurush', Inter, sans-serif !important;
   }
   `,
 };
