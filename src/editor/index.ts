@@ -1,31 +1,9 @@
+import "grapesjs/dist/css/grapes.min.css";
 import { storageManagerConfig } from "@/configs/storage-manager";
-import {
-  CSSICONS,
-  GRAPESJS_CSS,
-  TAILWINDCSS_SCRIPT,
-} from "@/lib/external-urls";
+import { CSSICONS, TAILWINDCSS_SCRIPT } from "@/lib/external-urls";
 import { plugins } from "@/plugins";
 import { EditorProps } from "@grapesjs/react";
 import grapesjs, { EditorConfig } from "grapesjs";
-
-// const gjsOptions: EditorConfig = {
-/**
- * Initialize the projectData when layout paints the screen.
- */
-// projectData: JSON.parse(localStorage.getItem("gjsProject-1")!) || {
-//   assets: assetData.map((asset) => asset.src),
-//   pages: [
-//     {
-//       name: "Home page",
-//       component: htmlString,
-//     },
-//     {
-//       name: "Index page",
-//       component: htmlString,
-//     },
-//   ],
-// },
-// };
 
 export const defaultOptions: EditorConfig = {
   assetManager: {
@@ -80,6 +58,5 @@ export const defaultOptions: EditorConfig = {
 export const defaultEditorProps: EditorProps = {
   grapesjs,
   plugins: plugins,
-  grapesjsCss: GRAPESJS_CSS,
   options: defaultOptions,
 };

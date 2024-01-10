@@ -1,18 +1,19 @@
 # Todo
 
-- ~~data stored in local db~~
-- ~~load raw html from server to the editor~~
-- ~~basic tailwind layout~~
-- ~~dynamic data fill up based on the category when layout selected.~~
-- ~~dynamic data for example, fill up data based on category. Ex, `crimes, sports, politics, etc.`~~
-- custom layout, for example `grid` layout.
-- layout data can't be editable.
-- add more layouts
-- refactor layouts
-- canvas should be scrollable to the viewport
-- insert Data **not removed, for ex, (layout-1)** when layout rendered from the server.
-- form preset elements to add
-- custom google ads banner
+- ~~feat: data stored in local db~~
+- ~~feat: load raw html from server to the editor~~
+- ~~feat: basic tailwind layout~~
+- ~~feat: dynamic data fill up based on the category when layout selected.~~
+- ~~feat: dynamic data for example, fill up data based on category. Ex, `crimes, sports, politics, etc.`~~
+- feat: custom layout, for example `grid` layout.
+- feat: layout data can't be editable.
+- feat: add more layouts
+- refactor: refactor layouts
+- bug: canvas should be scrollable to the viewport
+- bug: insert Data **not removed, for ex, (layout-1)** when layout rendered from the server.
+- feat: form preset elements to add
+- feat: custom google ads banner
+- bug: click body in the layer panel zoom only
 
 ## Fake API
 
