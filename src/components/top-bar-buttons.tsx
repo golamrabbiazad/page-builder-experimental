@@ -4,6 +4,7 @@ import {
   mdiArrowULeftTop,
   mdiArrowURightTop,
   mdiBorderRadius,
+  mdiContentSave,
   mdiEye,
   mdiFullscreen,
   mdiXml,
@@ -54,6 +55,10 @@ export default function TopbarButtons({
       {
         id: "core:preview",
         iconPath: mdiEye,
+      },
+      {
+        id: "store-data-on-click",
+        iconPath: mdiContentSave,
       },
     ],
     [UndoManager]

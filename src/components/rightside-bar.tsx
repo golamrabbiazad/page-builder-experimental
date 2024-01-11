@@ -1,6 +1,5 @@
 import {
   LayersProvider,
-  PagesProvider,
   SelectorsProvider,
   StylesProvider,
   TraitsProvider,
@@ -12,9 +11,8 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Tab, Tabs } from "@mui/material";
 import Icon from "@mdi/react";
-import { mdiBrush, mdiCog, mdiLayers, mdiTextBoxMultiple } from "@mdi/js";
+import { mdiBrush, mdiCog, mdiLayers } from "@mdi/js";
 import { CustomTraitManager } from "./custom-trait-manger";
-import { CustomPageManager } from "./custom-page-manger";
 import { CustomLayerManager } from "./custom-layer-manager";
 
 const defaultTabProps = {
@@ -36,10 +34,6 @@ export function RightSidebar({
         <Tab {...defaultTabProps} label={<Icon size={1} path={mdiBrush} />} />
         <Tab {...defaultTabProps} label={<Icon size={1} path={mdiCog} />} />
         <Tab {...defaultTabProps} label={<Icon size={1} path={mdiLayers} />} />
-        <Tab
-          {...defaultTabProps}
-          label={<Icon size={1} path={mdiTextBoxMultiple} />}
-        />
       </Tabs>
       <div
         className={cn(
@@ -66,11 +60,6 @@ export function RightSidebar({
           <LayersProvider>
             {(props) => <CustomLayerManager {...props} />}
           </LayersProvider>
-        )}
-        {selectedTab === 3 && (
-          <PagesProvider>
-            {(props) => <CustomPageManager {...props} />}
-          </PagesProvider>
         )}
       </div>
     </div>

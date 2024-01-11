@@ -1,30 +1,16 @@
 import "grapesjs/dist/css/grapes.min.css";
-import { storageManagerConfig } from "@/configs/storage-manager";
-import { CSSICONS, TAILWINDCSS_SCRIPT } from "@/lib/external-urls";
-import { plugins } from "@/plugins";
 import { EditorProps } from "@grapesjs/react";
 import grapesjs, { EditorConfig } from "grapesjs";
 
+import { plugins } from "@/plugins";
+import { projectDataConfig } from "@/configs/project-data";
+import { CSSICONS, TAILWINDCSS_SCRIPT } from "@/lib/external-urls";
+import { assetsManagerConfig, storageManagerConfig } from "@/configs";
+
 export const defaultOptions: EditorConfig = {
-  assetManager: {
-    assets: [
-      "https://via.placeholder.com/350x250/78c5d6/fff",
-      "https://via.placeholder.com/350x250/459ba8/fff",
-      "https://via.placeholder.com/350x250/79c267/fff",
-      "https://via.placeholder.com/350x250/c5d647/fff",
-      "https://via.placeholder.com/350x250/f28c33/fff",
-      "https://via.placeholder.com/350x250/e868a2/fff",
-      "https://via.placeholder.com/350x250/cc4360/fff",
-      "https://via.placeholder.com/350x250/78c5d6/eee",
-      "https://via.placeholder.com/350x250/459ba8/eee",
-      "https://via.placeholder.com/350x250/79c267/eee",
-      "https://via.placeholder.com/350x250/c5d647/eee",
-      "https://via.placeholder.com/350x250/f28c33/eee",
-      "https://via.placeholder.com/350x250/e868a2/eee",
-      "https://via.placeholder.com/350x250/cc4360/eee",
-    ],
-  },
   storageManager: storageManagerConfig,
+  assetManager: assetsManagerConfig,
+  projectData: projectDataConfig,
   undoManager: {
     trackSelection: false,
   },
@@ -39,6 +25,16 @@ export const defaultOptions: EditorConfig = {
       "https://fonts.maateen.me/kalpurush/font.css",
     ],
     scripts: [TAILWINDCSS_SCRIPT],
+  },
+  commands: {
+    defaults: [
+      {
+        id: "store-data-on-click",
+        run: (editor) => {
+          editor.store();
+        },
+      },
+    ],
   },
   canvasCss: `
   :root {

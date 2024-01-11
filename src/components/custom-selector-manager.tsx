@@ -4,6 +4,7 @@ import { mdiClose, mdiPlus } from "@mdi/js";
 import { SelectorsResultProps } from "@grapesjs/react";
 import { MAIN_BORDER_COLOR } from "@/lib/common";
 import { cn } from "@/lib/utils";
+import { SelectorProps } from "grapesjs";
 
 export function CustomSelectorManager({
   selectors,
@@ -11,7 +12,7 @@ export function CustomSelectorManager({
   addSelector,
   removeSelector,
 }: Omit<SelectorsResultProps, "Container">) {
-  const [newSelector, setNewSelector] = useState({
+  const [newSelector, setNewSelector] = useState<SelectorProps>({
     name: "",
     label: "",
   });
@@ -61,10 +62,10 @@ export function CustomSelectorManager({
               // on enter keypress add button
               if (ev.key === "Enter") {
                 addSelector({
-                  name: newSelector.name.toString(),
-                  label: newSelector.label.toString(),
+                  ...newSelector,
                   type: 1,
                 });
+
                 if (customInputRef.current) {
                   customInputRef.current.value = "";
                 }

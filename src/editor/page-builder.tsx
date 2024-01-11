@@ -1,5 +1,4 @@
 import GrapesJsEditor, {
-  AssetsProvider,
   Canvas,
   EditorProps,
   ModalProvider,
@@ -13,7 +12,6 @@ import { Topbar } from "@/components/top-bar";
 import { LeftSidbar } from "@/components/leftside-bar";
 import { RightSidebar } from "@/components/rightside-bar";
 import { CustomModal } from "@/components/custom-modal";
-import { CustomAssetManager } from "@/components/custom-asset-manager";
 
 export default function PageBuilder(props: Partial<EditorProps>) {
   return (
@@ -28,13 +26,18 @@ export default function PageBuilder(props: Partial<EditorProps>) {
             <Topbar className="min-h-[48px]" />
 
             <div className="flex h-screen">
-              <LeftSidbar className={`w-96 ${MAIN_BORDER_COLOR}`} />
+              <LeftSidbar
+                className={`w-96 gjs-left-sidebar ${MAIN_BORDER_COLOR}`}
+              />
               <Canvas className="flex-grow gjs-custom-editor-canvas" />
 
-              <RightSidebar className={`w-96 ${MAIN_BORDER_COLOR}`} />
+              <RightSidebar
+                className={`w-96 gjs-right-sidebar ${MAIN_BORDER_COLOR}`}
+              />
             </div>
           </div>
         </div>
+        {/* assets manager modal pop-up custom design */}
         <ModalProvider>
           {({ open, title, content, close }) => (
             <CustomModal
@@ -45,17 +48,6 @@ export default function PageBuilder(props: Partial<EditorProps>) {
             />
           )}
         </ModalProvider>
-        <AssetsProvider>
-          {({ assets, select, close, Container }) => (
-            <Container>
-              <CustomAssetManager
-                assets={assets}
-                select={select}
-                close={close}
-              />
-            </Container>
-          )}
-        </AssetsProvider>
       </GrapesJsEditor>
     </ThemeProvider>
   );
