@@ -1,7 +1,10 @@
 import { DevicesProvider, WithEditor } from "@grapesjs/react";
 import { FormControl, MenuItem, Select } from "@mui/material";
-import TopbarButtons from "./top-bar-buttons";
+import { TopbarButtons } from "./top-bar-buttons";
 import { cn } from "@/lib/utils";
+import { SaveToast } from "./commands/save-toast";
+import { ComponentOutline } from "./commands/component-outline";
+import { Preview } from "./commands/preview";
 
 export function Topbar({ className }: React.HTMLAttributes<HTMLDivElement>) {
   return (
@@ -11,7 +14,7 @@ export function Topbar({ className }: React.HTMLAttributes<HTMLDivElement>) {
         className
       )}
     >
-      <h2 className="text-xl font-bold p-2">M4yours Editor</h2>
+      <h2 className="text-xl font-bold">M4yours Editor</h2>
       <div className="flex">
         <DevicesProvider>
           {({ selected, select, devices }) => (
@@ -30,9 +33,12 @@ export function Topbar({ className }: React.HTMLAttributes<HTMLDivElement>) {
           )}
         </DevicesProvider>
       </div>
-      <div className="flex">
+      <div className="flex gap-2 p-2">
         <WithEditor>
+          <ComponentOutline commandId="core:component-outline" />
           <TopbarButtons className="ml-auto px-2" />
+          <Preview commandId="core:preview" />
+          <SaveToast />
         </WithEditor>
       </div>
     </div>

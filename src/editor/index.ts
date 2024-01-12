@@ -27,14 +27,14 @@ export const defaultOptions: EditorConfig = {
     scripts: [TAILWINDCSS_SCRIPT],
   },
   commands: {
-    defaults: [
-      {
-        id: "store-data-on-click",
+    defaults: {
+      save__data: {
+        id: "core:save",
         run: (editor) => {
           editor.store();
         },
       },
-    ],
+    },
   },
   canvasCss: `
   :root {

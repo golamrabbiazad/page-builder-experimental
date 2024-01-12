@@ -3,7 +3,7 @@ import { EditorProps } from "@grapesjs/react";
 import basicBlockPlugin from "grapesjs-blocks-basic";
 
 import { layoutPlugin } from "./layouts";
-import { ComponentPlugin } from "./components";
+import { CategoryPlugin } from "./category";
 
 export const plugins: EditorProps["plugins"] = [
   (editor: Editor) =>
@@ -21,5 +21,5 @@ export const plugins: EditorProps["plugins"] = [
       ],
     }),
   layoutPlugin,
-  ComponentPlugin,
+  CategoryPlugin,
 ];

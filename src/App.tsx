@@ -1,4 +1,5 @@
 import PageBuilder from "./editor/page-builder";
+import { Toaster } from "./components/ui/toaster";
 
 export default function App() {
   return (
@@ -6,6 +7,7 @@ export default function App() {
       <div className="flex-grow overflow-hidden">
         <PageBuilder />
       </div>
+      <Toaster />
     </div>
   );
 }

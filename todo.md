@@ -2,18 +2,27 @@
 
 All work(bugs, fixes, features) for this page builder.
 
+## Priority
+
+- ~~feat: if saved data already is there then load the data otherwise show the greeting page.~~
+- **bug: canvas should be scrollable to the viewport when dragging to the bottom.**
+- bug: insert Data **not removed, for ex, (layout-1)** when layout rendered from the server.
+- **feat: news layout data can't be editable.**
+- feat: news layouts can't be editable but basic element are editable.
+- fix: double click to insert image not works because of the server can't store the image rtn. This may works if we can interact with real db.
+- fix: canvas content must in the middle.
+
 ## Bugs
 
 - ~~bug: initial display get empty that means doesn't show canvas.~~
-- bug: insert Data **not removed, for ex, (layout-1)** when layout rendered from the server.
 - bug: click body element in the layer panel takes full page to zoom, and can't show the topbar buttons.
-- **bug: canvas should be scrollable to the viewport.**
 - bug: after section added to the layout the id of the section can't be changed.
 
 ## Enhance
 
 - ~~fix: asset manager design and functionality.~~
 - fix: style manager's classes panel, this could be default panel.
+- ~~fix: after clicking the content the right side panel content editable window opens.~~
 
 ## Featuers
 
@@ -24,14 +33,15 @@ All work(bugs, fixes, features) for this page builder.
 - ~~feat: dynamic data for example, fill up data based on category. Ex, `crimes, sports, politics, etc.`~~
 - ~~feat: click save button to post request to the API.~~
 - ~~feat: custom save button for save the project in the db.~~
+- ~~feat: all images are show in the asset manager preview panel.~~
+- ~~feat: toast shows when user hit the save button.~~
 - feat: custom layout, for example `grid` layout.
 - feat: form elements from figma to add.
 - feat: custom google ads banner.
-- **feat: layout data can't be editable.**
 - feat: add more layouts.
 - refactor: refactor layouts.
 - feat: extends the storage strategy, <https://grapesjs.com/docs/modules/Storage.html#extend-storage>. for example, if user don't have internet conection then it saves locally the later if internet connection is back hit save to push to the server.
-- ~~feat: all images are show in the asset manager preview panel.~~
+- feat: heading plugin where default heading is h1, and later it can be changed to h2, h3, h4, h5, h6
 
 ## Fake API
 

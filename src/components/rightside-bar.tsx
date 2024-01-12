@@ -4,44 +4,40 @@ import {
   StylesProvider,
   TraitsProvider,
 } from "@grapesjs/react";
-import { CustomSelectorManager } from "./custom-selector-manager";
-import { CustomStyleManager } from "./custom-style-manager";
-import { MAIN_BORDER_COLOR } from "@/lib/common";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
-import { Tab, Tabs } from "@mui/material";
-import Icon from "@mdi/react";
-import { mdiBrush, mdiCog, mdiLayers } from "@mdi/js";
-import { CustomTraitManager } from "./custom-trait-manger";
-import { CustomLayerManager } from "./custom-layer-manager";
+import { Layers, Paintbrush, Pencil } from "lucide-react";
 
-const defaultTabProps = {
-  className: "!min-w-0",
-};
+import { CustomStyleManager } from "./style/custom-style-manager";
+import { CustomTraitManager } from "./traits/custom-trait-manager";
+import { CustomLayerManager } from "./layers/custom-layer-manager";
+import { CustomSelectorManager } from "./selectors/custom-selector-manager";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export function RightSidebar({
-  className,
-}: React.HTMLAttributes<HTMLDivElement>) {
-  const [selectedTab, setSelectedTab] = useState(0);
-
+export function RightSidebar() {
   return (
-    <div className={cn("gjs-right-sidebar flex flex-col", className)}>
-      <Tabs
-        value={selectedTab}
-        onChange={(_, v) => setSelectedTab(v)}
-        variant="fullWidth"
-      >
-        <Tab {...defaultTabProps} label={<Icon size={1} path={mdiBrush} />} />
-        <Tab {...defaultTabProps} label={<Icon size={1} path={mdiCog} />} />
-        <Tab {...defaultTabProps} label={<Icon size={1} path={mdiLayers} />} />
-      </Tabs>
-      <div
-        className={cn(
-          "overflow-y-auto flex-grow border-t border-r",
-          MAIN_BORDER_COLOR
-        )}
-      >
-        {selectedTab === 0 && (
+    <div className={"w-[400px] gjs-right-sidebar"}>
+      <Tabs defaultValue="content">
+        <TabsList>
+          <TabsTrigger value="content">
+            <Pencil />
+            <p>Content</p>
+          </TabsTrigger>
+          <TabsTrigger value="style">
+            <Paintbrush />
+            <p>Style</p>
+          </TabsTrigger>
+          <TabsTrigger value="navigator">
+            <Layers />
+            <p>Navigator</p>
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="content">
+          <TraitsProvider>
+            {(props) => <CustomTraitManager {...props} />}
+          </TraitsProvider>
+        </TabsContent>
+
+        <TabsContent value="style">
           <>
             <SelectorsProvider>
               {(props) => <CustomSelectorManager {...props} />}
@@ -50,18 +46,14 @@ export function RightSidebar({
               {(props) => <CustomStyleManager {...props} />}
             </StylesProvider>
           </>
-        )}
-        {selectedTab === 1 && (
-          <TraitsProvider>
-            {(props) => <CustomTraitManager {...props} />}
-          </TraitsProvider>
-        )}
-        {selectedTab === 2 && (
+        </TabsContent>
+
+        <TabsContent value="navigator">
           <LayersProvider>
             {(props) => <CustomLayerManager {...props} />}
           </LayersProvider>
-        )}
-      </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

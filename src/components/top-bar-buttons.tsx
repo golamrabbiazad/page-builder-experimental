@@ -1,14 +1,6 @@
 import * as React from "react";
 import { useEditor } from "@grapesjs/react";
-import {
-  mdiArrowULeftTop,
-  mdiArrowURightTop,
-  mdiBorderRadius,
-  mdiContentSave,
-  mdiEye,
-  mdiFullscreen,
-  mdiXml,
-} from "@mdi/js";
+import { mdiArrowULeftTop, mdiArrowURightTop, mdiXml } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useEffect, useState } from "react";
 import { BTN_CLS, MAIN_BORDER_COLOR } from "@/lib/common";
@@ -21,23 +13,16 @@ interface CommandButton {
   disabled?: () => boolean;
 }
 
-export default function TopbarButtons({
+export function TopbarButtons({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
   const editor = useEditor();
   const [, setUpdateCounter] = useState(0);
   const { UndoManager, Commands } = editor;
+
+  // extract these command button into a file
   const cmdButtons: CommandButton[] = React.useMemo(
     () => [
-      {
-        id: "core:component-outline",
-        iconPath: mdiBorderRadius,
-      },
-      {
-        id: "core:fullscreen",
-        iconPath: mdiFullscreen,
-        options: { target: "#root" },
-      },
       {
         id: "core:open-code",
         iconPath: mdiXml,
@@ -51,14 +36,6 @@ export default function TopbarButtons({
         id: "core:redo",
         iconPath: mdiArrowURightTop,
         disabled: () => !UndoManager.hasRedo(),
-      },
-      {
-        id: "core:preview",
-        iconPath: mdiEye,
-      },
-      {
-        id: "store-data-on-click",
-        iconPath: mdiContentSave,
       },
     ],
     [UndoManager]
@@ -95,13 +72,6 @@ export default function TopbarButtons({
             disabled?.() && "opacity-50"
           )}
           onClick={() => {
-            if (id === "core:preview") {
-              const leftSideBar = document.querySelector(".gjs-left-sidebar");
-              const rightSideBar = document.querySelector(".gjs-right-sidebar");
-
-              leftSideBar?.classList.toggle("hidden");
-              rightSideBar?.classList.toggle("hidden");
-            }
             Commands.isActive(id)
               ? Commands.stop(id)
               : Commands.run(id, options);

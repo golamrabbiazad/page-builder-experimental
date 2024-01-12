@@ -4,7 +4,6 @@ export const projectId = 1;
 export const projectEndPoint = `http://localhost:5173/api/v1/projects/${projectId}`;
 
 export const remoteStorageConfigs: RemoteStorageConfig = {
-  urlLoad: projectEndPoint,
   urlStore: projectEndPoint,
 
   fetchOptions: (opts) => (opts.method === "POST" ? { method: "PATCH" } : {}),
@@ -25,15 +24,4 @@ export const remoteStorageConfigs: RemoteStorageConfig = {
       pagesHtml,
     };
   },
-
-  onLoad: (result) => ({
-    assets: result.assets,
-    pages: result.pagesHtml.map(
-      ({ html, css }: { html: string; css: string }) => ({
-        component: `
-        ${html}
-        <style>${css}</style>`,
-      })
-    ),
-  }),
 };

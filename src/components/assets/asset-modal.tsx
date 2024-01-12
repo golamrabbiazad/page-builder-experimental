@@ -20,17 +20,17 @@ const style = {
   p: 2,
 };
 
-interface CustomModalProps extends Omit<ModalProps, "title"> {
+interface AssetModalProps extends Omit<ModalProps, "title"> {
   title: React.ReactNode;
   close: () => void;
 }
 
-export function CustomModal({
+export function AssetModal({
   children,
   title,
   close,
   ...props
-}: CustomModalProps) {
+}: AssetModalProps) {
   return (
     <Modal onClose={close} {...props}>
       <Fade in={props.open}>

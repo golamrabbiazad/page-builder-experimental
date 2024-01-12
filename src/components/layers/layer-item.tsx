@@ -1,10 +1,10 @@
-import { MAIN_BORDER_COLOR } from "@/lib/common";
-import { cn } from "@/lib/utils";
-import { useEditor } from "@grapesjs/react";
-import { mdiEyeOffOutline, mdiEyeOutline, mdiMenuDown } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Component } from "grapesjs";
+import { useEditor } from "@grapesjs/react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { mdiEyeOffOutline, mdiEyeOutline, mdiMenuDown } from "@mdi/js";
+import { MAIN_BORDER_COLOR } from "@/lib/common";
+import { cn } from "@/lib/utils";
 
 export declare interface LayerItemProps
   extends React.HTMLProps<HTMLDivElement> {
@@ -29,7 +29,7 @@ export function LayerItem({
   const { open, selected, hovered, components, visible, name } = layerData;
   const componentsIds = components.map((cmp) => cmp.getId());
   const isDragging = draggingCmp === component;
-  const cmpHash = componentsIds.join("-");
+  componentsIds.join("-");
   const level = props.level + 1;
   const isHovered = hovered || dragParent === component;
 

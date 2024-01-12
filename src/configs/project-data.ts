@@ -1,21 +1,8 @@
+import { getProjectDataById } from "@/api/get-projectdata-by-id";
 import { ProjectData } from "grapesjs";
 
-// if user create new then show the simple components
-// if user click the edit button, it will load the existing components from the db.
+// on create button click new id is created
 
-// If projectData is not defined we might want to load some initial data for the project.
-// projectData: projectData || {
-//     pages: [
-//         {
-//           component: ``
-//         }
-//     ]
-//   },
+// on edit button click, grab the id for the page and inject to the project URL.
 
-export const projectDataConfig: ProjectData = {
-  pages: [
-    {
-      component: `<h1 class="text-center font-bold text-6xl mt-6">পেজ বিল্ডারে স্বাগতম।</h1>`,
-    },
-  ],
-};
+export const projectDataConfig: ProjectData = await getProjectDataById("1");

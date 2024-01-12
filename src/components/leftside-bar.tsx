@@ -1,5 +1,5 @@
 import { BlocksProvider } from "@grapesjs/react";
-import { CustomBlockManager } from "./custom-block-manger";
+import { CustomBlockManager } from "./blocks/custom-block-manager";
 import { MAIN_BORDER_COLOR } from "@/lib/common";
 import { cn } from "@/lib/utils";
 
