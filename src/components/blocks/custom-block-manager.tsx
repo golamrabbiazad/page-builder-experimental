@@ -1,6 +1,6 @@
 import { MAIN_BORDER_COLOR } from "@/lib/common";
-import { cn } from "@/lib/utils";
 import { BlocksResultProps } from "@grapesjs/react";
+import { cn } from "@/lib/utils";
 
 export type CustomBlockManagerProps = Pick<
   BlocksResultProps,

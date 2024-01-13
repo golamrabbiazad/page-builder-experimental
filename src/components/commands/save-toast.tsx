@@ -10,7 +10,7 @@ export function SaveToast() {
   return (
     <Button
       variant="default"
-      className="w-32 bg-white text-black hover:bg-white hover:text-gray-800"
+      className="w-32"
       onClick={() => {
         Commands.run("core:save");
         toast({

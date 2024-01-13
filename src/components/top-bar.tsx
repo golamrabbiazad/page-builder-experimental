@@ -1,10 +1,10 @@
 import { DevicesProvider, WithEditor } from "@grapesjs/react";
-import { FormControl, MenuItem, Select } from "@mui/material";
 import { TopbarButtons } from "./top-bar-buttons";
 import { cn } from "@/lib/utils";
 import { SaveToast } from "./commands/save-toast";
 import { ComponentOutline } from "./commands/component-outline";
 import { Preview } from "./commands/preview";
+import { DeviceSelect } from "./device-select";
 
 export function Topbar({ className }: React.HTMLAttributes<HTMLDivElement>) {
   return (
@@ -18,18 +18,11 @@ export function Topbar({ className }: React.HTMLAttributes<HTMLDivElement>) {
       <div className="flex">
         <DevicesProvider>
           {({ selected, select, devices }) => (
-            <FormControl size="small">
-              <Select
-                value={selected}
-                onChange={(ev) => select(ev.target.value)}
-              >
-                {devices.map((device) => (
-                  <MenuItem value={device.id} key={device.id}>
-                    {device.getName()}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <DeviceSelect
+              select={select}
+              selected={selected}
+              devices={devices}
+            />
           )}
         </DevicesProvider>
       </div>
