@@ -1,9 +1,9 @@
-import { StylesResultProps } from "@grapesjs/react";
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import { mdiMenuDown } from "@mdi/js";
 import Icon from "@mdi/react";
-import { StylePropertyField } from "./style-property-field";
+import { mdiMenuDown } from "@mdi/js";
 import { MAIN_BG_COLOR } from "@/lib/common";
+import { StylesResultProps } from "@grapesjs/react";
+import { StylePropertyField } from "./style-property-field";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 
 const accordionIcon = <Icon path={mdiMenuDown} size={0.7} />;
 

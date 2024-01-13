@@ -9,21 +9,6 @@ import {
 } from "@/components/ui/select";
 import { Device } from "grapesjs";
 
-{
-  /* <FormControl size="small">
-<Select
-  value={selected}
-  onChange={(ev) => select(ev.target.value)}
->
-  {devices.map((device) => (
-    <MenuItem value={device.id} key={device.id}>
-      {device.getName()}
-    </MenuItem>
-  ))}
-</Select>
-</FormControl> */
-}
-
 interface DeviceSelectProps {
   selected: string;
   select: (deviceId: string) => void;

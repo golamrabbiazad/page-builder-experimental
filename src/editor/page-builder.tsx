@@ -9,7 +9,7 @@ import { LeftSidbar } from "@/components/leftside-bar";
 import { RightSidebar } from "@/components/rightside-bar";
 import { AssetModal } from "@/components/assets/asset-modal";
 
-import { ThemeProvider } from "@/providers/theme-providers";
+import { ThemeProvider } from "@/providers/theme-providers/theme-context";
 
 export default function PageBuilder(props: Partial<EditorProps>) {
   return (
@@ -18,10 +18,16 @@ export default function PageBuilder(props: Partial<EditorProps>) {
         <div className={`flex border-t`}>
           <div className="gjs-column-m flex flex-col flex-grow">
             <Topbar className="min-h-[48px]" />
-            <div className="flex min-h-screen">
-              <LeftSidbar />
-              <Canvas className="flex-grow w-[1200px] h-screen gjs-custom-editor-canvas" />
-              <RightSidebar />
+            <div className="flex">
+              <div className="w-[360px] gjs-left-sidebar">
+                <LeftSidbar />
+              </div>
+              <div className="w-full min-h-screen">
+                <Canvas className="flex-grow gjs-custom-editor-canvas" />
+              </div>
+              <div className="w-[360px] gjs-right-sidebar">
+                <RightSidebar />
+              </div>
             </div>
           </div>
         </div>

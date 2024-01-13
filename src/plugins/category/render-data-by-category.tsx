@@ -23,7 +23,7 @@ export function renderDataBasedOnCategory(category: Category) {
   const { title, subtitle, image, published_date } = firstNews;
 
   return `
-      <div id=${convertTitleToId(name)}>
+      <section type=${convertTitleToId(name)}>
         <h2 class="ml-2 text-3xl font-bold">${name}</h2>
         <div class="grid-col-1 grid gap-2 p-2 md:grid-cols-2 lg:grid-cols-2">
           <div class="mb-4">
@@ -32,17 +32,16 @@ export function renderDataBasedOnCategory(category: Category) {
             <p class="text-md">${subtitle}</p>
             <p class="mt-2 text-sm">${published_date}</p>
           </div>
-          <div class="grid-col-1 grid w-full gap-4 md:w-full md:grid-cols-2 lg:grid-cols-2 lg:w-1/2">
+          <div class="flex flex-wrap">
           ${restNews.map(
             ({ image, title }) => `
             <div class="w-full md:w-72 lg:w-72">
               <img src="${image}" alt="${title}" />
               <p>${title}</p>
-            </div>
-        `
+            </div>`
           )}
       </div>
-    </div>
-  </div>
+      </div>
+  </section>
   `;
 }

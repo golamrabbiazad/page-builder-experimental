@@ -4,13 +4,12 @@ All work(bugs, fixes, features) for this page builder.
 
 ## Priority
 
-- ~~feat: if saved data already is there then load the data otherwise show the greeting page.~~
-- **bug: canvas should be scrollable to the viewport when dragging to the bottom.**
-- bug: insert Data **not removed, for ex, (layout-1)** when layout rendered from the server.
+- ~~bug: canvas should be scrollable to the viewport when dragging to the bottom.~~
+- ~~bug: insert Data **not removed, for ex, (layout-1)** when layout rendered from the server.~~
 - **feat: news layout data can't be editable.**
 - feat: news layouts can't be editable but basic element are editable.
 - fix: double click to insert image not works because of the server can't store the image rtn. This may works if we can interact with real db.
-- fix: canvas content must in the middle.
+- fix: hide default eye button
 
 ## Bugs
 

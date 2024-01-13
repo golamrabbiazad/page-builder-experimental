@@ -1,15 +1,17 @@
 import { ROUND_BORDER_COLOR } from "@/lib/common";
 import { cn } from "@/lib/utils";
 import { useEditor } from "@grapesjs/react";
+import { TextField, InputAdornment, Checkbox, Button } from "@mui/material";
+
 import {
-  TextField,
-  FormControl,
   Select,
-  MenuItem,
-  InputAdornment,
-  Checkbox,
-  Button,
-} from "@mui/material";
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+
 import { Trait } from "grapesjs";
 
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
@@ -44,12 +46,11 @@ export function TraitPropertyField({
   const valueWithDef = typeof value !== "undefined" ? value : defValue;
 
   let inputToRender = (
-    <TextField
+    <Input
+      type="text"
       placeholder={defValue}
       value={value}
       onChange={onChange}
-      size="small"
-      fullWidth
     />
   );
 
@@ -57,18 +58,21 @@ export function TraitPropertyField({
     case "select":
       {
         inputToRender = (
-          <FormControl fullWidth size="small">
-            <Select value={value} onChange={onChange}>
+          <Select onValueChange={(ev) => trait.setValue(ev)}>
+            <SelectTrigger className="w-[200px]">
+              <SelectValue placeholder="Select Category" />
+            </SelectTrigger>
+            <SelectContent>
               {trait.getOptions().map((option) => (
-                <MenuItem
+                <SelectItem
                   key={trait.getOptionId(option)}
                   value={trait.getOptionId(option)}
                 >
                   {trait.getOptionLabel(option)}
-                </MenuItem>
+                </SelectItem>
               ))}
-            </Select>
-          </FormControl>
+            </SelectContent>
+          </Select>
         );
       }
       break;
@@ -88,7 +92,7 @@ export function TraitPropertyField({
                     className={`w-[15px] h-[15px] ${ROUND_BORDER_COLOR}`}
                     style={{ backgroundColor: valueWithDef }}
                   >
-                    <input
+                    <Input
                       type="color"
                       className="w-[15px] h-[15px] cursor-pointer opacity-0"
                       value={valueWithDef}

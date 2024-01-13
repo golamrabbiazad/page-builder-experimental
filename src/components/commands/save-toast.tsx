@@ -10,7 +10,7 @@ export function SaveToast() {
   return (
     <Button
       variant="default"
-      className="w-32"
+      className="w-32 border border-white"
       onClick={() => {
         Commands.run("core:save");
         toast({

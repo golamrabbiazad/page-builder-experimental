@@ -3,7 +3,7 @@ import { CustomBlockManager } from "./blocks/custom-block-manager";
 
 export function LeftSidbar() {
   return (
-    <div className="min-w-[360px] gjs-left-sidebar flex flex-col">
+    <div className="flex flex-col">
       <BlocksProvider>
         {(props) => <CustomBlockManager {...props} />}
       </BlocksProvider>

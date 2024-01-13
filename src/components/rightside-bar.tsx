@@ -14,18 +14,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function RightSidebar() {
   return (
-    <div className="min-w-[360px] gjs-right-sidebar">
+    <div>
       <Tabs defaultValue="content">
-        <TabsList>
-          <TabsTrigger className="flex flex-col w-32 h-12" value="content">
+        <TabsList className="h-[60px] w-full gap-2">
+          <TabsTrigger className="flex flex-col" value="content">
             <Pencil />
             <p>Content</p>
           </TabsTrigger>
-          <TabsTrigger className="flex flex-col w-32 h-12" value="style">
+          <TabsTrigger className="flex flex-col" value="style">
             <Paintbrush />
             <p>Style</p>
           </TabsTrigger>
-          <TabsTrigger className="flex flex-col w-32 h-12" value="navigator">
+          <TabsTrigger className="flex flex-col" value="navigator">
             <Layers />
             <p>Navigator</p>
           </TabsTrigger>
