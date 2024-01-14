@@ -11,59 +11,53 @@ export async function CategoryPlugin(editor: Editor) {
     media: "🤨",
     category: "খবর",
     content: {
+      tagName: "section",
       type: "layout-1",
+      components: `
+        <h2 class="ml-2 text-3xl font-bold">Category Name</h2>
+        <div class="grid-col-1 grid gap-2 p-2 md:grid-cols-2 lg:grid-cols-2">
+          <div class="mb-4">
+            <img src="https://placehold.co/600x400" alt="abc" class="object-cover" />
+            <h2 class="mt-2 text-xl font-bold">Title</h2>
+            <p class="text-md">Subtitle</p>
+            <p class="mt-2 text-sm">21st Jan, 2024</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <div class="w-full md:w-72 lg:w-72">
+              <img src="https://placehold.co/300x300" alt="placeholder" />
+              <p>Test 1</p>
+            </div>
+            <div class="w-full md:w-72 lg:w-72">
+              <img src="https://placehold.co/300x300" alt="placeholder" />
+              <p>Test 1</p>
+            </div>
+            <div class="w-full md:w-72 lg:w-72">
+              <img src="https://placehold.co/300x300" alt="placeholder" />
+              <p>Test 1</p>
+            </div>
+            <div class="w-full md:w-72 lg:w-72">
+              <img src="https://placehold.co/300x300" alt="placeholder" />
+              <p>Test 1</p>
+            </div>
+          </div>
+        </div>    
+        `,
+      traits: [
+        {
+          type: "select",
+          label: "Category",
+          name: "type",
+          options: categories,
+        },
+      ],
     },
   });
 
   editor.DomComponents.addType("layout-1", {
-    isComponent: (el) => el.tagName === "SECTION",
+    isComponent: (el) => el.tagName === "section",
 
     model: {
-      defaults: {
-        traits: [
-          {
-            type: "select",
-            label: "Category",
-            name: "type",
-            options: categories,
-          },
-        ],
-
-        components: [
-          {
-            tagName: "section",
-            content: `
-            <h2 class="ml-2 text-3xl font-bold">Category Name</h2>
-            <div class="grid-col-1 grid gap-2 p-2 md:grid-cols-2 lg:grid-cols-2">
-              <div class="mb-4">
-                <img src="https://placehold.co/600x400" alt="abc" class="object-cover" />
-                <h2 class="mt-2 text-xl font-bold">Title</h2>
-                <p class="text-md">Subtitle</p>
-                <p class="mt-2 text-sm">21st Jan, 2024</p>
-              </div>
-              <div class="flex gap-2 flex-wrap">
-                <div class="w-full md:w-72 lg:w-72">
-                  <img src="https://placehold.co/300x300" alt="placeholder" />
-                  <p>Test 1</p>
-                </div>
-                <div class="w-full md:w-72 lg:w-72">
-                <img src="https://placehold.co/300x300" alt="placeholder" />
-                <p>Test 1</p>
-              </div>
-              <div class="w-full md:w-72 lg:w-72">
-                <img src="https://placehold.co/300x300" alt="placeholder" />
-                <p>Test 1</p>
-              </div>
-              <div class="w-full md:w-72 lg:w-72">
-                <img src="https://placehold.co/300x300" alt="placeholder" />
-                <p>Test 1</p>
-              </div>
-              </div>
-              </div>
-            `,
-          },
-        ],
-      },
+      defaults: {},
       init() {
         this.on("change:attributes:type", this.handleUpdateValue);
       },

@@ -7,6 +7,48 @@ All work(bugs, fixes, features) for this page builder.
 - ~~bug: canvas should be scrollable to the viewport when dragging to the bottom.~~
 - ~~bug: insert Data **not removed, for ex, (layout-1)** when layout rendered from the server.~~
 - **feat: news layout data can't be editable.**
+
+section in `HTML` format
+
+```html
+<section id="ifr5">
+  <h1>This is a simple title</h1>
+  <div>
+    This is just a Lorem text: Lorem ipsum dolor sit amet, consectetur
+    adipiscing elit
+  </div>
+</section>
+```
+
+section in `JSON` format.
+
+```json
+[
+  {
+    "tagName": "section",
+    "attributes": { "id": "ifr5" },
+    "components": [
+      {
+        "tagName": "h1",
+        "type": "text",
+        "components": [
+          { "type": "textnode", "content": "This is a simple title" }
+        ]
+      },
+      {
+        "type": "text",
+        "components": [
+          {
+            "type": "textnode",
+            "content": "This is just a Lorem text: Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
 - feat: news layouts can't be editable but basic element are editable.
 - fix: double click to insert image not works because of the server can't store the image rtn. This may works if we can interact with real db.
 - fix: hide default eye button
