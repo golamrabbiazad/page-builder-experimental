@@ -18,7 +18,7 @@ interface DeviceSelectProps {
 export function DeviceSelect({ selected, select, devices }: DeviceSelectProps) {
   return (
     <Select onValueChange={(ev) => select(ev)}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[180px] text-black dark:text-slate-200">
         <SelectValue defaultValue={selected} placeholder="Desktop" />
       </SelectTrigger>
       <SelectContent>

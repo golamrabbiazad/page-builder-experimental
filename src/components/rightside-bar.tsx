@@ -14,7 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function RightSidebar() {
   return (
-    <div>
+    <div className="w-[360px]">
       <Tabs defaultValue="content">
         <TabsList className="h-[60px] w-full gap-2">
           <TabsTrigger className="flex flex-col" value="content">

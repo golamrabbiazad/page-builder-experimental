@@ -11,7 +11,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-
 import { Trait } from "grapesjs";
 
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
@@ -51,6 +50,7 @@ export function TraitPropertyField({
       placeholder={defValue}
       value={value}
       onChange={onChange}
+      className="text-slate-900 dark:text-slate-100"
     />
   );
 
@@ -60,7 +60,10 @@ export function TraitPropertyField({
         inputToRender = (
           <Select onValueChange={(ev) => trait.setValue(ev)}>
             <SelectTrigger className="w-[200px]">
-              <SelectValue placeholder="Select Category" />
+              <SelectValue
+                className="text-slate-900 dark:text-slate-100"
+                placeholder="Select Category"
+              />
             </SelectTrigger>
             <SelectContent>
               {trait.getOptions().map((option) => (
@@ -131,7 +134,9 @@ export function TraitPropertyField({
   return (
     <div {...rest} className={cn("mb-3 px-1 w-full")}>
       <div className={cn("flex mb-2 items-center")}>
-        <div className="flex-grow capitalize">{trait.getLabel()}</div>
+        <div className="flex-grow capitalize dark:text-slate-100 text-slate-900">
+          {trait.getLabel()}
+        </div>
       </div>
       {inputToRender}
     </div>

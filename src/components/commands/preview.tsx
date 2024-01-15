@@ -16,12 +16,8 @@ export function Preview({ commandId }: { commandId: string }) {
   };
 
   return (
-    <Button
-      variant="default"
-      className="border border-white"
-      onClick={handleClick}
-    >
-      <Eye />
+    <Button variant="outline" onClick={handleClick}>
+      <Eye className="h-4 w-4 text-black dark:text-slate-100" />
     </Button>
   );
 }

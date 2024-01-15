@@ -9,12 +9,9 @@ import {
 } from "@mdi/js";
 import Icon from "@mdi/react";
 import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import MenuItem from "@mui/material/MenuItem";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
 import Select from "@mui/material/Select";
 import Slider from "@mui/material/Slider";
 import TextField from "@mui/material/TextField";
@@ -28,6 +25,8 @@ import type {
 } from "grapesjs";
 import { BTN_CLS, ROUND_BORDER_COLOR } from "@/lib/common";
 import { cn } from "@/lib/utils";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Label } from "../ui/label";
 
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
   prop: Property;
@@ -74,19 +73,30 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
     />
   );
 
+  // <RadioGroup value={value} onChange={onChange} defaultValue="comfortable">
+  //   {radioProp.getOptions().map((option) => (
+  //           <div key className="flex items-center space-x-2">
+
+  //         </div>
+  //   )}
+  //   </RadioGroup>
+
   switch (type) {
     case "radio":
       {
         const radioProp = prop as PropertyRadio;
         inputToRender = (
-          <RadioGroup value={value} onChange={onChange} row>
+          <RadioGroup value={value} onValueChange={(ev) => handleChange(ev)}>
             {radioProp.getOptions().map((option) => (
-              <FormControlLabel
-                key={radioProp.getOptionId(option)}
-                value={radioProp.getOptionId(option)}
-                label={radioProp.getOptionLabel(option)}
-                control={<Radio size="small" />}
-              />
+              <div key={radioProp.getOptionId(option)}>
+                <RadioGroupItem
+                  value={radioProp.getOptionId(option)}
+                  id={radioProp.getOptionId(option)}
+                />
+                <Label htmlFor={radioProp.getOptionId(option)}>
+                  {radioProp.getOptionId(option)}
+                </Label>
+              </div>
             ))}
           </RadioGroup>
         );

@@ -23,7 +23,6 @@ export function renderDataBasedOnCategory(category: Category) {
   const { title, subtitle, image, published_date } = firstNews;
 
   return `
-      <div type=${convertTitleToId(name)}>
         <h2 class="ml-2 text-3xl font-bold">${name}</h2>
         <div class="grid-col-1 grid gap-2 p-2 md:grid-cols-2 lg:grid-cols-2">
           <div class="mb-4">
@@ -42,6 +41,5 @@ export function renderDataBasedOnCategory(category: Category) {
           )}
       </div>
       </div>
-  </div>
   `;
 }

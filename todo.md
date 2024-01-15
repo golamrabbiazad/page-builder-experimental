@@ -6,7 +6,10 @@ All work(bugs, fixes, features) for this page builder.
 
 - ~~bug: canvas should be scrollable to the viewport when dragging to the bottom.~~
 - ~~bug: insert Data **not removed, for ex, (layout-1)** when layout rendered from the server.~~
-- **feat: news layout data can't be editable.**
+- ~~**feat: news layout data can't be editable.**~~
+- append data can't exported into HTML.
+- redesign the full editor (light, dark mode support.)
+- category name will be basic block and layout is going to dynamic content.
 
 section in `HTML` format
 

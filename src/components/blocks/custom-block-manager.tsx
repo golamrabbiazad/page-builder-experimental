@@ -1,6 +1,13 @@
-import { MAIN_BORDER_COLOR } from "@/lib/common";
 import { BlocksResultProps } from "@grapesjs/react";
-import { cn } from "@/lib/utils";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../ui/accordion";
+import { Card, CardContent, CardTitle } from "../ui/card";
+import { ComponentSearch } from "./component-search";
+import { Separator } from "../ui/separator";
 
 export type CustomBlockManagerProps = Pick<
   BlocksResultProps,
@@ -13,38 +20,37 @@ export function CustomBlockManager({
   dragStop,
 }: CustomBlockManagerProps) {
   return (
-    <div className="gjs-custom-block-manager text-left">
+    <div className="gjs-custom-block-manager p-6">
+      <ComponentSearch />
       {Array.from(mapCategoryBlocks).map(([category, blocks]) => (
-        <div key={category}>
-          <div className={cn("py-2 px-4 border-y", MAIN_BORDER_COLOR)}>
-            {category}
-          </div>
-          <div className="grid grid-cols-2 gap-2 p-2">
-            {blocks.map((block) => (
-              <div
-                key={block.getId()}
-                draggable
-                className={cn(
-                  "flex flex-col items-center border rounded cursor-pointer py-2 px-5 transition-colors",
-                  MAIN_BORDER_COLOR
-                )}
-                onDragStart={(ev) => dragStart(block, ev.nativeEvent)}
-                onDragEnd={() => dragStop(false)}
-              >
-                <div
-                  className="h-10 w-10"
-                  dangerouslySetInnerHTML={{ __html: block.getMedia()! }}
-                />
-                <div
-                  className="text-sm text-center w-full"
-                  title={block.getLabel()}
+        <Accordion type="single" collapsible className="w-full">
+          <Separator className="mt-4 bg-slate-300 dark:bg-slate-200" />
+          <AccordionItem value="item-1">
+            <AccordionTrigger className="text-slate-900 text-lg hover:no-underline dark:text-slate-100">
+              {category}
+            </AccordionTrigger>
+            <AccordionContent className="flex gap-2 flex-wrap">
+              {blocks.map((block) => (
+                <Card
+                  key={block.getId()}
+                  onDragStart={(ev) => dragStart(block, ev.nativeEvent)}
+                  onDragEnd={() => dragStop(false)}
+                  draggable
+                  className="w-[98px] h-[89px] flex flex-col items-center justify-center"
                 >
-                  {block.getLabel()}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                  <div
+                    className="h-6 w-6"
+                    dangerouslySetInnerHTML={{ __html: block.getMedia()! }}
+                  />
+
+                  <p className="text-wrap" title={block.getLabel()}>
+                    {block.getLabel()}
+                  </p>
+                </Card>
+              ))}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       ))}
     </div>
   );
