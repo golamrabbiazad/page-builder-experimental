@@ -57,6 +57,15 @@ export async function CategoryPlugin(editor: Editor) {
     isComponent: (el) => el.tagName === "section",
 
     model: {
+      defaults: {
+        editable: false,
+        droppable: false,
+        attributes: {
+          "data-slug": "news",
+          limit: "5",
+          style: "grid",
+        },
+      },
       init() {
         this.on("change:attributes:type", this.handleUpdateValue);
       },
@@ -65,7 +74,8 @@ export async function CategoryPlugin(editor: Editor) {
         const categoryName = this.getAttributes().type;
         const data = await getCategoryByName(categoryName);
         this.empty();
-        this.view?.$el.append(renderDataBasedOnCategory(data));
+        // this.view?.$el.append(renderDataBasedOnCategory(data));
+        this.components(renderDataBasedOnCategory(data));
       },
 
       // html data should be exported in html

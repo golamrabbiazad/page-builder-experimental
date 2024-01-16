@@ -1,8 +1,6 @@
-import { ROUND_BORDER_COLOR } from "@/lib/common";
-import { cn } from "@/lib/utils";
+import { Trait } from "grapesjs";
 import { useEditor } from "@grapesjs/react";
 import { TextField, InputAdornment, Checkbox, Button } from "@mui/material";
-
 import {
   Select,
   SelectContent,
@@ -10,8 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import { Trait } from "grapesjs";
+import { ROUND_BORDER_COLOR } from "@/lib/common";
+import { TextType } from "./render-types/text";
 
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
   trait: Trait;
@@ -55,6 +55,11 @@ export function TraitPropertyField({
   );
 
   switch (type) {
+    case "block":
+      {
+        inputToRender = TextType({ trait });
+      }
+      break;
     case "select":
       {
         inputToRender = (

@@ -9,8 +9,8 @@ import { ModeToggle } from "./mode-toggle";
 
 export function Topbar({ className }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("flex items-center justify-between p-1", className)}>
-      <h2 className="ml-4 text-xl font-bold text-slate-900 dark:text-slate-200">
+    <div className={cn("flex items-center justify-between", className)}>
+      <h2 className="text-xl font-bold text-slate-900 dark:text-slate-200">
         M4yours Editor
       </h2>
       <div className="flex">

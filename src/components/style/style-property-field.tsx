@@ -73,14 +73,6 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
     />
   );
 
-  // <RadioGroup value={value} onChange={onChange} defaultValue="comfortable">
-  //   {radioProp.getOptions().map((option) => (
-  //           <div key className="flex items-center space-x-2">
-
-  //         </div>
-  //   )}
-  //   </RadioGroup>
-
   switch (type) {
     case "radio":
       {
