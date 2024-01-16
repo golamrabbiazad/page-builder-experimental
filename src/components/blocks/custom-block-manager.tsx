@@ -5,9 +5,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
-import { Card, CardContent, CardTitle } from "../ui/card";
+import { Card } from "../ui/card";
 import { ComponentSearch } from "./component-search";
-import { Separator } from "../ui/separator";
 
 export type CustomBlockManagerProps = Pick<
   BlocksResultProps,
@@ -23,10 +22,9 @@ export function CustomBlockManager({
     <div className="gjs-custom-block-manager p-6">
       <ComponentSearch />
       {Array.from(mapCategoryBlocks).map(([category, blocks]) => (
-        <Accordion type="single" collapsible className="w-full">
-          <Separator className="mt-4 bg-slate-300 dark:bg-slate-200" />
+        <Accordion key={category} type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-slate-900 text-lg hover:no-underline dark:text-slate-100">
+            <AccordionTrigger className="text-lg hover:no-underline">
               {category}
             </AccordionTrigger>
             <AccordionContent className="flex gap-2 flex-wrap">

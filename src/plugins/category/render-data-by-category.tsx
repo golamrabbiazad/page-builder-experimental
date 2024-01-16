@@ -1,5 +1,3 @@
-import { convertTitleToId } from "@/lib/utils";
-
 interface News {
   title: string;
   subtitle: string;
