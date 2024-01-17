@@ -5,7 +5,6 @@ import {
   TraitsProvider,
 } from "@grapesjs/react";
 import { Layers, Paintbrush, Pencil } from "lucide-react";
-
 import { CustomStyleManager } from "./style/custom-style-manager";
 import { CustomTraitManager } from "./traits/custom-trait-manager";
 import { CustomLayerManager } from "./layers/custom-layer-manager";

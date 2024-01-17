@@ -24,7 +24,7 @@ export function CustomBlockManager({
       {Array.from(mapCategoryBlocks).map(([category, blocks]) => (
         <Accordion key={category} type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg hover:no-underline">
+            <AccordionTrigger className="text-lg hover:no-underline text-slate-900 dark:text-white">
               {category}
             </AccordionTrigger>
             <AccordionContent className="flex gap-2 flex-wrap">

@@ -44,10 +44,12 @@ export function TextType({ trait }: { trait: Trait }) {
     trait.setValue(value);
   };
 
+  // add alignment option
+
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
-        <AccordionTrigger className="text-xl no-underline hover:no-underline">
+        <AccordionTrigger className="text-xl no-underline hover:no-underline text-slate-900 dark:text-white">
           Block Options
         </AccordionTrigger>
         <AccordionContent>

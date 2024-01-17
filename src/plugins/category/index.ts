@@ -9,7 +9,7 @@ export async function CategoryPlugin(editor: Editor) {
   editor.Blocks.add("layout-1", {
     label: "দেশের খবর",
     media: "🤨",
-    category: "খবর",
+    category: "Templates",
     content: {
       tagName: "section",
       type: "layout-1",
@@ -58,14 +58,14 @@ export async function CategoryPlugin(editor: Editor) {
 
     model: {
       defaults: {
-        editable: false,
-        droppable: false,
+        editable: true,
         attributes: {
           "data-slug": "news",
           limit: "5",
           style: "grid",
         },
       },
+
       init() {
         this.on("change:attributes:type", this.handleUpdateValue);
       },
@@ -74,11 +74,14 @@ export async function CategoryPlugin(editor: Editor) {
         const categoryName = this.getAttributes().type;
         const data = await getCategoryByName(categoryName);
         this.empty();
-        // this.view?.$el.append(renderDataBasedOnCategory(data));
-        this.components(renderDataBasedOnCategory(data));
-      },
+        this.components({
+          components: renderDataBasedOnCategory(data),
+        });
 
-      // html data should be exported in html
+        // another option is that to inject in view layer.
+        // because of this HTML data can't be exported.
+        // this.view?.el.append(renderDataBasedOnCategory(data))
+      },
     },
   });
 }

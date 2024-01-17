@@ -1,60 +1,104 @@
 import { Editor } from "grapesjs";
 
-const containerIcon = `
-<svg xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="#ffffff" 
-    stroke-width="2" 
-    stroke-linecap="round" 
-    stroke-linejoin="round" 
-    class="lucide lucide-square">
-        <rect width="20" height="20" x="3" y="3" rx="2"/>
-</svg>
-`;
-
-const sectionIcon = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers-3"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m6.08 9.5-3.5 1.6a1 1 0 0 0 0 1.81l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9a1 1 0 0 0 0-1.83l-3.5-1.59"/><path d="m6.08 14.5-3.5 1.6a1 1 0 0 0 0 1.81l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9a1 1 0 0 0 0-1.83l-3.5-1.59"/></svg>`;
-
 export function layoutPlugin(editor: Editor) {
   editor.Blocks.add("section-block", {
     label: "Section",
     content: `<section class="h-96"></section>`,
-    media: sectionIcon,
+    media: "S",
     category: "Layouts",
   });
 
   editor.Blocks.add("container-block", {
     label: "Container",
-    content: `<div class="h-80 flex flex-grow">
-    <div class="min-h-[50px] w-full"></div>
-    <div class="min-h-[50px] w-full"></div>
-    </div>`,
-    media: containerIcon,
+    content: {
+      type: "Container",
+      classes: [
+        "min-h-96",
+        "border-dashed",
+        "border-blue-400",
+        "flex",
+        "flex-grow",
+      ],
+      components: `
+        <div class="h-32 border border-dashed w-full"></div>
+        <div class="h-32 border border-dashed w-full"></div>
+      `,
+    },
+    media: "C",
     category: "Layouts",
+  });
+
+  editor.DomComponents.addType("Container", {
+    isComponent: (el) => el.tagName === "div",
+
+    model: {
+      defaults: {
+        attributes: {},
+        traits: [
+          {
+            type: "select",
+            name: "flex-type",
+            label: "Flex Type",
+            options: [
+              { id: "flex-col", name: "flex-col" },
+              { id: "flex-row", name: "flex-row" },
+            ],
+          },
+        ],
+      },
+    },
   });
 
   editor.Blocks.add("div-block", {
     label: "Box",
-    content: `<div class="min-h-[50px] w-full"></div>`,
-    media: containerIcon,
+    content: `<div class="min-h-32 w-full"></div>`,
+    media: "B",
     category: "Layouts",
   });
 
-  editor.Blocks.add("h1-block", {
-    label: "Heading",
-    media: "H",
-    content: { type: "heading", content: "Hello world" },
+  editor.Blocks.add("text-block", {
+    label: "Text Editor",
+    media: "TE",
+    content: { type: "text-block-type", content: `<p>Insert some text</p>` },
     category: "Layouts",
+    select: true,
   });
 
-  editor.DomComponents.addType("heading", {
-    isComponent: (el) => el.tagName === "h1",
+  // editor.RichTextEditor.add("hyperlink", {
+  //   icon: "&#128279",
+  //   attributes: { title: "Hyperlink" },
+  //   result(rte) {
+  //     const component = editor.getSelected()!;
+  //     const selection = rte.selection()!;
 
+  //     if (component.is("link")) {
+  //       component.replaceWith(`${component.get("content")}`);
+  //     } else {
+  //       let range = selection.getRangeAt(0);
+
+  //       let container = range.commonAncestorContainer;
+  //       if (container.nodeType == 3) container = container.parentNode!;
+
+  //       if (container.nodeName === "A") {
+  //         selection.removeAllRanges();
+  //         range = document.createRange();
+  //         range.selectNodeContents(container);
+  //         selection.addRange(range);
+  //         rte.exec("unlink");
+  //       } else {
+  //         const url = window.prompt("Enter the URL to link to:");
+  //         if (url)
+  //           rte.insertHTML(
+  //             `<a class="link" href="${url}">${rte.selection()}</a>`
+  //           );
+  //       }
+  //     }
+  //   },
+  // });
+
+  editor.DomComponents.addType("text-block-type", {
     model: {
       defaults: {
-        editable: true,
-        draggable: true,
         traits: [
           {
             type: "block", // Type of the trait
@@ -63,40 +107,4 @@ export function layoutPlugin(editor: Editor) {
       },
     },
   });
-
-  //   editor.addComponents(`
-  //     <div>
-  //         <img src="https://path/image" />
-  //         <span title="foo">Hello world!!!</span>
-  //     </div>
-  //   `);
-
-  //   editor.getSelected()!.append(`<div>...`);
-
-  //   editor.DomComponents.addType("div", {
-  //     model: {
-  //       defaults: {
-  //         tagName: "div",
-  //         editable: true,
-  //         droppable: true,
-  //       },
-  //     },
-
-  //     view: {
-  //       events: {
-  //         dblclick: "onActive",
-  //         focusout: "onDisable",
-  //       },
-
-  //       onActive() {
-  //         const { el } = this;
-  //         el.contentEditable = "true";
-  //       },
-
-  //       onDisable() {
-  //         const { el, model } = this;
-  //         (el.contentEditable = "false"), model.set("content", el.innerHTML);
-  //       },
-  //     },
-  //   });
 }

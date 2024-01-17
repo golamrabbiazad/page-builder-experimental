@@ -1,5 +1,3 @@
-import { Suspense } from "react";
-import { Loader2 } from "lucide-react";
 import GrapesJsEditor, {
   Canvas,
   EditorProps,
@@ -11,27 +9,68 @@ import { LeftSidbar } from "@/components/leftside-bar";
 import { RightSidebar } from "@/components/rightside-bar";
 import { AssetModal } from "@/components/assets/asset-modal";
 import { ThemeProvider } from "@/providers/theme-providers/theme-context";
+import { Editor } from "grapesjs";
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@/components/ui/resizable";
 
 export default function PageBuilder(props: Partial<EditorProps>) {
+  function onEditor(editor: Editor) {
+    editor.Commands.run("core:component-outline");
+
+    editor.RichTextEditor.add("indent", {
+      icon: "&#8594;",
+      attributes: { title: "Indent" },
+      result: (rte) => rte.exec("indent"),
+    });
+
+    editor.RichTextEditor.add("outdent", {
+      icon: "&#8592;",
+      attributes: { title: "Outdent" },
+      result: (rte) => rte.exec("outdent"),
+    });
+
+    editor.RichTextEditor.add("orderedList", {
+      icon: "1.",
+      attributes: { title: "Ordered List" },
+      result: (rte) => rte.exec("insertOrderedList"),
+    });
+
+    editor.RichTextEditor.add("unorderedList", {
+      icon: "&#8226;",
+      attributes: { title: "Unordered List" },
+      result: (rte) => rte.exec("insertUnorderedList"),
+    });
+  }
   return (
     <ThemeProvider defaultTheme="system" storageKey="m4yours-ui-theme">
-      <GrapesJsEditor {...defaultEditorProps} {...props}>
+      <GrapesJsEditor onEditor={onEditor} {...defaultEditorProps} {...props}>
         <div className={`flex border-t`}>
           <div className="gjs-column-m flex flex-col flex-grow">
             <Topbar className="min-h-[48px] bg-slate-200 dark:bg-slate-900 border-b border-b-gray-300" />
-            <div className="flex">
-              <div className="gjs-left-sidebar bg-slate-200 dark:bg-slate-900">
-                <LeftSidbar />
-              </div>
-              <Suspense
-                fallback={<Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              >
-                <Canvas className="flex-grow flex flex-col min-h-screen" />
-              </Suspense>
-              <div className="gjs-right-sidebar bg-slate-200 dark:bg-slate-900">
-                <RightSidebar />
-              </div>
-            </div>
+
+            <ResizablePanelGroup direction="horizontal">
+              <ResizablePanel defaultSize={25} className="gjs-left-sidebar">
+                <div className="min-h-screen bg-slate-200 dark:bg-slate-900">
+                  <LeftSidbar />
+                </div>
+              </ResizablePanel>
+              <ResizableHandle withHandle />
+
+              <ResizablePanel defaultSize={50}>
+                <Canvas className="flex-grow flex flex-col min-h-screen canvas-bg" />
+              </ResizablePanel>
+
+              <ResizableHandle withHandle />
+
+              <ResizablePanel defaultSize={25} className="gjs-right-sidebar ">
+                <div className="min-h-screen bg-slate-200 dark:bg-slate-900">
+                  <RightSidebar />
+                </div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
           </div>
         </div>
         <ModalProvider>

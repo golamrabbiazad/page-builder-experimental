@@ -23,6 +23,9 @@ export default {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        "canvas-bg": "url('https://play.tailwindcss.com/img/beams.jpg')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

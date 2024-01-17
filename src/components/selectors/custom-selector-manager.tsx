@@ -35,9 +35,13 @@ export function CustomSelectorManager({
               customInputRef.current?.classList.toggle("hidden");
               setIsSelectorOpen(!isSelectorOpen);
             }}
-            className="px-2 h-6"
+            className="px-2 h-6 my-2"
           >
-            {isSelectorOpen ? <X /> : <Plus />}
+            {isSelectorOpen ? (
+              <X className="h-4 w-4" />
+            ) : (
+              <Plus className="h-4 w-4" />
+            )}
           </Button>
         ) : (
           <div className="text-slate-900 dark:text-slate-100 font-bold border border-slate-700 p-4 rounded-md">
@@ -49,7 +53,7 @@ export function CustomSelectorManager({
           <Input
             type="text"
             ref={customInputRef}
-            className="hidden text-slate-900 dark:text-slate-100"
+            className="hidden text-slate-900 dark:text-slate-100 mb-2"
             placeholder="text-center"
             onChange={(e) => {
               // stored in variable
@@ -73,22 +77,21 @@ export function CustomSelectorManager({
             }}
           />
         </div>
-        {selectors.map((selector) => (
-          <div
-            key={selector.toString()}
-            className="px-2 h-10 flex flex-wrap justify-start items-center w-max gap-1 rounded-md whitespace-nowrap bg-blue-500"
-          >
-            <div>{selector.getLabel()}</div>
-            <Button
-              type="button"
-              className="h-6 w-4"
-              variant="destructive"
-              onClick={() => removeSelector(selector)}
+        <div className="flex flex-wrap gap-2">
+          {selectors.map((selector) => (
+            <div
+              key={selector.toString()}
+              className="bg-blue-500 rounded-md w-max p-1 items-center justify-center flex gap-2"
             >
-              X{/* this change to <X /> component. */}
-            </Button>
-          </div>
-        ))}
+              <p>{selector.getLabel()}</p>
+
+              <X
+                onClick={() => removeSelector(selector)}
+                className="mr-2 h-4 w-4 rounded-md bg-red-500 text-white cursor-pointer"
+              />
+            </div>
+          ))}
+        </div>
       </div>
       <p className="text-slate-900 dark:text-slate-200">
         Selected: <span className="opacity-70">{targetStr || "None"}</span>

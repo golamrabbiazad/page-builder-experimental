@@ -4,11 +4,12 @@ All work(bugs, fixes, features) for this page builder.
 
 ## Priority
 
+- add text alignment to position of that text.
 - ~~bug: canvas should be scrollable to the viewport when dragging to the bottom.~~
 - ~~bug: insert Data **not removed, for ex, (layout-1)** when layout rendered from the server.~~
 - ~~**feat: news layout data can't be editable.**~~
 - append data can't exported into HTML.
-- redesign the full editor (light, dark mode support.)
+- ~~redesign the full editor (light, dark mode support.)~~
 - category name will be basic block and layout is going to dynamic content.
 
 section in `HTML` format
@@ -52,14 +53,14 @@ section in `JSON` format.
 ]
 ```
 
-- feat: news layouts can't be editable but basic element are editable.
-- fix: double click to insert image not works because of the server can't store the image rtn. This may works if we can interact with real db.
+- ~~feat: news layouts can't be editable but basic element are editable.~~
+- fix: double click to insert image not works because of the server can't store the image rtn. This may works if we can interact with real db.~
 - fix: hide default eye button
 
 ## Bugs
 
 - ~~bug: initial display get empty that means doesn't show canvas.~~
-- bug: click body element in the layer panel takes full page to zoom, and can't show the topbar buttons.
+- ~~bug: click body element in the layer panel takes full page to zoom, and can't show the topbar buttons.~~
 - bug: after section added to the layout the id of the section can't be changed.
 
 ## Enhance
