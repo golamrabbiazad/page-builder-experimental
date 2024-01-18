@@ -11,7 +11,7 @@ export function CustomStyleManager({
   sectors,
 }: Omit<StylesResultProps, "Container">) {
   return (
-    <div className="gjs-custom-style-manager p-2 text-slate-900 dark:text-slate-100 text-left">
+    <div className="p-2 text-slate-900 dark:text-slate-100">
       {sectors.map((sector) => (
         <Accordion
           key={sector.getId()}

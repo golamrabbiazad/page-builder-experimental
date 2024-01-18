@@ -31,41 +31,28 @@ export default function PageBuilder(props: Partial<EditorProps>) {
       attributes: { title: "Outdent" },
       result: (rte) => rte.exec("outdent"),
     });
-
-    editor.RichTextEditor.add("orderedList", {
-      icon: "1.",
-      attributes: { title: "Ordered List" },
-      result: (rte) => rte.exec("insertOrderedList"),
-    });
-
-    editor.RichTextEditor.add("unorderedList", {
-      icon: "&#8226;",
-      attributes: { title: "Unordered List" },
-      result: (rte) => rte.exec("insertUnorderedList"),
-    });
   }
   return (
     <ThemeProvider defaultTheme="system" storageKey="m4yours-ui-theme">
       <GrapesJsEditor onEditor={onEditor} {...defaultEditorProps} {...props}>
-        <div className={`flex border-t`}>
+        <div className="flex h-screen">
           <div className="gjs-column-m flex flex-col flex-grow">
             <Topbar className="min-h-[48px] bg-slate-200 dark:bg-slate-900 border-b border-b-gray-300" />
-
             <ResizablePanelGroup direction="horizontal">
-              <ResizablePanel defaultSize={25} className="gjs-left-sidebar">
+              <ResizablePanel defaultSize={20} className="gjs-left-sidebar">
                 <div className="min-h-screen bg-slate-200 dark:bg-slate-900">
                   <LeftSidbar />
                 </div>
               </ResizablePanel>
               <ResizableHandle withHandle />
 
-              <ResizablePanel defaultSize={50}>
-                <Canvas className="flex-grow flex flex-col min-h-screen canvas-bg" />
+              <ResizablePanel defaultSize={60}>
+                <Canvas className="flex-grow flex flex-col" />
               </ResizablePanel>
 
               <ResizableHandle withHandle />
 
-              <ResizablePanel defaultSize={25} className="gjs-right-sidebar ">
+              <ResizablePanel defaultSize={20} className="gjs-right-sidebar ">
                 <div className="min-h-screen bg-slate-200 dark:bg-slate-900">
                   <RightSidebar />
                 </div>

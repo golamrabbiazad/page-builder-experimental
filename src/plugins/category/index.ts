@@ -6,15 +6,13 @@ import { renderDataBasedOnCategory } from "./render-data-by-category";
 export async function CategoryPlugin(editor: Editor) {
   const categories = await getCategories();
 
-  editor.Blocks.add("layout-1", {
-    label: "দেশের খবর",
-    media: "🤨",
+  editor.Blocks.add("template-1-block", {
+    label: "Template 1",
+    media: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-template"><rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/><rect width="5" height="7" x="16" y="14" rx="1"/></svg>`,
     category: "Templates",
     content: {
-      tagName: "section",
-      type: "layout-1",
+      type: "Template 1",
       components: `
-        <h2 class="ml-2 text-3xl font-bold">Category Name</h2>
         <div class="grid-col-1 grid gap-2 p-2 md:grid-cols-2 lg:grid-cols-2">
           <div class="mb-4">
             <img src="https://placehold.co/600x400" alt="abc" class="object-cover" />
@@ -53,19 +51,10 @@ export async function CategoryPlugin(editor: Editor) {
     },
   });
 
-  editor.DomComponents.addType("layout-1", {
-    isComponent: (el) => el.tagName === "section",
+  editor.DomComponents.addType("Template 1", {
+    isComponent: (el) => el.tagName === "div",
 
     model: {
-      defaults: {
-        editable: true,
-        attributes: {
-          "data-slug": "news",
-          limit: "5",
-          style: "grid",
-        },
-      },
-
       init() {
         this.on("change:attributes:type", this.handleUpdateValue);
       },
@@ -75,12 +64,8 @@ export async function CategoryPlugin(editor: Editor) {
         const data = await getCategoryByName(categoryName);
         this.empty();
         this.components({
-          components: renderDataBasedOnCategory(data),
+          content: renderDataBasedOnCategory(data),
         });
-
-        // another option is that to inject in view layer.
-        // because of this HTML data can't be exported.
-        // this.view?.el.append(renderDataBasedOnCategory(data))
       },
     },
   });

@@ -3,14 +3,12 @@ import { EditorProps } from "@grapesjs/react";
 import grapesjs, { EditorConfig } from "grapesjs";
 
 import { plugins } from "@/plugins";
-import { projectDataConfig } from "@/configs/project-data";
 import { CSSICONS, TAILWINDCSS_SCRIPT } from "@/lib/external-urls";
 import { assetsManagerConfig, storageManagerConfig } from "@/configs";
 
 export const defaultOptions: EditorConfig = {
   storageManager: storageManagerConfig,
   assetManager: assetsManagerConfig,
-  projectData: projectDataConfig,
   undoManager: {
     trackSelection: false,
   },

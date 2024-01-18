@@ -2,75 +2,46 @@
 
 All work(bugs, fixes, features) for this page builder.
 
-## Priority
+## Priorities
 
-- add text alignment to position of that text.
-- ~~bug: canvas should be scrollable to the viewport when dragging to the bottom.~~
-- ~~bug: insert Data **not removed, for ex, (layout-1)** when layout rendered from the server.~~
-- ~~**feat: news layout data can't be editable.**~~
-- append data can't exported into HTML.
-- ~~redesign the full editor (light, dark mode support.)~~
-- category name will be basic block and layout is going to dynamic content.
-
-section in `HTML` format
-
-```html
-<section id="ifr5">
-  <h1>This is a simple title</h1>
-  <div>
-    This is just a Lorem text: Lorem ipsum dolor sit amet, consectetur
-    adipiscing elit
-  </div>
-</section>
-```
-
-section in `JSON` format.
-
-```json
-[
-  {
-    "tagName": "section",
-    "attributes": { "id": "ifr5" },
-    "components": [
-      {
-        "tagName": "h1",
-        "type": "text",
-        "components": [
-          { "type": "textnode", "content": "This is a simple title" }
-        ]
-      },
-      {
-        "type": "text",
-        "components": [
-          {
-            "type": "textnode",
-            "content": "This is just a Lorem text: Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-          }
-        ]
-      }
-    ]
-  }
-]
-```
-
-- ~~feat: news layouts can't be editable but basic element are editable.~~
-- fix: double click to insert image not works because of the server can't store the image rtn. This may works if we can interact with real db.~
-- fix: hide default eye button
+- feat: add text alignment to position of that text.
+- fix: double click to insert image not works because of the server can't store the image rtn. This may works if we can interact with real db.
+- fix: hide default eye button.
+- feat: workable `Rich Text Editor` functionality.
 
 ## Bugs
 
+- bug: after section added to the layout the id of the section can't be changed.
+- bug: when we're in the preview-mode, contents are still now editable.
+
 - ~~bug: initial display get empty that means doesn't show canvas.~~
 - ~~bug: click body element in the layer panel takes full page to zoom, and can't show the topbar buttons.~~
-- bug: after section added to the layout the id of the section can't be changed.
+- ~~bug: canvas should be scrollable to the viewport when dragging to the bottom.~~
+- ~~bug: insert Data **not removed, for ex, (layout-1)** when layout rendered from the server.~~
+- ~~bug: append data can't exported into HTML.~~
 
-## Enhance
+## Enhancements
+
+- fix: when a component is selected and switch to another tab (content) the state gets lost.
+- fix: style manager's classes panel, this could be default panel.
 
 - ~~fix: asset manager design and functionality.~~
-- fix: style manager's classes panel, this could be default panel.
 - ~~fix: after clicking the content the right side panel content editable window opens.~~
+- ~~fix: category name will be basic block and layout is going to dynamic content.~~
 
-## Featuers
+## Features
 
+- feat: heading plugin where default heading is h1, and later it can be changed to h2, h3, h4, h5, h6
+- context menu for various option for example, delete, save, copy, cut etc in the canvas.
+- feat: custom layout, for example `grid` layout.
+- feat: form elements from figma to add.
+- feat: custom google ads banner.
+- feat: add more layouts.
+- refactor: refactor layouts.
+- feat: heading plugin where default heading is h1, and later it can be changed to h2, h3, h4, h5, h6
+- context menu for various option for example, delete, save, copy, cut etc in the canvas.
+
+- ~~feat: redesign the full editor (light, dark mode support.)~~
 - ~~feat: data stored in local db~~
 - ~~feat: load raw html from server to the editor~~
 - ~~feat: basic tailwind layout~~
@@ -80,13 +51,8 @@ section in `JSON` format.
 - ~~feat: custom save button for save the project in the db.~~
 - ~~feat: all images are show in the asset manager preview panel.~~
 - ~~feat: toast shows when user hit the save button.~~
-- feat: custom layout, for example `grid` layout.
-- feat: form elements from figma to add.
-- feat: custom google ads banner.
-- feat: add more layouts.
-- refactor: refactor layouts.
-- feat: extends the storage strategy, <https://grapesjs.com/docs/modules/Storage.html#extend-storage>. for example, if user don't have internet conection then it saves locally the later if internet connection is back hit save to push to the server.
-- feat: heading plugin where default heading is h1, and later it can be changed to h2, h3, h4, h5, h6
+- ~~**feat: news layout data can't be editable.**~~
+- ~~feat: news layouts can't be editable but basic element are editable.~~
 
 ## Fake API
 

@@ -13,20 +13,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function RightSidebar() {
   return (
-    <div className="w-[360px]">
-      <Tabs defaultValue="content">
+    <div>
+      <Tabs
+        defaultValue="content"
+        className="h-[540px] overflow-auto scroll-smooth"
+      >
         <TabsList className="h-84 flex items-center justify-between">
-          <TabsTrigger className="flex flex-col w-1/3" value="content">
+          <TabsTrigger className="flex flex-col w-1/2" value="content">
             <Pencil />
             <p>Content</p>
           </TabsTrigger>
-          <TabsTrigger className="flex flex-col w-1/3" value="style">
+          <TabsTrigger className="flex flex-col w-1/2" value="style">
             <Paintbrush />
             <p>Style</p>
-          </TabsTrigger>
-          <TabsTrigger className="flex flex-col w-1/3" value="navigator">
-            <Layers />
-            <p>Navigator</p>
           </TabsTrigger>
         </TabsList>
 
@@ -46,8 +45,17 @@ export function RightSidebar() {
             </StylesProvider>
           </>
         </TabsContent>
+      </Tabs>
 
-        <TabsContent value="navigator">
+      <Tabs defaultValue="navigator">
+        <TabsList className="h-84 flex items-center">
+          <TabsTrigger className="flex flex-col w-full" value="navigator">
+            <Layers />
+            <p>Navigator</p>
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="navigator" className="overflow-auto">
           <LayersProvider>
             {(props) => <CustomLayerManager {...props} />}
           </LayersProvider>
