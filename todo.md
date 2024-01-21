@@ -8,6 +8,8 @@ All work(bugs, fixes, features) for this page builder.
 - fix: double click to insert image not works because of the server can't store the image rtn. This may works if we can interact with real db.
 - fix: hide default eye button.
 - feat: workable `Rich Text Editor` functionality.
+- feat: select on component right side panel pops up.
+- feat: implement <https://platejs.org/> RTE for the text Editor.
 
 ## Bugs
 
