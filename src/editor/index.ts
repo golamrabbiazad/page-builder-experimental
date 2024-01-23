@@ -18,9 +18,9 @@ export const defaultOptions: EditorConfig = {
   cssIcons: CSSICONS,
   canvas: {
     styles: [
-      // "https://rsms.me/",
-      // "https://rsms.me/inter/inter.css",
-      "https://fonts.maateen.me/kalpurush/font.css",
+      "https://rsms.me/",
+      "https://rsms.me/inter/inter.css",
+      // "https://fonts.maateen.me/kalpurush/font.css",
     ],
     scripts: [TAILWINDCSS_SCRIPT],
   },
@@ -35,8 +35,12 @@ export const defaultOptions: EditorConfig = {
     },
   },
   canvasCss: `
-  body {
-    font-family: 'Kalpurush', Inter, sans-serif !important;
+  :root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  }
+  @supports (font-variation-settings: normal) {
+    :root { font-family: InterVariable, sans-serif; }
   }
   `,
 };
@@ -47,10 +51,6 @@ export const defaultEditorProps: EditorProps = {
   options: defaultOptions,
 };
 
-// :root {
-//   font-family: Inter, sans-serif;
-//   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
-// }
-// @supports (font-variation-settings: normal) {
-//   :root { font-family: InterVariable, sans-serif; }
+// body {
+//   font-family: 'Kalpurush', Inter, sans-serif !important;
 // }

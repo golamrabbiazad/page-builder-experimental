@@ -56,6 +56,23 @@ All work(bugs, fixes, features) for this page builder.
 - ~~**feat: news layout data can't be editable.**~~
 - ~~feat: news layouts can't be editable but basic element are editable.~~
 
+## Template System
+
+```ts
+latest_news: [short_code: "latest_news", limit: 10, display: 3]
+
+top_news: [short_code: "top_news", layout: "", limit: 5]
+
+category_news: [
+ {short_code: "category_news", slug: "", limit: 5},
+]
+
+feedbacks: [short_code: "feedbacks", limit: 4]
+
+more_news: [short_code: "more_news_by_categories", categories: 4, limit: 3]
+
+```
+
 ## Fake API
 
 ```json
