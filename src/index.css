@@ -40,10 +40,10 @@ select {
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 264, 12%, 8%, 1;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 240, 6%, 26%, 1;
     --card-foreground: 210 40% 98%;
 
     --popover: 222.2 84% 4.9%;
@@ -65,9 +65,13 @@ select {
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --input: 240, 9%, 18%, 1;
     --ring: 212.7 26.8% 83.9%;
+
+    --categoryName: 240, 9%, 18%;
+    --categoryCardBg: 240, 6%, 26%;
   }
+
   * {
     @apply border-border;
   }

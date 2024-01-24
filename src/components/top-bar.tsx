@@ -5,12 +5,11 @@ import { SaveToast } from "./commands/save-toast";
 import { ComponentOutline } from "./commands/component-outline";
 import { Preview } from "./commands/preview";
 import { DeviceSelect } from "./device-select";
-import { ModeToggle } from "./mode-toggle";
 
 export function Topbar({ className }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={cn("flex items-center justify-between", className)}>
-      <h2 className="text-xl font-bold text-slate-900 dark:text-slate-200">
+      <h2 className="text-2xl font-bold tracking-tighter ml-6">
         M4yours Editor
       </h2>
       <div className="flex">
@@ -24,8 +23,7 @@ export function Topbar({ className }: React.HTMLAttributes<HTMLDivElement>) {
           )}
         </DevicesProvider>
       </div>
-      <div className="flex gap-2 p-2">
-        <ModeToggle />
+      <div className="flex items-center justify-center gap-2">
         <WithEditor>
           <ComponentOutline commandId="core:component-outline" />
           <TopbarButtons className="ml-auto px-2" />

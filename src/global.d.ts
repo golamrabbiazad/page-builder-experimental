@@ -5,4 +5,9 @@ declare global {
     grapesjs: typeof grapesjs;
     editor: Editor | undefined;
   }
+
+  interface Category {
+    id: string;
+    name: string;
+  }
 }

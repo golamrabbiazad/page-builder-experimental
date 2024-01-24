@@ -1,11 +1,5 @@
 import { BlocksResultProps } from "@grapesjs/react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../ui/accordion";
-import { Card } from "../ui/card";
+import { Card, CardContent, CardFooter } from "../ui/card";
 import { ComponentSearch } from "./component-search";
 
 export type CustomBlockManagerProps = Pick<
@@ -18,37 +12,68 @@ export function CustomBlockManager({
   dragStart,
   dragStop,
 }: CustomBlockManagerProps) {
+  const templateBlocks = Array.from(mapCategoryBlocks).filter(
+    ([category]) => category === "Templates"
+  );
+
+  const restTemplates = Array.from(mapCategoryBlocks).filter(
+    ([category]) => category !== "Templates"
+  );
+
   return (
-    <div className="gjs-custom-block-manager p-6">
+    <div>
       <ComponentSearch />
-      {Array.from(mapCategoryBlocks).map(([category, blocks]) => (
-        <Accordion key={category} type="single" collapsible className="w-full">
-          <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg hover:no-underline text-slate-900 dark:text-white">
-              {category}
-            </AccordionTrigger>
-            <AccordionContent className="flex gap-2 flex-wrap">
-              {blocks.map((block) => (
-                <Card
-                  key={block.getId()}
-                  onDragStart={(ev) => dragStart(block, ev.nativeEvent)}
-                  onDragEnd={() => dragStop(false)}
-                  draggable
-                  className="w-[98px] h-[89px] flex flex-col items-center justify-center"
-                >
+      {restTemplates.map(([category, blocks]) => (
+        <div key={category}>
+          <h2 className="text-xl p-4 bg-categoryName">{category}</h2>
+
+          <div className="flex flex-wrap gap-1 p-2 bg-categoryCardBg cursor-pointer">
+            {blocks.map((block) => (
+              <Card
+                key={block.getLabel()}
+                draggable
+                onDragStart={(ev) => dragStart(block, ev.nativeEvent)}
+                onDragEnd={() => dragStop()}
+                className="flex flex-col items-center justify-center"
+              >
+                <CardContent className="p-8 bg-teal-800">
                   <div
-                    className="h-6 w-6"
+                    className="h-8 w-8 mx-auto"
                     dangerouslySetInnerHTML={{ __html: block.getMedia()! }}
                   />
+                </CardContent>
 
-                  <p className="text-wrap" title={block.getLabel()}>
+                <CardFooter className="p-2">
+                  <p className="text-center" title={block.getLabel()}>
                     {block.getLabel()}
                   </p>
-                </Card>
-              ))}
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+      ))}
+      {templateBlocks.map(([category, blocks]) => (
+        <div key={category}>
+          <h2 className="text-xl p-4 bg-categoryName">{category}</h2>
+          <div className="flex gap-2 p-2 flex-wrap bg-categoryCardBg">
+            {blocks.map((block) => (
+              <div
+                onDragStart={(ev) => dragStart(block, ev.nativeEvent)}
+                onDragEnd={() => dragStop(false)}
+                draggable
+                key={block.getId()}
+              >
+                <img
+                  draggable="false"
+                  src={block.getMedia()!}
+                  alt={block.getLabel()}
+                  className="block w-[150px]"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       ))}
     </div>
   );

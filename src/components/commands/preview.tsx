@@ -8,16 +8,14 @@ export function Preview({ commandId }: { commandId: string }) {
 
   const handleClick = () => {
     toggleCommand(editor, commandId);
-    const leftSideBar = document.querySelector(".gjs-left-sidebar");
     const rightSideBar = document.querySelector(".gjs-right-sidebar");
 
-    leftSideBar?.classList.toggle("hidden");
     rightSideBar?.classList.toggle("hidden");
   };
 
   return (
-    <Button variant="outline" onClick={handleClick}>
-      <Eye className="h-4 w-4 text-black dark:text-slate-100" />
+    <Button variant="ghost" onClick={handleClick}>
+      <Eye className="h-4 w-4" />
     </Button>
   );
 }

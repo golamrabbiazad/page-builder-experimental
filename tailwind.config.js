@@ -23,10 +23,21 @@ export default {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
-      backgroundImage: {
-        "canvas-bg": "url('https://play.tailwindcss.com/img/beams.jpg')",
-      },
       colors: {
+        mantis: {
+          50: "hsl(92, 52%, 95%)",
+          100: "hsl(91, 53%, 89%)",
+          200: "hsl(94, 52%, 80%)",
+          300: "hsl(95, 50%, 67%)",
+          400: "hsl(96, 46%, 59%)",
+          500: "hsl(97, 48%, 44%)",
+          600: "hsl(98, 50%, 35%)",
+          700: "hsl(99, 47%, 27%)",
+          800: "hsl(100, 41%, 23%)",
+          900: "hsl(101, 36%, 20%)",
+          950: "hsl(101, 49%, 10%)",
+        },
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -59,6 +70,12 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        categoryName: {
+          DEFAULT: "hsl(var(--categoryName))",
+        },
+        categoryCardBg: {
+          DEFAULT: "hsl(var(--categoryCardBg))",
         },
       },
       borderRadius: {

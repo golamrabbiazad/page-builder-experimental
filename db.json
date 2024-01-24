@@ -2,7 +2,12 @@
   "projects": [
     {
       "id": "1",
-      "pagesHtml": [],
+      "pagesHtml": [
+        {
+          "html": "<body id=\"iyy4\"></body>",
+          "css": "* { box-sizing: border-box; } body {margin: 0;}"
+        }
+      ],
       "assets": []
     }
   ],
