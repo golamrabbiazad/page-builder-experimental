@@ -17,11 +17,7 @@ export const defaultOptions: EditorConfig = {
   },
   cssIcons: CSSICONS,
   canvas: {
-    styles: [
-      "https://rsms.me/",
-      "https://rsms.me/inter/inter.css",
-      // "https://fonts.maateen.me/kalpurush/font.css",
-    ],
+    styles: ["https://rsms.me/", "https://rsms.me/inter/inter.css"],
     scripts: [TAILWINDCSS_SCRIPT],
   },
   commands: {
@@ -50,7 +46,3 @@ export const defaultEditorProps: EditorProps = {
   plugins: plugins,
   options: defaultOptions,
 };
-
-// body {
-//   font-family: 'Kalpurush', Inter, sans-serif !important;
-// }

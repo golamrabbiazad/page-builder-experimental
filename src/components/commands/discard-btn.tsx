@@ -1,24 +1,26 @@
+import { useEditor } from "@grapesjs/react";
 import { Button } from "../ui/button";
 import { useToast } from "../ui/use-toast";
-import { useEditor } from "@grapesjs/react";
 
-export function SaveToast() {
+export function DiscardButton() {
   const { toast } = useToast();
   const editor = useEditor();
+
   const { Commands } = editor;
 
   return (
     <Button
-      variant="ctabutton"
-      size="xl"
+      variant="ghost"
       onClick={() => {
-        Commands.run("core:save");
+        Commands.run("core:canvas-clear");
+
         toast({
-          description: "Your changes are saved!",
+          description:
+            "Your changes have been discarded. You are now being redirected to the admin page.",
         });
       }}
     >
-      Save
+      Discard
     </Button>
   );
 }

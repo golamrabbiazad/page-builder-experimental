@@ -11,7 +11,6 @@ import {
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { ROUND_BORDER_COLOR } from "@/lib/common";
-import { TextType } from "./render-types/text";
 
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
   trait: Trait;
@@ -57,7 +56,7 @@ export function TraitPropertyField({
   switch (type) {
     case "block":
       {
-        inputToRender = TextType({ trait });
+        inputToRender = <h1>Comming Soon</h1>;
       }
       break;
     case "select":

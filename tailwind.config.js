@@ -71,11 +71,17 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        categoryName: {
-          DEFAULT: "hsl(var(--categoryName))",
+        blocksBackground: {
+          DEFAULT: "hsl(var(--blocksBackground))",
         },
         categoryCardBg: {
           DEFAULT: "hsl(var(--categoryCardBg))",
+        },
+        blocksCardBg: {
+          DEFAULT: "hsl(var(--blocksCardBackground))",
+        },
+        secondaryBgColor: {
+          DEFAULT: "hsl(var(--secondaryBgColor))",
         },
       },
       borderRadius: {

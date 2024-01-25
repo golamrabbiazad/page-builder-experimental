@@ -3,7 +3,7 @@ import { SelectorsResultProps } from "@grapesjs/react";
 import { SelectorProps } from "grapesjs";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Plus, X } from "lucide-react";
+import { MousePointerSquareDashed, Plus, X } from "lucide-react";
 
 export function CustomSelectorManager({
   selectors,
@@ -23,14 +23,13 @@ export function CustomSelectorManager({
   return (
     <div className="gjs-custom-selector-manager p-2 flex flex-col gap-2 text-left">
       <div className="flex items-center">
-        <div className="flex-grow text-slate-900 dark:text-slate-200">
-          Classes
-        </div>
+        <div className="flex-grow">Classes</div>
       </div>
       <div>
         {targetStr ? (
           <Button
             type="button"
+            variant="ghost"
             onClick={() => {
               customInputRef.current?.classList.toggle("hidden");
               setIsSelectorOpen(!isSelectorOpen);
@@ -44,7 +43,8 @@ export function CustomSelectorManager({
             )}
           </Button>
         ) : (
-          <div className="text-slate-900 dark:text-slate-100 font-bold border border-slate-700 p-4 rounded-md">
+          <div className="font-bold text-xl p-4 rounded-md flex items-center gap-2 border border-categoryCardBg shadow-md">
+            <MousePointerSquareDashed className="h-6 w-8" />
             Select a component
           </div>
         )}
@@ -53,7 +53,7 @@ export function CustomSelectorManager({
           <Input
             type="text"
             ref={customInputRef}
-            className="hidden text-slate-900 dark:text-slate-100 mb-2"
+            className="hidden mb-2"
             placeholder="text-center"
             onChange={(e) => {
               // stored in variable
@@ -81,13 +81,13 @@ export function CustomSelectorManager({
           {selectors.map((selector) => (
             <div
               key={selector.toString()}
-              className="bg-blue-500 rounded-md w-max p-1 items-center justify-center flex gap-2"
+              className="bg-mantis-500 rounded-md w-max p-1 items-center flex gap-2"
             >
               <p>{selector.getLabel()}</p>
 
               <X
                 onClick={() => removeSelector(selector)}
-                className="mr-2 h-4 w-4 rounded-md bg-red-500 text-white cursor-pointer"
+                className="h-4 w-4 rounded-md text-white cursor-pointer"
               />
             </div>
           ))}

@@ -1,21 +1,26 @@
-import { Eye } from "lucide-react";
-import { Button } from "../ui/button";
 import { useEditor } from "@grapesjs/react";
 import { toggleCommand } from "./toggle-command";
 
-export function Preview({ commandId }: { commandId: string }) {
+import { Button } from "../ui/button";
+
+export function Preview() {
   const editor = useEditor();
 
+  const previewCommandId = "core:preview";
+
   const handleClick = () => {
-    toggleCommand(editor, commandId);
+    toggleCommand(editor, previewCommandId);
+
     const rightSideBar = document.querySelector(".gjs-right-sidebar");
 
-    rightSideBar?.classList.toggle("hidden");
+    if (rightSideBar) {
+      rightSideBar.classList.toggle("hidden");
+    }
   };
 
   return (
     <Button variant="ghost" onClick={handleClick}>
-      <Eye className="h-4 w-4" />
+      Preview
     </Button>
   );
 }
