@@ -4,9 +4,10 @@ import grapesjs, { EditorConfig } from "grapesjs";
 
 import { plugins } from "@/plugins";
 import { CSSICONS, TAILWINDCSS_SCRIPT } from "@/lib/external-urls";
-import { assetsManagerConfig, storageManagerConfig } from "@/configs";
+import { storageManagerConfig } from "./storage-manager";
+import { assetsManagerConfig } from "./assets-manager";
 
-export const defaultOptions: EditorConfig = {
+export const editorOptions: EditorConfig = {
   storageManager: storageManagerConfig,
   assetManager: assetsManagerConfig,
   undoManager: {
@@ -44,5 +45,5 @@ export const defaultOptions: EditorConfig = {
 export const defaultEditorProps: EditorProps = {
   grapesjs,
   plugins: plugins,
-  options: defaultOptions,
+  options: editorOptions,
 };

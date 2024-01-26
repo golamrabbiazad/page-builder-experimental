@@ -1,11 +1,6 @@
 import { StylesResultProps } from "@grapesjs/react";
 import { StylePropertyField } from "./style-property-field";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../ui/accordion";
+import { Collapse } from "antd";
 
 export function CustomStyleManager({
   sectors,
@@ -13,21 +8,20 @@ export function CustomStyleManager({
   return (
     <div className="p-2 text-slate-900 dark:text-slate-100">
       {sectors.map((sector) => (
-        <Accordion
-          key={sector.getId()}
-          type="single"
-          collapsible
+        <Collapse
           className="w-full"
-        >
-          <AccordionItem value={sector.getName()}>
-            <AccordionTrigger>{sector.getName()}</AccordionTrigger>
-            <AccordionContent>
-              {sector.getProperties().map((prop) => (
-                <StylePropertyField key={prop.getId()} prop={prop} />
-              ))}
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+          items={[
+            {
+              key: sector.getId(),
+              label: sector.getName(),
+              children: sector
+                .getProperties()
+                .map((prop) => (
+                  <StylePropertyField key={prop.getId()} prop={prop} />
+                )),
+            },
+          ]}
+        />
       ))}
     </div>
   );

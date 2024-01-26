@@ -7,7 +7,7 @@ select {
 }
 
 @layer base {
-  :root {
+  /* :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -37,9 +37,9 @@ select {
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
-  }
+  } */
 
-  .dark {
+  /* .dark {
     --background: 264, 12%, 8%, 1;
     --foreground: 210 40% 98%;
 
@@ -72,13 +72,13 @@ select {
     --categoryCardBg: 240, 6%, 26%;
     --blocksCardBackground: 240, 6%, 24%;
     --secondaryBgColor: 187, 99%, 41%, 1;
-  }
+  } */
 
-  * {
+  /* * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
-  }
+  } */
 }

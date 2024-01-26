@@ -1,7 +1,7 @@
 import { useEditor } from "@grapesjs/react";
 import { toggleCommand } from "./toggle-command";
 
-import { Button } from "../ui/button";
+import { Button } from "antd";
 
 export function Preview() {
   const editor = useEditor();
@@ -18,9 +18,5 @@ export function Preview() {
     }
   };
 
-  return (
-    <Button variant="ghost" onClick={handleClick}>
-      Preview
-    </Button>
-  );
+  return <Button onClick={handleClick}>Preview</Button>;
 }

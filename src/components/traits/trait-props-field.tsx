@@ -1,16 +1,7 @@
 import { Trait } from "grapesjs";
 import { useEditor } from "@grapesjs/react";
-import { TextField, InputAdornment, Checkbox, Button } from "@mui/material";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { ROUND_BORDER_COLOR } from "@/lib/common";
+import { Input, Button, Checkbox, Select } from "antd";
 
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
   trait: Trait;
@@ -41,7 +32,7 @@ export function TraitPropertyField({
   const type = trait.getType();
   const defValue = trait.getDefault() || trait.attributes.placeholder;
   const value = trait.getValue();
-  const valueWithDef = typeof value !== "undefined" ? value : defValue;
+  // const valueWithDef = typeof value !== "undefined" ? value : defValue;
 
   let inputToRender = (
     <Input
@@ -62,64 +53,55 @@ export function TraitPropertyField({
     case "select":
       {
         inputToRender = (
-          <Select onValueChange={(ev) => trait.setValue(ev)}>
-            <SelectTrigger className="w-[200px]">
-              <SelectValue
-                className="text-slate-900 dark:text-slate-100"
-                placeholder="Select Category"
-              />
-            </SelectTrigger>
-            <SelectContent>
-              {trait.getOptions().map((option) => (
-                <SelectItem
-                  key={trait.getOptionId(option)}
-                  value={trait.getOptionId(option)}
-                >
-                  {trait.getOptionLabel(option)}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <Select
+            defaultValue="Select"
+            onChange={(ev) => trait.setValue(ev)}
+            options={[
+              trait.getOptions().map((option) => ({
+                value: trait.getOptionId(option),
+                label: trait.getOptionLabel(option),
+              })),
+            ]}
+          />
         );
       }
       break;
     case "color":
       {
-        inputToRender = (
-          <TextField
-            fullWidth
-            placeholder={defValue}
-            value={value}
-            onChange={onChange}
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <div
-                    className={`w-[15px] h-[15px] ${ROUND_BORDER_COLOR}`}
-                    style={{ backgroundColor: valueWithDef }}
-                  >
-                    <Input
-                      type="color"
-                      className="w-[15px] h-[15px] cursor-pointer opacity-0"
-                      value={valueWithDef}
-                      onChange={(ev) => handleChange(ev.target.value)}
-                    />
-                  </div>
-                </InputAdornment>
-              ),
-            }}
-          />
-        );
+        inputToRender = <h1>Color Comming Soon</h1>;
+        // <TextField
+        //   fullWidth
+        //   placeholder={defValue}
+        //   value={value}
+        //   onChange={onChange}
+        //   size="small"
+        //   InputProps={{
+        //     startAdornment: (
+        //       <InputAdornment position="start">
+        //         <div
+        //           className={`w-[15px] h-[15px] ${ROUND_BORDER_COLOR}`}
+        //           style={{ backgroundColor: valueWithDef }}
+        //         >
+        //           <Input
+        //             type="color"
+        //             className="w-[15px] h-[15px] cursor-pointer opacity-0"
+        //             value={valueWithDef}
+        //             onChange={(ev) => handleChange(ev.target.value)}
+        //           />
+        //         </div>
+        //       </InputAdornment>
+        //     ),
+        //   }}
+        // />
       }
       break;
     case "checkbox":
       {
         inputToRender = (
           <Checkbox
+            id="checkbox"
             checked={value}
             onChange={(ev) => trait.setValue(ev.target.checked)}
-            size="small"
           />
         );
       }
@@ -127,9 +109,7 @@ export function TraitPropertyField({
     case "button":
       {
         inputToRender = (
-          <Button fullWidth onClick={handleButtonClick}>
-            {trait.getLabel()}
-          </Button>
+          <Button onClick={handleButtonClick}>{trait.getLabel()}</Button>
         );
       }
       break;

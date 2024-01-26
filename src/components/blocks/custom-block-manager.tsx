@@ -1,6 +1,5 @@
 import { BlocksResultProps } from "@grapesjs/react";
-import { Card, CardContent, CardFooter } from "../ui/card";
-import { SearchComponent } from "../ui/input";
+import { Card, Input } from "antd";
 
 export type CustomBlockManagerProps = Pick<
   BlocksResultProps,
@@ -22,9 +21,9 @@ export function CustomBlockManager({
 
   return (
     <div>
-      <SearchComponent
+      <Input
         type="text"
-        className="placeholder:italic "
+        className="placeholder:italic"
         placeholder="Search for a block (e.g numbers, image wall, ...)"
       />
       {restTemplates.map(([category, blocks]) => (
@@ -40,18 +39,16 @@ export function CustomBlockManager({
                 onDragEnd={() => dragStop()}
                 className="flex flex-col w-[110px] ml-[2px]"
               >
-                <CardContent className="p-8 bg-teal-700">
+                <div className="p-8 bg-teal-700">
                   <div
                     className="h-8 w-8 mx-auto"
                     dangerouslySetInnerHTML={{ __html: block.getMedia()! }}
                   />
-                </CardContent>
+                </div>
 
-                <CardFooter className="py-2 mx-auto">
-                  <p className="text-center" title={block.getLabel()}>
-                    {block.getLabel()}
-                  </p>
-                </CardFooter>
+                <p className="text-center" title={block.getLabel()}>
+                  {block.getLabel()}
+                </p>
               </Card>
             ))}
           </div>

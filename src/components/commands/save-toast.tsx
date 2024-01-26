@@ -1,24 +1,35 @@
-import { Button } from "../ui/button";
-import { useToast } from "../ui/use-toast";
+import { Button, NotificationArgsProps, notification } from "antd";
 import { useEditor } from "@grapesjs/react";
 
+type NotificaitonPlacement = NotificationArgsProps["placement"];
+
 export function SaveToast() {
-  const { toast } = useToast();
   const editor = useEditor();
+
   const { Commands } = editor;
 
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (placement: NotificaitonPlacement) => {
+    api.info({
+      message: `Hello,`,
+      description: "Your changes are saved!",
+      placement,
+      duration: 0,
+    });
+  };
+
   return (
-    <Button
-      variant="ctabutton"
-      size="xl"
-      onClick={() => {
-        Commands.run("core:save");
-        toast({
-          description: "Your changes are saved!",
-        });
-      }}
-    >
-      Save
-    </Button>
+    <>
+      {contextHolder}
+      <Button
+        onClick={() => {
+          Commands.run("core:save");
+          openNotification("bottomRight");
+        }}
+      >
+        Save
+      </Button>
+    </>
   );
 }

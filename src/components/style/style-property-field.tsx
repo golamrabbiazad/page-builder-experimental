@@ -1,20 +1,5 @@
 import * as React from "react";
 import { useEditor } from "@grapesjs/react";
-import {
-  mdiArrowDownDropCircle,
-  mdiArrowUpDropCircle,
-  mdiClose,
-  mdiDelete,
-  mdiPlus,
-} from "@mdi/js";
-import Icon from "@mdi/react";
-import FormControl from "@mui/material/FormControl";
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import Slider from "@mui/material/Slider";
-import TextField from "@mui/material/TextField";
 import type {
   Property,
   PropertyComposite,
@@ -23,10 +8,11 @@ import type {
   PropertySlider,
   PropertyStack,
 } from "grapesjs";
-import { BTN_CLS, ROUND_BORDER_COLOR } from "@/lib/common";
+
 import { cn } from "@/lib/utils";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Label } from "../ui/label";
+import { ROUND_BORDER_COLOR } from "@/lib/common";
+import { Input, Button, Slider, Radio } from "antd";
+import { Select } from "antd";
 
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
   prop: Property;
@@ -64,13 +50,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
   const valueWithDef = hasValue ? value : defValue;
 
   let inputToRender = (
-    <TextField
-      placeholder={defValue}
-      value={valueString}
-      onChange={onChange}
-      size="small"
-      fullWidth
-    />
+    <Input placeholder={defValue} value={valueString} onChange={onChange} />
   );
 
   switch (type) {
@@ -78,19 +58,20 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
       {
         const radioProp = prop as PropertyRadio;
         inputToRender = (
-          <RadioGroup value={value} onValueChange={(ev) => handleChange(ev)}>
+          <Radio.Group
+            value={value}
+            onChange={(ev) => handleChange(ev.target.value)}
+          >
             {radioProp.getOptions().map((option) => (
-              <div key={radioProp.getOptionId(option)}>
-                <RadioGroupItem
+              <div className="space-x-2" key={radioProp.getOptionId(option)}>
+                <Radio
                   value={radioProp.getOptionId(option)}
                   id={radioProp.getOptionId(option)}
                 />
-                <Label htmlFor={radioProp.getOptionId(option)}>
-                  {radioProp.getOptionId(option)}
-                </Label>
+                {radioProp.getOptionId(option)}
               </div>
             ))}
-          </RadioGroup>
+          </Radio.Group>
         );
       }
       break;
@@ -98,49 +79,49 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
       {
         const selectProp = prop as PropertySelect;
         inputToRender = (
-          <FormControl fullWidth size="small">
-            <Select value={value} onChange={onChange}>
-              {selectProp.getOptions().map((option) => (
-                <MenuItem
-                  key={selectProp.getOptionId(option)}
-                  value={selectProp.getOptionId(option)}
-                >
-                  {selectProp.getOptionLabel(option)}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Select
+            defaultValue="Select"
+            value={value}
+            onChange={onChange}
+            options={[
+              selectProp.getOptions().map((option) => ({
+                value: selectProp.getOptionId(option),
+                label: selectProp.getOptionLabel(option),
+              })),
+            ]}
+          />
         );
       }
       break;
     case "color":
       {
-        inputToRender = (
-          <TextField
-            fullWidth
-            placeholder={defValue}
-            value={valueString}
-            onChange={onChange}
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <div
-                    className={`w-[15px] h-[15px] ${ROUND_BORDER_COLOR}`}
-                    style={{ backgroundColor: valueWithDef }}
-                  >
-                    <input
-                      type="color"
-                      className="w-[15px] h-[15px] cursor-pointer opacity-0"
-                      value={valueWithDef}
-                      onChange={(ev) => handleChange(ev.target.value)}
-                    />
-                  </div>
-                </InputAdornment>
-              ),
-            }}
-          />
-        );
+        inputToRender = <h1>Color Comming Soon</h1>;
+        // inputToRender = (
+        //   <TextField
+        //     fullWidth
+        //     placeholder={defValue}
+        //     value={valueString}
+        //     onChange={onChange}
+        //     size="small"
+        //     InputProps={{
+        //       startAdornment: (
+        //         <InputAdornment position="start">
+        //           <div
+        //             className={`w-[15px] h-[15px] ${ROUND_BORDER_COLOR}`}
+        //             style={{ backgroundColor: valueWithDef }}
+        //           >
+        //             <input
+        //               type="color"
+        //               className="w-[15px] h-[15px] cursor-pointer opacity-0"
+        //               value={valueWithDef}
+        //               onChange={(ev) => handleChange(ev.target.value)}
+        //             />
+        //           </div>
+        //         </InputAdornment>
+        //       ),
+        //     }}
+        //   />
+        // );
       }
       break;
     case "slider":
@@ -148,13 +129,13 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
         const sliderProp = prop as PropertySlider;
         inputToRender = (
           <Slider
-            size="small"
-            value={parseFloat(value)}
+            range
+            defaultValue={[valueWithDef]}
+            value={[parseFloat(value)]}
             min={sliderProp.getMin()}
             max={sliderProp.getMax()}
             step={sliderProp.getStep()}
-            onChange={onChange}
-            valueLabelDisplay="auto"
+            onChange={(v) => handleChange(v.toString())}
           />
         );
       }
@@ -170,9 +151,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
                 onClick={() => handleChange("")}
               />
             )}
-            <button type="button" onClick={openAssets} className={BTN_CLS}>
-              Select Image
-            </button>
+            <Button onClick={openAssets}>Select Image</Button>
           </div>
         );
       }
@@ -206,21 +185,15 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
             {layers.map((layer) => (
               <div key={layer.getId()} className={ROUND_BORDER_COLOR}>
                 <div className="flex gap-1 bg-slate-800 px-2 py-1 items-center">
-                  <IconButton
-                    size="small"
-                    onClick={() => layer.move(layer.getIndex() - 1)}
-                  >
-                    <Icon size={0.7} path={mdiArrowUpDropCircle} />
-                  </IconButton>
-                  <IconButton
-                    size="small"
-                    onClick={() => layer.move(layer.getIndex() + 1)}
-                  >
-                    <Icon size={0.7} path={mdiArrowDownDropCircle} />
-                  </IconButton>
-                  <button className="flex-grow" onClick={() => layer.select()}>
+                  <Button onClick={() => layer.move(layer.getIndex() - 1)}>
+                    <ChevronUpCircle className="w-4 h-4" />
+                  </Button>
+                  <Button onClick={() => layer.move(layer.getIndex() + 1)}>
+                    <ChevronDownCircle className="w-4 h-4" />
+                  </Button>
+                  <Button className="flex-grow" onClick={() => layer.select()}>
                     {layer.getLabel()}
-                  </button>
+                  </Button>
                   <div
                     className={cn(
                       "bg-white min-w-[17px] min-h-[17px] text-black text-sm flex justify-center",
@@ -233,9 +206,9 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
                   >
                     {isTextShadow && "T"}
                   </div>
-                  <IconButton size="small" onClick={() => layer.remove()}>
-                    <Icon size={0.7} path={mdiDelete} />
-                  </IconButton>
+                  <Button onClick={() => layer.remove()}>
+                    <Trash className="w-4 h-4" />
+                  </Button>
                 </div>
                 {layer.isSelected() && (
                   <div className="p-2 flex flex-wrap">
@@ -260,18 +233,17 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
       <div className={cn("flex mb-2 items-center", canClear && "text-sky-300")}>
         <div className="flex-grow capitalize">{prop.getLabel()}</div>
         {canClear && (
-          <button onClick={() => prop.clear()}>
-            <Icon path={mdiClose} size={0.7} />
-          </button>
+          <Button onClick={() => prop.clear()}>
+            <X className="h-4 w-4" />
+          </Button>
         )}
         {type === "stack" && (
-          <IconButton
-            size="small"
+          <Button
             className="!ml-2"
             onClick={() => (prop as PropertyStack).addLayer({}, { at: 0 })}
           >
-            <Icon size={1} path={mdiPlus} />
-          </IconButton>
+            <Plus className="h-4 w-4" />
+          </Button>
         )}
       </div>
       {inputToRender}

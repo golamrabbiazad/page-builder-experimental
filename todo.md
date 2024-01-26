@@ -10,6 +10,7 @@ All work(bugs, fixes, features) for this page builder.
 - feat: workable `Rich Text Editor` functionality.
 - feat: select on component right side panel pops up.
 - feat: implement <https://platejs.org/> RTE for the text Editor.
+- fix: discard button
 
 ## Bugs
 

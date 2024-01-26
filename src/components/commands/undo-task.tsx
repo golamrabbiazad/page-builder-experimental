@@ -1,6 +1,5 @@
 import { useEditor } from "@grapesjs/react";
-import { MoveLeft } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "antd";
 import { cn } from "@/lib/utils";
 import { toggleCommand } from "./toggle-command";
 import { useCallback, useEffect, useState } from "react";
@@ -37,14 +36,12 @@ export function UndoTask() {
 
   return (
     <Button
-      variant="ghost"
       onClick={() => toggleCommand(editor, UNDO_COMMAND_ID)}
-      type="button"
       disabled={isUndoDisabled()}
     >
-      <MoveLeft
+      <i
         className={cn(
-          "h-6 w-4 cursor-pointer",
+          "h-6 w-4 cursor-pointer fa-solid fa-arrow-left",
           Commands.isActive(UNDO_COMMAND_ID) && "text-sky-300",
           isUndoDisabled() && "text-sky-300/50"
         )}

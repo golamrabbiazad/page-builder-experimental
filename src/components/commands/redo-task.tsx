@@ -1,6 +1,5 @@
 import { useEditor } from "@grapesjs/react";
-import { MoveRight } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "antd";
 import { cn } from "@/lib/utils";
 import { toggleCommand } from "./toggle-command";
 import { useCallback, useEffect, useState } from "react";
@@ -37,14 +36,12 @@ export function RedoTask() {
 
   return (
     <Button
-      variant="ghost"
       onClick={() => toggleCommand(editor, REDO_COMMAND_ID)}
-      type="button"
       disabled={isRedoDisabled()}
     >
-      <MoveRight
+      <i
         className={cn(
-          "h-6 w-4 cursor-pointer",
+          "h-6 w-4 cursor-pointer fa-solid fa-arrow-right",
           Commands.isActive(REDO_COMMAND_ID) && "text-sky-300",
           isRedoDisabled() && "text-sky-300/50"
         )}

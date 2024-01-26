@@ -1,5 +1,4 @@
 import { Device } from "grapesjs";
-import { MonitorSmartphone, Smartphone } from "lucide-react";
 
 interface DeviceSelectProps {
   selected: string;
@@ -9,13 +8,13 @@ interface DeviceSelectProps {
 
 export function DeviceSelect({ selected, select }: DeviceSelectProps) {
   return selected === "desktop" ? (
-    <Smartphone
-      className="w-4 h-4 cursor-pointer"
+    <i
+      className="fa-solid fa-mobile-screen w-4 h-4 cursor-pointer"
       onClick={() => select("mobilePortrait")}
     />
   ) : (
-    <MonitorSmartphone
-      className="w-4 h-4 cursor-pointer"
+    <i
+      className="fa-solid fa-desktop w-4 h-4 cursor-pointer"
       onClick={() => select("desktop")}
     />
   );
