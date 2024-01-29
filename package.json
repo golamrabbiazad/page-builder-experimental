@@ -1,7 +1,7 @@
 {
   "name": "ts-grapejs-react",
   "private": true,
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,15 +13,12 @@
   "dependencies": {
     "@grapesjs/react": "^1.0.0",
     "antd": "^5",
-    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "grapesjs": "^0.21.8",
     "grapesjs-blocks-basic": "^1.0.2",
     "million": "^2.6.4",
     "react": "^18",
-    "react-dom": "^18",
-    "react-icons": "^5.0.1",
-    "tailwind-merge": "^2.2.1"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -30,13 +27,10 @@
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "@vitejs/plugin-react-swc": "^3",
-    "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-plugin-react-hooks": "^4",
     "eslint-plugin-react-refresh": "^0.4.5",
     "json-server": "latest",
-    "postcss": "^8",
-    "tailwindcss": "^3",
     "typescript": "^5",
     "vite": "^5"
   }
