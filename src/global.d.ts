@@ -6,8 +6,9 @@ declare global {
     editor: Editor | undefined;
   }
 
-  interface Category {
-    id: string;
-    name: string;
+  namespace NodeJS {
+    interface ProcessEnv extends ProcessEnv {
+      API_URL: string;
+    }
   }
 }

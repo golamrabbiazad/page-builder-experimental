@@ -1,3 +1,4 @@
+import { Flex } from "antd";
 import { useState } from "react";
 import { Editor } from "grapesjs";
 import GrapesJsEditor, {
@@ -5,11 +6,10 @@ import GrapesJsEditor, {
   EditorProps,
   ModalProvider,
 } from "@grapesjs/react";
-import { defaultEditorProps } from "@/editor/config";
-import { Topbar } from "@/components/top-bar";
-import { AssetModal } from "@/components/assets/asset-modal";
-import { RightSidebar } from "@/components/rightside-bar";
-import { Flex } from "antd";
+import { Topbar } from "@/ui/top-bar";
+import { AssetModal } from "@/ui/assets/modal";
+import { RightSidebar } from "@/ui/rightside-bar";
+import { editorConfig } from "@/lib/config";
 
 export default function PageBuilder(props: Partial<EditorProps>) {
   const [open, setOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function PageBuilder(props: Partial<EditorProps>) {
   }
 
   return (
-    <GrapesJsEditor onEditor={onEditor} {...defaultEditorProps} {...props}>
+    <GrapesJsEditor onEditor={onEditor} {...editorConfig} {...props}>
       <Flex
         style={{
           height: "100dvh",
