@@ -14,6 +14,7 @@ export function AssetModal({ title, children, close, open }: AssetModalProps) {
       open={open}
       onOk={() => close()}
       onCancel={() => close()}
+      width={1000}
     >
       <div className="grid">{children}</div>
     </Modal>

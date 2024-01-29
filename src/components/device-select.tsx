@@ -9,13 +9,15 @@ interface DeviceSelectProps {
 export function DeviceSelect({ selected, select }: DeviceSelectProps) {
   return selected === "desktop" ? (
     <i
-      className="fa-solid fa-mobile-screen w-4 h-4 cursor-pointer"
+      className="fa-solid fa-mobile-screen"
       onClick={() => select("mobilePortrait")}
+      style={{ color: "white", cursor: "pointer" }}
     />
   ) : (
     <i
-      className="fa-solid fa-desktop w-4 h-4 cursor-pointer"
+      className="fa-solid fa-desktop"
       onClick={() => select("desktop")}
+      style={{ color: "white", cursor: "pointer" }}
     />
   );
 }

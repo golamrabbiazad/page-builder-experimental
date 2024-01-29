@@ -8,7 +8,10 @@ export function CodePreview() {
   const OPEN_CODE_COMMAND_ID = "core:open-code";
 
   return (
-    <Button onClick={() => toggleCommand(editor, OPEN_CODE_COMMAND_ID)}>
+    <Button
+      type="primary"
+      onClick={() => toggleCommand(editor, OPEN_CODE_COMMAND_ID)}
+    >
       <i className="h-4 w-4 mr-2 fa-solid fa-code" /> Code
     </Button>
   );

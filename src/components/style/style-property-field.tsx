@@ -186,10 +186,10 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
               <div key={layer.getId()} className={ROUND_BORDER_COLOR}>
                 <div className="flex gap-1 bg-slate-800 px-2 py-1 items-center">
                   <Button onClick={() => layer.move(layer.getIndex() - 1)}>
-                    <ChevronUpCircle className="w-4 h-4" />
+                    <i className="fa-solid fa-chevron-up w-4 h-4" />
                   </Button>
                   <Button onClick={() => layer.move(layer.getIndex() + 1)}>
-                    <ChevronDownCircle className="w-4 h-4" />
+                    <i className="fa-solid fa-chevron-down h-4 w-4" />
                   </Button>
                   <Button className="flex-grow" onClick={() => layer.select()}>
                     {layer.getLabel()}
@@ -207,7 +207,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
                     {isTextShadow && "T"}
                   </div>
                   <Button onClick={() => layer.remove()}>
-                    <Trash className="w-4 h-4" />
+                    <i className="fa-solid fa-trash" />
                   </Button>
                 </div>
                 {layer.isSelected() && (
@@ -234,7 +234,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
         <div className="flex-grow capitalize">{prop.getLabel()}</div>
         {canClear && (
           <Button onClick={() => prop.clear()}>
-            <X className="h-4 w-4" />
+            <i className="fa-solid fa-xmark h-4 w-4" />
           </Button>
         )}
         {type === "stack" && (
@@ -242,7 +242,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
             className="!ml-2"
             onClick={() => (prop as PropertyStack).addLayer({}, { at: 0 })}
           >
-            <Plus className="h-4 w-4" />
+            <i className="fa-solid fa-plus h-4 w-4" />
           </Button>
         )}
       </div>

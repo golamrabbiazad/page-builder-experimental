@@ -36,7 +36,8 @@ export function DiscardButton() {
         onOpenChange={() => console.log("open change")}
       >
         <Button
-          danger
+          type="text"
+          block
           onClick={() => {
             Commands.run("core:canvas-clear");
             openNotification("bottomRight");

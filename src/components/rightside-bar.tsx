@@ -12,12 +12,14 @@ import { CustomTraitManager } from "./traits/custom-trait-manager";
 import { CustomStyleManager } from "./style/custom-style-manager";
 import { CustomSelectorManager } from "./selectors/custom-selector-manager";
 import { UndoTask, RedoTask, DiscardButton, SaveToast } from "./commands";
-import { TabsProps, Tabs } from "antd";
+import { TabsProps, Tabs, Flex } from "antd";
 
 const items: TabsProps["items"] = [
   {
     key: "blocks-tab",
     label: "Blocks",
+    style: {},
+
     children: (
       <BlocksProvider>
         {(props) => <CustomBlockManager {...props} />}
@@ -48,20 +50,35 @@ const items: TabsProps["items"] = [
   },
 ];
 
+const rawCSS = `
+.toggle-siderbar {
+  display: hidden;
+}
+`;
+
 export function RightSidebar() {
   const handleChange = (key: string) => {
     console.log(key);
   };
   return (
-    <div className="gjs-right-sidebar w-[460px] h-dvh overflow-auto bg-blocksBackground">
-      <div className="flex justify-between border border-b-gray-500">
-        <div className="flex items-center">
+    <div
+      style={{ width: "500px", height: "100dvh", overflow: "auto" }}
+      className="toggle-sidebar"
+    >
+      <Flex
+        style={{
+          justifyContent: "space-between",
+          backgroundColor: "#0a0a0a",
+        }}
+      >
+        <Flex align="center">
           <WithEditor>
             <UndoTask />
             <RedoTask />
           </WithEditor>
-        </div>
-        <div className="flex items-center">
+        </Flex>
+
+        <Flex align="center">
           <DevicesProvider>
             {({ selected, select, devices }) => (
               <DeviceSelect
@@ -75,13 +92,19 @@ export function RightSidebar() {
             <DiscardButton />
             <SaveToast />
           </WithEditor>
-        </div>
-      </div>
+        </Flex>
+      </Flex>
 
       <Tabs
         defaultActiveKey="blocks-tab"
         items={items}
         onChange={handleChange}
+        style={{
+          backgroundColor: "#2B2B33",
+          paddingLeft: "0.5rem",
+          paddingRight: "0.5rem",
+          color: "white",
+        }}
       />
 
       {/* <Tabs defaultValue="navigator">

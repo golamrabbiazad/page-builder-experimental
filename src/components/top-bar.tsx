@@ -1,19 +1,52 @@
 import { WithEditor } from "@grapesjs/react";
 import { Preview, ComponentOutline } from "./commands";
 import { CodePreview } from "./commands/code-preview";
+import { Flex } from "antd";
 
-export function Topbar({
-  showPanel,
-  setShowPanel,
-}: {
-  showPanel: boolean;
-  setShowPanel: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+const EDITOR_STATUS = "Expermental";
+
+export function Topbar({ showDrawer }: { showDrawer: () => void }) {
   return (
-    <div className="flex items-center justify-between py-1 px-16 bg-blocksBackground">
-      <h2 className="text-2xl font-bold tracking-tighter">M4yours Editor</h2>
+    <Flex
+      justify="space-between"
+      style={{
+        paddingLeft: "4rem",
+        paddingRight: "4rem",
+        paddingTop: "0.5rem",
+        paddingBottom: "0.5rem",
+        background: "#2B2B33",
+      }}
+    >
+      <Flex>
+        <h2
+          style={{
+            color: "white",
+            fontSize: "1.5rem",
+            lineHeight: "2rem",
+            fontWeight: "bold",
+            marginRight: "0.5rem",
+          }}
+        >
+          M4yours Editor
+        </h2>
 
-      <div className="flex items-center gap-2">
+        {/* <Badge
+          count={
+            <p
+              style={{
+                backgroundColor: "#faad14",
+                padding: "0.3rem",
+                borderRadius: "0.5rem",
+              }}
+            >
+              Experimental
+            </p>
+          }
+          style={{ color: "#000" }}
+        /> */}
+      </Flex>
+
+      <Flex gap="middle" align="center">
         <WithEditor>
           <CodePreview />
           <Preview />
@@ -21,10 +54,11 @@ export function Topbar({
         </WithEditor>
 
         <i
-          className="fa-solid fa-grip cursor-pointer"
-          onClick={() => setShowPanel(!showPanel)}
+          style={{ cursor: "pointer", color: "white" }}
+          className="fa-solid fa-grip fa-lg"
+          onClick={showDrawer}
         />
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   );
 }

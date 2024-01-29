@@ -1,6 +1,5 @@
-import { useEditor } from "@grapesjs/react";
 import { Button } from "antd";
-import { cn } from "@/lib/utils";
+import { useEditor } from "@grapesjs/react";
 import { toggleCommand } from "./toggle-command";
 import { useCallback, useEffect, useState } from "react";
 
@@ -34,17 +33,24 @@ export function UndoTask() {
     };
   }, [UNDO_COMMAND_ID, onCommand, updateCounter, editor]);
 
+  const undoCommandColor = Commands.isActive(UNDO_COMMAND_ID)
+    ? "limegreen"
+    : "";
+  const undoDisabledColor = isUndoDisabled() ? "gray" : "";
+
+  const undoButtonStyle = {
+    color: undoCommandColor || undoDisabledColor,
+  };
+
   return (
     <Button
+      type="text"
       onClick={() => toggleCommand(editor, UNDO_COMMAND_ID)}
       disabled={isUndoDisabled()}
     >
       <i
-        className={cn(
-          "h-6 w-4 cursor-pointer fa-solid fa-arrow-left",
-          Commands.isActive(UNDO_COMMAND_ID) && "text-sky-300",
-          isUndoDisabled() && "text-sky-300/50"
-        )}
+        style={undoButtonStyle}
+        className="cursor-pointer fa-solid fa-arrow-left"
       />
     </Button>
   );

@@ -10,8 +10,8 @@ export function ComponentOutline({ commandId }: { commandId: string }) {
   };
 
   return (
-    <Button onClick={handleClick}>
-      <i className="fa-solid fa-expand h-4 w-4" />
+    <Button type="primary" onClick={handleClick}>
+      <i className="fa-solid fa-expand" />
     </Button>
   );
 }

@@ -23,6 +23,8 @@ export function SaveToast() {
     <>
       {contextHolder}
       <Button
+        type="primary"
+        size="large"
         onClick={() => {
           Commands.run("core:save");
           openNotification("bottomRight");

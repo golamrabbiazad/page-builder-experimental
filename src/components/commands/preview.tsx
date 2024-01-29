@@ -14,9 +14,15 @@ export function Preview() {
     const rightSideBar = document.querySelector(".gjs-right-sidebar");
 
     if (rightSideBar) {
-      rightSideBar.classList.toggle("hidden");
+      console.log(rightSideBar.classList);
+
+      rightSideBar.classList.toggle("toggle-sidebar");
     }
   };
 
-  return <Button onClick={handleClick}>Preview</Button>;
+  return (
+    <Button type="primary" onClick={handleClick}>
+      Preview
+    </Button>
+  );
 }
