@@ -1,0 +1,75 @@
+/* search components */
+
+.searchBlockComponent {
+  color: white;
+  background-color: #1f1f29;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.searchBlockComponent::placeholder {
+  color: white;
+  font-style: italic;
+}
+
+/* category blocks */
+
+.blockCategory__header {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  padding: 1rem;
+}
+
+.blockCategoryCard {
+  display: flex;
+  flex-direction: column;
+  width: 164px;
+  gap: 0.5rem;
+}
+
+.blockCategoryCard__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.blockCategoryCard__icon {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.blockCategoryCard__label {
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+/* block templates */
+
+/* .blockTemplate__container {
+  padding: 0.5rem;
+} */
+
+.blockTemplate__header {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  padding: 1rem;
+}
+
+.blockTemplate__card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  background-color: #3e3e46;
+  cursor: pointer;
+}
+
+.blockTemplate__image {
+  display: block;
+  width: 164px;
+}

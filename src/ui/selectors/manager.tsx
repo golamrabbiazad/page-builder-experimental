@@ -2,7 +2,7 @@ import { SelectorProps } from "grapesjs";
 import { useRef, useState } from "react";
 import { SelectorsResultProps } from "@grapesjs/react";
 
-import { Button, Input, InputRef } from "antd";
+import { Button, Flex, Input, InputRef } from "antd";
 
 export function SelectorManager({
   selectors,
@@ -21,10 +21,16 @@ export function SelectorManager({
   const customInputRef = useRef<InputRef>(null);
 
   return (
-    <div className="gjs-custom-selector-manager p-2 flex flex-col gap-2 text-left">
-      <div className="flex items-center">
-        <div className="flex-grow">Classes</div>
-      </div>
+    <Flex
+      style={{
+        padding: "0.5rem",
+        gap: "0.5rem",
+        height: "100%",
+      }}
+      vertical
+    >
+      <h3>Classes</h3>
+
       <div>
         {targetStr ? (
           <Button
@@ -32,26 +38,45 @@ export function SelectorManager({
               customInputRef.current?.input?.classList.toggle("hidden");
               setIsSelectorOpen(!isSelectorOpen);
             }}
-            className="px-2 h-6 my-2"
+            style={{
+              paddingLeft: "0.5rem",
+              paddingRight: "0.5rem",
+              height: "2rem",
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+            }}
           >
             {isSelectorOpen ? (
-              <i className="fa-solid fa-xmark h-4 w-4" />
+              <i className="fa-solid fa-xmark" />
             ) : (
-              <i className="fa-solid fa-plus h-4 w-4" />
+              <i className="fa-solid fa-plus" />
             )}
           </Button>
         ) : (
-          <div className="font-bold text-xl p-4 rounded-md flex items-center gap-2 border border-categoryCardBg shadow-md">
-            <i className="h-6 w-8 fa-solid fa-mouse-pointer" />
+          <Flex
+            align="center"
+            style={{
+              fontWeight: "bold",
+              fontSize: "1rem",
+              borderRadius: "8px",
+              padding: "1rem",
+              border: "1px dashed white",
+            }}
+            gap="1rem"
+          >
+            <i className="fa-solid fa-mouse-pointer" />
             Select a component
-          </div>
+          </Flex>
         )}
 
         <div>
           <Input
             ref={customInputRef}
             type="text"
-            className="hidden mb-2"
+            style={{
+              marginBottom: "0.5rem",
+            }}
+            className="hidden"
             placeholder="text-center"
             onChange={(e) => {
               setNewSelector({
@@ -73,10 +98,19 @@ export function SelectorManager({
             }}
           />
         </div>
-        <div className="flex flex-wrap gap-2">
+        <Flex gap="0.2rem" wrap="wrap">
           {selectors.map((selector) => (
-            <div
+            <Button
+              type="primary"
               key={selector.toString()}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.5rem",
+                borderRadius: "8px",
+                padding: "8px",
+              }}
               className="bg-mantis-500 rounded-md w-max p-1 items-center flex gap-2"
             >
               <p>{selector.getLabel()}</p>
@@ -85,13 +119,13 @@ export function SelectorManager({
                 className="fa-solid fa-xmark h-4 w-4"
                 onClick={() => removeSelector(selector)}
               />
-            </div>
+            </Button>
           ))}
-        </div>
+        </Flex>
       </div>
-      <p className="text-slate-900 dark:text-slate-200">
-        Selected: <span className="opacity-70">{targetStr || "None"}</span>
+      <p>
+        Selected: <span style={{ opacity: 0.5 }}>{targetStr || "None"}</span>
       </p>
-    </div>
+    </Flex>
   );
 }

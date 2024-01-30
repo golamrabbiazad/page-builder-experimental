@@ -1,16 +1,23 @@
 import { Category, ProjectDataProps } from "./definitions";
 
-export const API_URL = "http://localhost:5173/api/v1";
+export const API_URL = "https://news-portal-api.24onbd.com/api/public";
 
 export async function getCategories() {
-  const res = await fetch(`${API_URL}/categories`);
+  const res = await fetch(`${API_URL}/categories?status=ACTIVE`);
 
   if (!res.ok) {
     throw new Error("Error on fetching Categories.");
   }
-  const categories: Omit<Category, "news">[] = await res.json();
+  const {
+    data: categories,
+  }: {
+    data: Category[];
+  } = await res.json();
 
-  return categories.map(({ name }) => ({ id: name, name }));
+  return categories.map(({ title }) => ({
+    id: title,
+    name: title,
+  }));
 }
 
 export async function getCategoryByName(name: string) {

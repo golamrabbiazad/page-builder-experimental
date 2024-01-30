@@ -1,12 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap");
 select {
   line-height: initial;
 }
 
 * {
   box-sizing: border-box;
-  font-family: "Rubik", sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.gjs-right-sidebar {
+  height: 100dvh;
+  width: 500px;
+  overflow: auto;
+  padding-bottom: 3rem;
+  background-color: #1f1f29;
 }

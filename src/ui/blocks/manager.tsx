@@ -1,5 +1,6 @@
 import { BlocksResultProps } from "@grapesjs/react";
 import { Card, Flex, Input } from "antd";
+import styles from "./blocks.module.css";
 
 export type BlockManagerProps = Pick<
   BlocksResultProps,
@@ -22,33 +23,24 @@ export function BlockManager({
   return (
     <div>
       <Input
-        style={{
-          color: "white",
-          backgroundColor: "#1F1F29",
-          padding: "0.5rem",
-        }}
+        className={styles.searchBlockComponent}
         type="text"
         variant="borderless"
-        className="placeholder:italic"
         placeholder="Search for a block (e.g numbers, image wall, ...)"
       />
       {restTemplates.map(([category, blocks]) => (
-        <div style={{ padding: "0.5rem" }} key={category}>
-          <h2
-            style={{
-              fontSize: "1.25rem",
-              lineHeight: "1.75rem",
-              padding: "0.5rem",
-            }}
-          >
-            {category}
-          </h2>
+        <div key={category} className={styles.blockCategory__container}>
+          <h2 className={styles.blockCategory__header}>{category}</h2>
 
           <Flex
             wrap="wrap"
-            gap="0.5rem"
+            gap="0.4rem"
             style={{
               cursor: "pointer",
+              backgroundColor: "#3e3e46",
+              paddingTop: "1rem",
+              paddingBottom: "1rem",
+              paddingLeft: "1rem",
             }}
           >
             {blocks.map((block) => (
@@ -57,26 +49,15 @@ export function BlockManager({
                 draggable
                 onDragStart={(ev) => dragStart(block, ev.nativeEvent)}
                 onDragEnd={() => dragStop()}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "110px",
-                }}
+                className={styles.blockCategoryCard}
               >
                 <div
-                  style={{
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    width: "1.5rem",
-                    height: "1.5rem",
-                  }}
+                  className={styles.blockCategoryCard__icon}
                   dangerouslySetInnerHTML={{ __html: block.getMedia()! }}
                 />
 
                 <p
-                  style={{
-                    textAlign: "center",
-                  }}
+                  className={styles.blockCategoryCard__label}
                   title={block.getLabel()}
                 >
                   {block.getLabel()}
@@ -88,16 +69,8 @@ export function BlockManager({
       ))}
       {templateBlocks.map(([category, blocks]) => (
         <div key={category}>
-          <h2
-            style={{
-              fontSize: "1.25rem",
-              lineHeight: "1.75rem",
-              padding: "0.5rem",
-            }}
-          >
-            {category}
-          </h2>
-          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+          <h2 className={styles.blockTemplate__header}>{category}</h2>
+          <div className={styles.blockTemplate__card}>
             {blocks.map((block) => (
               <div
                 onDragStart={(ev) => dragStart(block, ev.nativeEvent)}
@@ -109,7 +82,7 @@ export function BlockManager({
                   draggable="false"
                   src={block.getMedia()!}
                   alt={block.getLabel()}
-                  style={{ display: "block", width: "170px" }}
+                  className={styles.blockTemplate__image}
                 />
               </div>
             ))}

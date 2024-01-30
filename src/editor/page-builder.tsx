@@ -39,7 +39,7 @@ export default function PageBuilder(props: Partial<EditorProps>) {
         >
           <Canvas
             style={{
-              minHeight: "h-dvh",
+              minHeight: "100dvh",
               overflow: "hidden",
               backgroundColor: "black",
             }}

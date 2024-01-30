@@ -7,10 +7,33 @@ export interface News {
   published_date: string;
 }
 
+type CategoryStatus =
+  | "ACTIVE"
+  | "INACTIVE"
+  | "DRAFT"
+  | "PUBLIC"
+  | "PENDING"
+  | "REJECTED"
+  | "COMPLETED";
+
 export interface Category {
-  id: string;
-  name: string;
-  news: News[];
+  id: number;
+  title: string;
+  slug: string;
+  parentId?: number;
+  featuredImage?: string;
+  content?: string;
+  status: CategoryStatus;
+  searchKeyword?: string;
+  metaTitle?: string;
+  metaKeyword?: string;
+  metaDescription?: string;
+  createdById: number;
+  updatedById: number;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string;
+  parent: unknown;
 }
 
 export interface ProjectDataProps {

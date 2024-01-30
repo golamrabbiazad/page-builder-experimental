@@ -8,7 +8,6 @@ export function StyleManager({
 }: Omit<StylesResultProps, "Container">) {
   return (
     <Collapse
-      className="w-full"
       items={sectors.map((sector) => ({
         key: sector.getId(),
         label: sector.getName(),

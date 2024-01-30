@@ -14,7 +14,7 @@ export function Preview() {
     const rightSideBar = document.querySelector(".gjs-right-sidebar");
 
     if (rightSideBar) {
-      rightSideBar.classList.toggle("toggle-sidebar");
+      rightSideBar.classList.toggle("hidden");
     }
   };
 
