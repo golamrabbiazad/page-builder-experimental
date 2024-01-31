@@ -19,7 +19,7 @@ export function Preview() {
   };
 
   return (
-    <Button type="primary" onClick={handleClick}>
+    <Button size="small" type="primary" onClick={handleClick}>
       Preview
     </Button>
   );

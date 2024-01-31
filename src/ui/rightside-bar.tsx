@@ -18,7 +18,6 @@ const items: TabsProps["items"] = [
   {
     key: "blocks-tab",
     label: "BLOCKS",
-    style: { paddingLeft: "0.5rem" },
     children: (
       <BlocksProvider>{(props) => <BlockManager {...props} />}</BlocksProvider>
     ),
@@ -26,7 +25,6 @@ const items: TabsProps["items"] = [
   {
     key: "customize-tab",
     label: "CUSTOMIZE",
-
     children: (
       <>
         <TraitsProvider>

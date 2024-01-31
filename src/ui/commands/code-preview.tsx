@@ -10,12 +10,10 @@ export function CodePreview() {
   return (
     <Button
       type="primary"
+      size="small"
       onClick={() => toggleCommand(editor, OPEN_CODE_COMMAND_ID)}
     >
-      <i
-        style={{ height: "1rem", width: "1rem", marginRight: "0.5rem" }}
-        className="fa-solid fa-code"
-      />{" "}
+      <i style={{ marginRight: "0.5rem" }} className="fa-solid fa-code fa-sm" />{" "}
       Code
     </Button>
   );

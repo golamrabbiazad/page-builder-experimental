@@ -25,5 +25,6 @@
     }
   },
   "include": ["src"],
+  "exclude": ["src/ui/features", "src/ui/fonts.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

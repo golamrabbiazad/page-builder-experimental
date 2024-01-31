@@ -20,6 +20,7 @@ All work(bugs, fixes, features) for this page builder.
 - feat: select on component right side panel pops up.
 - feat: implement <https://platejs.org/> RTE for the text Editor.
 - fix: discard button
+- implement tooltip (ex, shows bigger images of layout) on templates when mouse hover on them.
 
 ## Bugs
 

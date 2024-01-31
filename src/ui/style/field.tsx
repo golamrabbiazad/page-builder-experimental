@@ -44,11 +44,6 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
   const valueString = hasValue ? value : "";
   const valueWithDef = hasValue ? value : defValue;
 
-  console.log(value);
-  console.log(defValue);
-  console.log(valueString);
-  console.log(hasValue);
-
   let inputToRender = (
     <Input
       placeholder={defValue}
@@ -122,16 +117,24 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
     case "file":
       {
         inputToRender = (
-          <div className="flex flex-col items-center gap-3">
+          <Flex vertical align="center" gap="1.5rem">
             {value && value !== defValue && (
               <div
-                className="w-[50px] h-[50px] rounded inline-block bg-cover bg-center cursor-pointer"
-                style={{ backgroundImage: `url("${value}")` }}
+                style={{
+                  backgroundImage: `url("${value}")`,
+                  width: "50px",
+                  height: "50px",
+                  borderRadius: "4px",
+                  display: "inline-block",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  cursor: "pointer",
+                }}
                 onClick={() => handleChange("")}
               />
             )}
             <Button onClick={openAssets}>Select Image</Button>
-          </div>
+          </Flex>
         );
       }
       break;
@@ -139,13 +142,18 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
       {
         const compositeProp = prop as PropertyComposite;
         inputToRender = (
-          <div
-            className={cn("flex flex-wrap p-2 bg-black/20", ROUND_BORDER_COLOR)}
+          <Flex
+            wrap="wrap"
+            style={{
+              padding: "0.5rem",
+              backgroundColor: "#0a0a0a",
+              opacity: "0.3",
+            }}
           >
             {compositeProp.getProperties().map((prop) => (
               <StylePropertyField key={prop.getId()} prop={prop} />
             ))}
-          </div>
+          </Flex>
         );
       }
       break;
@@ -155,15 +163,28 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
         const layers = stackProp.getLayers();
         const isTextShadow = stackProp.getName() === "text-shadow";
         inputToRender = (
-          <div
-            className={cn(
-              "flex flex-col p-2 gap-2 bg-black/20 min-h-[54px]",
-              ROUND_BORDER_COLOR
-            )}
+          <Flex
+            style={{
+              display: "flex",
+              padding: "0.5rem",
+              backgroundColor: "#0a0a0a",
+              minHeight: "54px",
+              border: "1px solid #faf5f5",
+              borderRadius: "4px",
+            }}
+            gap="0.5rem"
+            vertical
           >
             {layers.map((layer) => (
               <div key={layer.getId()} className={ROUND_BORDER_COLOR}>
-                <div className="flex gap-1 bg-slate-800 px-2 py-1 items-center">
+                <Flex
+                  gap="0.5rem"
+                  style={{
+                    padding: "0.3rem 0.5rem",
+                    backgroundColor: "#0a0a0a",
+                  }}
+                  align="center"
+                >
                   <Button onClick={() => layer.move(layer.getIndex() - 1)}>
                     <i className="fa-solid fa-chevron-up w-4 h-4" />
                   </Button>
@@ -173,7 +194,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
                   <Button className="flex-grow" onClick={() => layer.select()}>
                     {layer.getLabel()}
                   </Button>
-                  <div
+                  <Flex
                     className={cn(
                       "bg-white min-w-[17px] min-h-[17px] text-black text-sm flex justify-center",
                       ROUND_BORDER_COLOR
@@ -184,11 +205,11 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
                     })}
                   >
                     {isTextShadow && "T"}
-                  </div>
+                  </Flex>
                   <Button onClick={() => layer.remove()}>
                     <i className="fa-solid fa-trash" />
                   </Button>
-                </div>
+                </Flex>
                 {layer.isSelected() && (
                   <div className="p-2 flex flex-wrap">
                     {stackProp.getProperties().map((prop) => (
@@ -198,7 +219,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
                 )}
               </div>
             ))}
-          </div>
+          </Flex>
         );
       }
       break;
@@ -221,7 +242,9 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
         }}
         align="center"
       >
-        <div className="flex-grow capitalize">{prop.getLabel()}</div>
+        <div style={{ flexGrow: 1, textTransform: "uppercase" }}>
+          {prop.getLabel()}
+        </div>
         {canClear && (
           <Button onClick={() => prop.clear()}>
             <i className="fa-solid fa-xmark" />
@@ -229,7 +252,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
         )}
         {type === "stack" && (
           <Button
-            className="!ml-2"
+            style={{ marginLeft: "0.5rem" }}
             onClick={() => (prop as PropertyStack).addLayer({}, { at: 0 })}
           >
             <i className="fa-solid fa-plus" />

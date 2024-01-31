@@ -16,7 +16,7 @@ export async function getCategories() {
 
   return categories.map(({ title }) => ({
     id: title,
-    name: title,
+    title,
   }));
 }
 

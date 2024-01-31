@@ -1,18 +1,15 @@
-import { Flex } from "antd";
+import { Badge, Flex } from "antd";
 import { WithEditor } from "@grapesjs/react";
 import { ComponentOutline, Preview, CodePreview } from "./commands";
 
-// const EDITOR_STATUS = "Expermental";
+const EDITOR_STATUS = "Expermental";
 
 export function Topbar({ showDrawer }: { showDrawer: () => void }) {
   return (
     <Flex
       justify="space-between"
       style={{
-        paddingLeft: "4rem",
-        paddingRight: "4rem",
-        paddingTop: "0.5rem",
-        paddingBottom: "0.5rem",
+        padding: "0.5rem 4rem",
         background: "#2B2B33",
       }}
     >
@@ -20,29 +17,31 @@ export function Topbar({ showDrawer }: { showDrawer: () => void }) {
         <h2
           style={{
             color: "white",
-            fontSize: "1.5rem",
+            fontSize: "1.1rem",
             lineHeight: "2rem",
             fontWeight: "bold",
+            letterSpacing: "-0.05em",
             marginRight: "0.5rem",
           }}
         >
           M4yours Editor
         </h2>
 
-        {/* <Badge
+        <Badge
           count={
             <p
               style={{
                 backgroundColor: "#faad14",
-                padding: "0.3rem",
-                borderRadius: "0.5rem",
+                fontSize: "0.5rem",
+                padding: "0.2rem",
+                borderRadius: "0.8rem",
               }}
             >
-              Experimental
+              {EDITOR_STATUS}
             </p>
           }
           style={{ color: "#000" }}
-        /> */}
+        />
       </Flex>
 
       <Flex gap="middle" align="center">

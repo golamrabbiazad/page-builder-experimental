@@ -1,4 +1,3 @@
-import { Category } from "@/lib/definitions";
 import { Editor } from "grapesjs";
 
 interface AddBlockProps {
@@ -6,7 +5,7 @@ interface AddBlockProps {
   editor: Editor;
   type: string;
   media: string;
-  categories: Omit<Category, "news">[];
+  categories: { id: string; title: string }[];
 }
 
 export function addBlockTemplate({
