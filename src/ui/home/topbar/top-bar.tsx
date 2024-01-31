@@ -1,6 +1,7 @@
 import { Badge, Flex } from "antd";
 import { WithEditor } from "@grapesjs/react";
-import { ComponentOutline, Preview, CodePreview } from "./commands";
+import { ComponentOutline, Preview, CodePreview } from "../../commands";
+import styles from "./topbar.module.css";
 
 const EDITOR_STATUS = "Expermental";
 
@@ -14,32 +15,12 @@ export function Topbar({ showDrawer }: { showDrawer: () => void }) {
       }}
     >
       <Flex>
-        <h2
-          style={{
-            color: "white",
-            fontSize: "1.1rem",
-            lineHeight: "2rem",
-            fontWeight: "bold",
-            letterSpacing: "-0.05em",
-            marginRight: "0.5rem",
-          }}
-        >
-          M4yours Editor
-        </h2>
+        <a href="/">
+          <img src="editor-logo.svg" alt="m4yours editor" />
+        </a>
 
         <Badge
-          count={
-            <p
-              style={{
-                backgroundColor: "#faad14",
-                fontSize: "0.5rem",
-                padding: "0.2rem",
-                borderRadius: "0.8rem",
-              }}
-            >
-              {EDITOR_STATUS}
-            </p>
-          }
+          count={<p className={styles.experimentalBadge}>{EDITOR_STATUS}</p>}
           style={{ color: "#000" }}
         />
       </Flex>

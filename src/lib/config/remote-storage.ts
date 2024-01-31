@@ -5,27 +5,9 @@ export const projectEndPoint = `http://localhost:5173/api/v1/projects/${projectI
 
 export const remoteStorageConfigs: RemoteStorageConfig = {
   urlStore: projectEndPoint,
+  urlLoad: projectEndPoint,
 
   fetchOptions: (opts) => (opts.method === "POST" ? { method: "PATCH" } : {}),
-
-  onLoad: (data, editor) => {
-    console.log(data);
-
-    console.log(editor);
-
-    const projectData = editor.loadProjectData({
-      id: "1",
-      pagesHtml: [
-        {
-          html: "<body></body>",
-          css: "* { box-sizing: border-box; } body {margin: 0;}",
-        },
-      ],
-      assets: [],
-    });
-
-    return { projectData };
-  },
 
   onStore: (data, editor) => {
     const pagesHtml = editor.Pages.getAll().map((page) => {
@@ -43,4 +25,13 @@ export const remoteStorageConfigs: RemoteStorageConfig = {
       pagesHtml,
     };
   },
+
+  onLoad: (result) => ({
+    assets: result.assets,
+    pages: result.pagesHtml.map(
+      ({ html, css }: { html: string; css: string }) => ({
+        component: `${html} <style>${css}</style>`,
+      })
+    ),
+  }),
 };

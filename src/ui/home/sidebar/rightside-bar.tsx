@@ -52,8 +52,8 @@ export function RightSidebar() {
   return (
     <div className="gjs-right-sidebar">
       <Flex
+        justify="space-between"
         style={{
-          justifyContent: "space-between",
           backgroundColor: "#0a0a0a",
         }}
       >

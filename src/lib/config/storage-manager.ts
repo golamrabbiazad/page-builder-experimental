@@ -3,7 +3,7 @@ import { projectId, remoteStorageConfigs } from "./remote-storage";
 
 export const storageManagerConfig: StorageManagerConfig = {
   type: "remote",
-  autoload: false,
+  autoload: true,
   autosave: false,
   stepsBeforeSave: 10,
 

@@ -25,8 +25,15 @@ export const editorOptions: EditorConfig = {
     defaults: {
       save__data: {
         id: "core:save",
-        run: (editor) => {
-          editor.store();
+        run: async (editor) => {
+          await editor.store();
+        },
+      },
+
+      load__data: {
+        id: "core:load",
+        run: async (editor) => {
+          await editor.load();
         },
       },
     },

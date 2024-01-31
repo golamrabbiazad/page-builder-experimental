@@ -6,9 +6,9 @@ import GrapesJsEditor, {
   EditorProps,
   ModalProvider,
 } from "@grapesjs/react";
-import { Topbar } from "@/ui/top-bar";
+import { Topbar } from "@/ui/home/topbar/top-bar";
 import { AssetModal } from "@/ui/assets/modal";
-import { RightSidebar } from "@/ui/rightside-bar";
+import { RightSidebar } from "@/ui/home/sidebar/rightside-bar";
 import { editorConfig } from "@/lib/config";
 
 export default function PageBuilder(props: Partial<EditorProps>) {

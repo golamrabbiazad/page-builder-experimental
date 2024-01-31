@@ -4,11 +4,19 @@
       "id": "1",
       "pagesHtml": [
         {
-          "html": "<body></body>",
-          "css": "* { box-sizing: border-box; } body {margin: 0;}"
+          "html": "<body id=\"it9y\"><section class=\"lg:m-24 lg:p-6 md:m-12 md:p-6\"><div id=\"ip6v\">Insert your text here</div></section></body>",
+          "css": ""
         }
       ],
-      "assets": []
+      "assets": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1687124390871-6f16950e261e",
+          "unitDim": "px",
+          "height": 0,
+          "width": 0
+        }
+      ]
     }
   ],
   "categories": [

@@ -29,7 +29,15 @@ export function layoutPlugin(editor: Editor) {
       },
     },
 
-    view: {},
+    view: {
+      init() {
+        // this.on('remove', onRemoveAddButton)
+
+        const model = this.model;
+
+        console.log(model);
+      },
+    },
   });
 
   editor.Blocks.add("div-block", {
