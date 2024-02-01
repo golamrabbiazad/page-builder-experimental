@@ -1,7 +1,7 @@
 import { RemoteStorageConfig } from "grapesjs";
 
 export const newsId = 35;
-export const newsUrl = `https://m4yours-page-builder.pages.dev/api/news/${newsId}`;
+export const newsUrl = `https://news-portal-api.24onbd.com/api/news/${newsId}`;
 
 const bearerToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MDY3MTgwMzQsImV4cCI6MTcwNjg5MDgzNH0.Zo-qLGZkkriD6XCQ-2dD12pn9d6NIfdk0OdkaomfVNA";
