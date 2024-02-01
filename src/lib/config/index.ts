@@ -18,7 +18,6 @@ export const editorOptions: EditorConfig = {
   },
   cssIcons: CSSICONS,
   canvas: {
-    styles: ["https://rsms.me/", "https://rsms.me/inter/inter.css"],
     scripts: [TAILWINDCSS_SCRIPT],
   },
   commands: {
@@ -38,15 +37,6 @@ export const editorOptions: EditorConfig = {
       },
     },
   },
-  canvasCss: `
-  :root {
-    font-family: Inter, sans-serif;
-    font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
-  }
-  @supports (font-variation-settings: normal) {
-    :root { font-family: InterVariable, sans-serif; }
-  }
-  `,
 };
 
 export const editorConfig: EditorProps = {

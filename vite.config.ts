@@ -34,10 +34,10 @@ export default defineConfig({
   server: {
     cors: true,
     proxy: {
-      "/api/v1": {
-        target: "http://localhost:3000",
+      "/api": {
+        target: "https://news-portal-api.24onbd.com/api",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/v1/, ""),
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },

@@ -5,6 +5,7 @@ import { Preview } from "./preview";
 import { SaveToast } from "./save-toast";
 import { ComponentOutline } from "./component-outline";
 import { CodePreview } from "./code-preview";
+import { LoadProject } from "./load-project";
 
 export {
   UndoTask,
@@ -14,4 +15,5 @@ export {
   SaveToast,
   ComponentOutline,
   CodePreview,
+  LoadProject,
 };

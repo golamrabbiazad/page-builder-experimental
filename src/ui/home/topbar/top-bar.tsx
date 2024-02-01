@@ -1,6 +1,11 @@
 import { Badge, Flex } from "antd";
 import { WithEditor } from "@grapesjs/react";
-import { ComponentOutline, Preview, CodePreview } from "../../commands";
+import {
+  ComponentOutline,
+  Preview,
+  CodePreview,
+  LoadProject,
+} from "../../commands";
 import styles from "./topbar.module.css";
 
 const EDITOR_STATUS = "Expermental";
@@ -16,7 +21,7 @@ export function Topbar({ showDrawer }: { showDrawer: () => void }) {
     >
       <Flex>
         <a href="/">
-          <img src="editor-logo.svg" alt="m4yours editor" />
+          <img src="/assets/logo/editor.svg" alt="m4yours editor" />
         </a>
 
         <Badge
@@ -27,6 +32,7 @@ export function Topbar({ showDrawer }: { showDrawer: () => void }) {
 
       <Flex gap="middle" align="center">
         <WithEditor>
+          <LoadProject />
           <CodePreview />
           <Preview />
           <ComponentOutline commandId="core:component-outline" />
