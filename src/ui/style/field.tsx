@@ -9,7 +9,6 @@ import type {
   PropertyStack,
 } from "grapesjs";
 
-import { cn } from "@/lib/utils";
 import { ROUND_BORDER_COLOR } from "@/lib/common";
 import { Input, Button, Slider, Radio, Select, ColorPicker, Flex } from "antd";
 
@@ -195,10 +194,7 @@ export function StylePropertyField({ prop, ...rest }: StylePropertyFieldProps) {
                     {layer.getLabel()}
                   </Button>
                   <Flex
-                    className={cn(
-                      "bg-white min-w-[17px] min-h-[17px] text-black text-sm flex justify-center",
-                      ROUND_BORDER_COLOR
-                    )}
+                    className="bg-white min-w-[17px] min-h-[17px] text-black text-sm flex justify-center rounded border border-slate-300"
                     style={layer.getStylePreview({
                       number: { min: -3, max: 3 },
                       camelCase: true,

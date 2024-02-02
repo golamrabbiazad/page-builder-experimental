@@ -1,9 +1,4 @@
 import { Editor } from "grapesjs";
-import { type ClassValue, clsx } from "clsx";
-
-export function cn(...inputs: ClassValue[]) {
-  return clsx(inputs);
-}
 
 export function convertTitleToId(title: string) {
   return title.toLowerCase().replace(/\s+/g, "-");
