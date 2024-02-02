@@ -14,6 +14,7 @@ All work(bugs, fixes, features) for this page builder.
 - implement tooltip (ex, shows bigger images of layout) on templates when mouse hover on them.
 - fix: image import issue for `@/app/page-builder/lib/plugins/category/assets/index.ts`
 - <https://github.com/GrapesJS/grapesjs/issues/3399>
+- <https://github.com/GrapesJS/grapesjs/discussions/3672>
 
 ## Bugs
 
