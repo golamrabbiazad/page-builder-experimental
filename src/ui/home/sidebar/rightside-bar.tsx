@@ -97,6 +97,9 @@ export function RightSidebar() {
           backgroundColor: "#2B2B33",
           color: "white",
         }}
+        tabBarStyle={{
+          marginLeft: "1rem",
+        }}
       />
     </div>
   );
