@@ -10,7 +10,6 @@ import {
 import { BlockManager } from "@/ui/blocks/manager";
 import { StyleManager } from "@/ui/style/manager";
 import { TraitManager } from "@/ui/traits/manager";
-import { DeviceSelect } from "@/ui/device-select";
 import { SelectorManager } from "@/ui/selectors/manager";
 import { DiscardButton, RedoTask, SaveToast, UndoTask } from "@/ui/commands";
 
@@ -66,12 +65,22 @@ export function RightSidebar() {
 
         <Flex align="center">
           <DevicesProvider>
-            {({ selected, select, devices }) => (
-              <DeviceSelect
-                select={select}
-                selected={selected}
-                devices={devices}
-              />
+            {({ selected, select }) => (
+              <div>
+                {selected === "desktop" ? (
+                  <i
+                    className="fa-solid fa-mobile-screen"
+                    onClick={() => select("mobilePortrait")}
+                    style={{ color: "white", cursor: "pointer" }}
+                  />
+                ) : (
+                  <i
+                    className="fa-solid fa-desktop"
+                    onClick={() => select("desktop")}
+                    style={{ color: "white", cursor: "pointer" }}
+                  />
+                )}
+              </div>
             )}
           </DevicesProvider>
           <WithEditor>

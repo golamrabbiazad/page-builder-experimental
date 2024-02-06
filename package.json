@@ -15,7 +15,7 @@
     "antd": "^5",
     "grapesjs": "^0.21.8",
     "grapesjs-blocks-basic": "^1.0.2",
-    "million": "^2.6.4",
+    "million": "latest",
     "react": "^18",
     "react-dom": "^18"
   },
