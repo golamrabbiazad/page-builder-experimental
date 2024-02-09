@@ -1,4 +1,4 @@
-// category api
+// category_api
 
 import { apiSlice } from "@/appstore/api-slice";
 
@@ -133,187 +133,99 @@ export const {
 } = categoryApi;
 
 
+// search comp
 
+"use client";
 
-
-
-
-
-
-// tag_api
-
-import { apiSlice } from "@/appstore/api-slice";
-
-interface Topic {
-  id: number;
-  title: string;
-  slug: string;
-  status: "ACTIVE";
-}
-
-interface TopicDropdown extends Topic {
-  children: Topic[];
-}
-
-interface Tag {
-  id: number;
-  title: string;
-  slug: string;
-  featuredImage: string;
-  content: string;
-  status: string;
-  searchKeyword: string;
-  metaTitle: string;
-  metaKeyword: string;
-  metaDescription: string;
-  createdById: number;
-  updatedById: string | null;
-  createdAt: string;
-  updatedAt: string;
-  deletedAt: string | null;
-}
-
-interface TagListProps {
-  data: Tag[];
-  totalCount: number;
-  currentPage: number;
-  perPage: number;
-}
-
-interface CreateTopicArgs {
-  title: string;
-  featuredImage: string;
-  content: string;
-  status: string;
-  searchKeyword: string;
-  metaTitle: string;
-  metaKeyword: string;
-  metaDescription: string;
-}
-
-interface UpdateTopicArgs {
-  title: string;
-  featuredImage: string;
-  content: string;
-  status: string;
-  searchKeyword: string;
-  metaTitle: string;
-  metaKeyword: string;
-  metaDescription: string;
-}
-
-export const tagApi = apiSlice.injectEndpoints({
-  endpoints: (build) => ({
-    getAllTag: build.query<
-      TagListProps,
-      { queryString: string; isTrash: boolean }
-    >({
-      query: ({ queryString, isTrash }) =>
-        `/tags?status=ACTIVE&status=INACTIVE&isTrash=${isTrash}`,
-      providesTags: ["Tag"],
-    }),
-
-    createTag: build.mutation<Tag, CreateTopicArgs>({
-      query: (data) => ({
-        url: "/tags",
-        method: "POST",
-        body: data,
-      }),
-    }),
-    restoreTags: build.mutation({
-      query: ({ id }) => {
-        return {
-          url: `/tags/${id}/restore`,
-          method: "PATCH",
-        };
-      },
-      invalidatesTags: ["Tag"],
-    }),
-
-    getSingleTag: build.query<
-      { name: string; slug: string; description: string },
-      { id: number }
-    >({
-      query: ({ id }) => `/tags/${id}`,
-      transformResponse: (response: Tag) => {
-        const data = {
-          name: response.title,
-          slug: response.slug,
-          description: response.content,
-        };
-        return data;
-      },
-    }),
-
-    updateTag: build.mutation<Tag, { data: UpdateTopicArgs; id: number }>({
-      query: ({ data, id }) => ({
-        url: `/tags/${id}`,
-        method: "PATCH",
-        body: data,
-      }),
-      invalidatesTags: ["Tag"],
-    }),
-
-    deleteTag: build.mutation({
-      query: ({ id, isTrash }) => ({
-        url: isTrash ? `/tags/${id}/force` : `/tags/${id}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["Tag"],
-    }),
-    tagBulkDelete: build.mutation({
-      query: (data) => ({
-        url: "/tags/bulk-destroy",
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["Tag"],
-    }),
-    getTagsDropdowns: build.query<TopicDropdown[], void>({
-      query: () => `/public/tags/dropdown`,
-    }),
-  }),
-
-  overrideExisting: true,
-});
-
-export const {
-  useRestoreTagsMutation,
-  useGetAllTagQuery,
-  useCreateTagMutation,
-  useGetSingleTagQuery,
-  useUpdateTagMutation,
-  useDeleteTagMutation,
-  useTagBulkDeleteMutation,
-  useGetTagsDropdownsQuery,
-} = tagApi;
-
-
-
-// search component moulde/search/index
 import clsx from "clsx";
 import { Input } from "antd";
-import { Dispatch, SetStateAction } from "react";
 import { IoSearchOutline } from "react-icons/io5";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useState, useTransition, Dispatch, SetStateAction } from "react";
 
-type SearchType = "Posts" | "Teammates" | "Category" | "Topics" | "News";
+import AvroInput from "@/avro/AvroInput";
+
+type SearchType =
+  | "Posts"
+  | "Reporters"
+  | "Categories"
+  | "Topics"
+  | "News"
+  | "Admins"
+  | "Subscribers"
+  | "Contributors";
 
 interface PropTypes {
   setKeyword: Dispatch<SetStateAction<string>>;
   className?: string;
   searchType?: SearchType;
+  isEnglish?: boolean;
 }
 
 const SearchComponent = ({ setKeyword, className, searchType }: PropTypes) => {
+  const [searchLanguage, setSearchLanguage] = useState<"english" | "bangla">(
+    "english"
+  );
+
+  const [isPending, startTransition] = useTransition();
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
+  const isSearching = timeoutId || isPending;
+
   return (
     <div className={clsx("relative w-[340px]", className ? className : "")}>
-      <Input
-        size="large"
-        onChange={(e) => setKeyword(e.target.value)}
-        placeholder={searchType ? `Search ${searchType}` : "Search"}
-        prefix={<IoSearchOutline />}
-        className="placeholder:!text-black"
-      />
+      <span className="absolute cursor-pointer right-[15px] top-[50%] -translate-y-[50%] z-50">
+        {!isSearching &&
+          (searchLanguage === "english" ? (
+            <span onClick={() => setSearchLanguage("bangla")}>English</span>
+          ) : (
+            <span onClick={() => setSearchLanguage("english")}>বাংলা</span>
+          ))}
+      </span>
+
+      {searchLanguage !== "english" ? (
+        <Input
+          size="large"
+          type="text"
+          id="search"
+          placeholder={searchType ? `Search ${searchType}` : "Search"}
+          prefix={<IoSearchOutline />}
+          onChange={(e) => {
+            clearTimeout(timeoutId);
+
+            const id = setTimeout(() => {
+              startTransition(() => {
+                if (e.target.value) {
+                  setKeyword(e.target.value);
+                } else {
+                  setKeyword("");
+                }
+                setTimeoutId(undefined);
+              });
+            }, 500);
+
+            setTimeoutId(id);
+          }}
+        />
+      ) : (
+        ""
+      )}
+
+      {searchLanguage !== "bangla" ? (
+        <AvroInput
+          type="text"
+          placeholder="খুঁজুন"
+          className="w-full border-gray-300 outline-none border-[1px] p-[6px] rounded"
+          onChange={(val) => (val ? setKeyword(val) : setKeyword(""))}
+        />
+      ) : (
+        ""
+      )}
+
+      {isSearching && (
+        <div className="pointer-events-none absolute right-2 bottom-0 top-0 flex items-center z-50">
+          <AiOutlineLoading3Quarters className="h-5 w-5 animate-spin text-black" />
+        </div>
+      )}
     </div>
   );
 };
@@ -321,529 +233,87 @@ const SearchComponent = ({ setKeyword, className, searchType }: PropTypes) => {
 export default SearchComponent;
 
 
-// topic components action_column index
+// categorylist
 
 "use client";
-import { Checkbox, Modal, Popconfirm, Select, Tooltip, message } from "antd";
-import { ErrorMessage, Field, Form, Formik, FormikValues } from "formik";
-import { MouseEventHandler, useState } from "react";
-import { TbReload } from "react-icons/tb";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
 import * as Yup from "yup";
-import Link from "next/link";
-import {
-  useGetCategoryDropdownsQuery,
-  useMoveNewsMutation,
-} from "@/appstore/news/category/category_api";
-import {
-  useRestoreTagsMutation,
-  useDeleteTagMutation,
-  useUpdateTagMutation,
-} from "@/appstore/news/tag/tag_api";
-import { AiOutlineEye } from "react-icons/ai";
-
-import { useGetSingleTagQuery } from "@/appstore/news/tag/tag_api";
-
-const tagSchema = Yup.object({
-  name: Yup.string().required("Required"),
-  slug: Yup.string(),
-  description: Yup.string(),
-});
-
-interface Tag {
-  id: number;
-  title: string;
-  slug: string;
-  featuredImage: string;
-  content: string;
-  status: string;
-  searchKeyword: string;
-  metaTitle: string;
-  metaKeyword: string;
-  metaDescription: string;
-  createdById: number;
-  updatedById: string | null;
-  createdAt: string;
-  updatedAt: string;
-  deletedAt: string | null;
-}
-
-interface TagActionProps {
-  record: Tag;
-  isTrash?: boolean;
-}
-
-const TagsAction = ({ record, isTrash }: TagActionProps) => {
-  const [moveModal, setMoveModal] = useState(false);
-  const [keyword, setKeyword] = useState("");
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-
-  const [moveData] = useMoveNewsMutation();
-
-  const [restoreId] = useRestoreTagsMutation();
-  const { data: categoryDropdowns } = useGetCategoryDropdownsQuery({});
-
-  const categoryArray = categoryDropdowns?.map((item: any) => {
-    return {
-      label: item?.title,
-      value: item?.id,
-    };
-  });
-
-  const { data: singleTag, isLoading: singleLoading } = useGetSingleTagQuery(
-    { id: record.id },
-    { skip: !record.id }
-  );
-
-  const [update, { isLoading: uploading }] = useUpdateTagMutation();
-
-  console.log(singleTag);
-
-  const moveHandler = async (values: any) => {
-    const res: any = await moveData({
-      categoryFrom: values.categoryFrom,
-      categoryTo: values.categoryTo,
-      isDestroy: values.isDestroy,
-    });
-    if (!res?.error) {
-      message.success(`News move successfull`);
-      setMoveModal(false);
-    } else {
-      if (res?.error?.status >= 500) {
-        message.error("Somthing went wrong.");
-      } else {
-        message.error(
-          `${
-            res?.error?.data?.message
-              ? res?.error?.data?.message
-              : "Somthing went wrong"
-          }`
-        );
-      }
-    }
-  };
-
-  const retoreHandler = async (id: any) => {
-    try {
-      const payload = await restoreId({
-        id: id,
-      }).unwrap();
-
-      if (payload.id) {
-        message.success("Category restore successfully.");
-      }
-    } catch (error) {
-      if (typeof error === "object" && "message" in error!) {
-        message.error("Somthing went wrong.");
-      }
-    }
-  };
-
-  const [deleteItem] = useDeleteTagMutation();
-
-  const deleteConfirm = async (id: any) => {
-    try {
-      const payload = await deleteItem({
-        id: id,
-        isTrash,
-      }).unwrap();
-
-      if (payload.id) {
-        message.success(
-          !isTrash
-            ? "Item moved to trash successfully!"
-            : "Item permanently deleted successfully!"
-        );
-      }
-    } catch (error) {
-      if (typeof error === "object" && "message" in error!) {
-        message.error("Somthing went wrong");
-      }
-    }
-  };
-
-  const createHandler = async (values: FormikValues) => {
-    const data = {
-      title: values?.name,
-      slug: values?.slug,
-      content: values?.description,
-      featuredImage: values?.featuredImage,
-      status: values?.status,
-      searchKeyword: values?.searchKeywords,
-      metaTitle: values?.metaTitle,
-      metaKeyword: values?.metaKeyword,
-      metaDescription: values?.metaDescription,
-    };
-
-    try {
-      const payload = await update({ data, id: record.id }).unwrap();
-
-      console.log(payload);
-
-      if (payload.id) {
-        message.success("Topic updated successfully");
-        setIsModalOpen(false);
-      }
-    } catch (error) {
-      if (typeof error === "object" && "message" in error!) {
-        message.error("Sorry! Something went wrong!");
-      }
-    }
-  };
-
-  return (
-    <div className="">
-      <div className="flex items-center justify-end gap-3">
-        {!isTrash ? (
-          <Tooltip placement="top" title="Edit">
-            <button type="button" onClick={showModal}>
-              <FiEdit className="text-lg" />
-            </button>
-          </Tooltip>
-        ) : null}
-
-        {!isTrash ? (
-          <Tooltip placement="top" title="View Page">
-            <Link target="_blank" href={`/news/tags/${record.slug}`}>
-              <AiOutlineEye className="text-lg" />
-            </Link>
-          </Tooltip>
-        ) : null}
-        {isTrash ? (
-          <Tooltip placement="top" title={"Restore"}>
-            <button type="button" onClick={() => retoreHandler(record?.id)}>
-              <TbReload className="text-lg" />
-            </button>
-          </Tooltip>
-        ) : null}
-
-        {/* delete button */}
-        <Tooltip
-          placement="bottom"
-          title={!isTrash ? "Move to Trash" : "Permanent Delete"}
-        >
-          <Popconfirm
-            placement="topRight"
-            title={
-              !isTrash ? (
-                <div className="font-semibold">
-                  Are you sure you want to move this item to Trash? <br />
-                  <div className="font-normal">
-                    Item can be recovered from Trash.
-                  </div>
-                </div>
-              ) : (
-                <div className="font-semibold">
-                  Are you sure you want to delete this item Permanently? <br />
-                  <div className="font-normal">
-                    Deleted item can&apos;t be recovered!
-                  </div>
-                </div>
-              )
-            }
-            onConfirm={() => deleteConfirm(record?.id)}
-            okText="Yes"
-            cancelText="No"
-          >
-            <button type="button" className="hover:text-secondary">
-              <FiTrash2 className="text-base" />
-            </button>
-          </Popconfirm>
-        </Tooltip>
-      </div>
-
-      <div>
-        <Modal
-          title={<h4 className="uppercase text-lg">Update Tag</h4>}
-          centered
-          open={isModalOpen}
-          onCancel={showModal}
-          width={825}
-          styles={{
-            body: {
-              fontSize: "1.5rem",
-            },
-          }}
-          footer={false}
-        >
-          <Formik
-            initialValues={
-              singleTag ?? {
-                name: "",
-                slug: "",
-                description: "",
-              }
-            }
-            enableReinitialize
-            validationSchema={tagSchema}
-            onSubmit={(values) => {
-              createHandler(values);
-            }}
-          >
-            {({ handleSubmit, isSubmitting, values }) => (
-              <Form>
-                <div className="grid gap-5 mt-5">
-                  <div>
-                    <div className="grid grid-cols-1 gap-x-8 gap-y-5">
-                      <div className="col-span-1">
-                        <label
-                          htmlFor="name"
-                          className="text-base font-semibold text-gray-600"
-                        >
-                          Name <span className="text-danger">*</span>
-                        </label>
-                        <div>
-                          <Field
-                            type="text"
-                            name="name"
-                            id="name"
-                            placeholder="Add name"
-                            className="border rounded px-3 py-2 text-base w-full focus:outline-none focus:border-blue-200"
-                            value={values?.name || ""}
-                          />
-                          <ErrorMessage
-                            name="name"
-                            component="div"
-                            className="error text-red-500 text-xs mt-1"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col-span-1">
-                        <label
-                          htmlFor="slug"
-                          className="text-base font-semibold text-gray-600"
-                        >
-                          Slug
-                        </label>
-                        <div>
-                          <Field
-                            type="text"
-                            name="slug"
-                            id="slug"
-                            placeholder="Enter slug"
-                            className="border rounded px-3 py-2 text-base w-full focus:outline-none focus:border-blue-200"
-                            value={values?.slug}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col-span-1">
-                        <label
-                          htmlFor="description"
-                          className="text-base font-semibold text-gray-600"
-                        >
-                          Description
-                        </label>
-                        <div>
-                          <Field
-                            type="text"
-                            name="description"
-                            id="description"
-                            placeholder="Type here"
-                            as="textarea"
-                            className="border rounded py-3 px-2 text-base w-full focus:outline-none focus:border-blue-200"
-                            value={values?.description}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="flex gap-2 items-center justify-end">
-                        <button
-                          onClick={showModal}
-                          className="uppercase font-medium text-base bg-[#E5E7EB] w-max py-2 px-4 text-slate-900 rounded-md"
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          className="uppercase font-medium text-base bg-[#F0614A] hover:hover:bg-[#F0614A]/90 w-max px-4 py-2 rounded-md text-white hover:text-white/90"
-                          type="submit"
-                          disabled={isSubmitting}
-                          onClick={
-                            handleSubmit as unknown as MouseEventHandler<HTMLButtonElement>
-                          }
-                        >
-                          Update Tag
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </Modal>
-      </div>
-
-      <Formik
-        initialValues={{
-          categoryFrom: record.id,
-          categoryTo: "",
-          isDestroy: false,
-        }}
-        enableReinitialize={true}
-        validationSchema={Yup.object().shape({
-          categoryTo: Yup.string().required("Category to is required"),
-        })}
-        onSubmit={(values: any, { resetForm }) => {
-          moveHandler(values);
-        }}
-      >
-        {({ handleSubmit, setFieldValue, errors, values, touched }: any) => (
-          <Form>
-            <Modal
-              title="News move to another category"
-              style={{ top: 100 }}
-              open={moveModal}
-              // onOk={() => <button className="bg-danger">On</button>}
-              onCancel={() => setMoveModal(false)}
-              footer={
-                <div className="flex justify-end items-center gap-2">
-                  <button
-                    onClick={() => setMoveModal(false)}
-                    className="border rounded px-4 py-[4px] "
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleSubmit}
-                    type="submit"
-                    className="bg-[#0b3a5d] rounded px-4 py-[4px] text-white"
-                  >
-                    Move News
-                  </button>
-                </div>
-              }
-            >
-              <div className="border-t pt-3 flex flex-col gap-2">
-                <div>
-                  <p>
-                    <span className="font-bold">From :</span> {record?.title}
-                  </p>
-                </div>
-                <div className="flex items-center gap-6">
-                  <p className=" font-bold">To:</p>
-
-                  <div className="w-full">
-                    <Select
-                      showSearch
-                      placeholder="Select a category"
-                      className="w-full"
-                      optionFilterProp="children"
-                      onChange={(val) => setFieldValue("categoryTo", val)}
-                      onSearch={(searchVal) => setKeyword(searchVal)}
-                      filterOption={(input: any, option: any) =>
-                        (option?.label ?? "")
-                          .toLowerCase()
-                          .includes(input.toLowerCase())
-                      }
-                      options={categoryArray}
-                    />
-                    {errors?.categoryTo && touched?.categoryTo ? (
-                      <div className="error">{errors?.categoryTo}</div>
-                    ) : null}
-                    <Checkbox
-                      className="mt-1"
-                      onChange={(e) =>
-                        setFieldValue("isDestroy", e.target.checked)
-                      }
-                    >
-                      <span>Move news and delete exsting category</span>
-                    </Checkbox>
-                  </div>
-                </div>
-              </div>
-            </Modal>
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
-};
-
-export default TagsAction;
-
-
-// topic list index
-
-"use client";
 import { generateQueryString } from "@/helpers/utils";
-import { Form, Modal, Table, message } from "antd";
-import { TablePaginationConfig, TableProps } from "antd/es/table";
-import React, { MouseEventHandler, useState } from "react";
-import * as Yup from "yup";
+import { Button, Form, Modal, Select, Spin, Table, Tooltip } from "antd";
+import { TableProps } from "antd/es/table";
+import React, { useState } from "react";
+import CategoryAction from "../@components/action_column";
 import PageHeader from "@/modules/@common/page_header";
-import {
-  useCreateTagMutation,
-  useGetAllTagQuery,
-} from "@/appstore/news/tag/tag_api";
-import TagsAction from "../@components/action_column";
+import { useGetAllCategoriesQuery } from "@/appstore/news/category/category_api";
 import SearchComponent from "@/modules/@common/search";
 import { ErrorMessage, Field, Formik, FormikValues } from "formik";
 import clsx from "clsx";
 
-const tagSchema = Yup.object({
+const categorySchema = Yup.object({
   name: Yup.string().required("Required"),
   slug: Yup.string(),
+  parentCategory: Yup.number(),
   description: Yup.string(),
 });
 
-const initialTagDes = {
+const initialCategory = {
   name: "",
   slug: "",
+  parentCategory: null,
   description: "",
 };
 
-interface Tag {
+interface Category {
   id: number;
   title: string;
   slug: string;
+  parentId: number | null;
   featuredImage: string;
   content: string;
+  count: number;
+  positionOrder: number;
   status: string;
   searchKeyword: string;
-  metaTitle: string;
+  metaTitle: string | null;
   metaKeyword: string;
-  metaDescription: string;
+  metaDescription: string | null;
   createdById: number;
   updatedById: string | null;
   createdAt: string;
-  updatedAt: string;
+  updatedAt: string | null;
   deletedAt: string | null;
+  parent: number | null;
 }
 
-interface TagDashboardListProps {
-  data: Tag[];
+interface CategoryDashboardListProps {
+  data: Category[];
   totalCount: number;
   currentPage: number;
   perPage: number;
 }
 
 // response coming from the API
-const tagDashboardList: TagDashboardListProps = {
+const categoryDashboardList: CategoryDashboardListProps = {
   data: [
     {
-      id: 1,
-      title: "sports",
-      slug: "sports",
-      featuredImage:
-        "https://images.prothomalo.com/prothomalo-bangla%2F2023-09%2F2194b699-8794-4129-aab1-796c3f74e71b%2F095954_DH0768_20230902__SK_4461.jpg",
-      content: "sports",
+      id: 5,
+      title: "Test",
+      slug: "test",
+      parentId: null,
+      featuredImage: "",
+      content: "football news 2024",
+      count: 8,
+      positionOrder: 999,
       status: "ACTIVE",
-      searchKeyword: "best sports",
-      metaTitle: "best sports",
-      metaKeyword: "best,sports",
-      metaDescription: "best sports",
+      searchKeyword: "",
+      metaTitle: null,
+      metaKeyword: "",
+      metaDescription: null,
       createdById: 2,
       updatedById: null,
-      createdAt: "2024-02-07T09:09:49.327Z",
-      updatedAt: "2024-02-07T09:09:49.327Z",
+      createdAt: "2024-02-06T18:56:31.051Z",
+      updatedAt: "2024-02-06T18:56:31.051Z",
       deletedAt: null,
+      parent: null,
     },
   ],
   totalCount: 1,
@@ -851,18 +321,19 @@ const tagDashboardList: TagDashboardListProps = {
   perPage: 1,
 };
 
-const TagsList = () => {
+const CategoriesList = () => {
   const [keyword, setKeyword] = useState("");
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-  const [ids, setIds] = useState<number[]>([]);
+  const [ids, setIds] = useState([]);
   const [moreKeyword, setmoreKeyword] = useState<string[]>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isTrash, setIsTrash] = useState<any>(false);
-  const [isTagModalOpen, setIsTagModalOpen] = useState(false);
 
-  const handleTagModal = () => {
-    setIsTagModalOpen(!isTagModalOpen);
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
+
+  const handleCategoryModal = () => {
+    setIsCategoryModalOpen(!isCategoryModalOpen);
   };
 
   const queryParams = {
@@ -873,14 +344,14 @@ const TagsList = () => {
     isTrash,
   };
   const queryString = generateQueryString(queryParams);
-  const { data, isFetching, refetch } = useGetAllTagQuery({
+  const { data, isFetching } = useGetAllCategoriesQuery({
     queryString,
     isTrash,
   });
   console.log(data);
 
   const showModal = () => {
-    setIsModalOpen(!isModalOpen);
+    setIsModalOpen(true);
   };
 
   const handleCancel = () => {
@@ -888,121 +359,118 @@ const TagsList = () => {
   };
 
   //  Pagination
-  const paginationOptions: TablePaginationConfig = {
+  const paginationOptions = {
     showSizeChanger: true,
     showQuickJumper: true,
     defaultPageSize: limit,
     current: page,
-    onChange: (page) => {
+    onChange: (page: any) => {
       setPage(page);
     },
-    onShowSizeChange: (_, showItem) => {
+    onShowSizeChange: (_: any, showItem: any) => {
       setLimit(showItem);
     },
     pageSizeOptions: [10, 20, 30, 50],
-    total: data?.totalCount,
-    showTotal: (total, range) => `${range[0]} to ${range[1]} of ${total}`,
+    total: data?.meta?.total,
+    showTotal: (total: number, range: any) =>
+      `${range[0]} to ${range[1]} of ${total}`,
   };
 
-  const columns: TableProps<TagDashboardListProps["data"][0]>["columns"] = [
-    {
-      title: "Name",
-      dataIndex: "tag-name",
-      key: "tag-name",
-      width: "20%",
-      render: (_, record) => {
-        return (
-          <div className="flex flex-wrap">
-            <p className="text-[14px] mb-0">{record.title}</p>
-          </div>
-        );
+  const columns: TableProps<CategoryDashboardListProps["data"][0]>["columns"] =
+    [
+      {
+        title: "Name",
+        dataIndex: "category-name",
+        key: "category-name",
+        width: "20%",
+        render: (_, record) => {
+          return (
+            <div className="flex flex-wrap">
+              <p className="text-[14px] mb-0">{record.title}</p>
+            </div>
+          );
+        },
       },
-    },
-    {
-      title: "Description",
-      dataIndex: "tag-description",
-      key: "tag-description",
-      width: "40%",
-      render: (_, record) => {
-        return (
-          <div className="flex flex-wrap">
-            <p className="text-[14px] mb-0">{record.content}</p>
-          </div>
-        );
+      {
+        title: "Description",
+        dataIndex: "category-description",
+        key: "category-description",
+        width: "40%",
+        render: (_, record) => {
+          return (
+            <div className="flex flex-wrap">
+              <p className="text-[14px] mb-0">{record.content}</p>
+            </div>
+          );
+        },
       },
-    },
-    {
-      title: "Slug",
-      dataIndex: "tag-slug",
-      key: "tag-slug",
-      width: "20%",
-      render: (_, record) => {
-        return (
-          <div className="inline-flex items-center gap-8 cursor-pointer">
-            {record?.slug}
-          </div>
-        );
+      {
+        title: "Slug",
+        dataIndex: "category-slug",
+        key: "category-slug",
+        width: "20%",
+        render: (_, record) => {
+          return (
+            <div className="inline-flex items-center gap-8 cursor-pointer">
+              {record?.slug}
+            </div>
+          );
+        },
       },
-    },
-    {
-      title: "News Count",
-      dataIndex: "news-count",
-      key: "news-count",
-      width: "10%",
-      render: (_, record) => {
-        return (
-          <div className="flex flex-wrap">
-            {/* count isn't available in the API */}
-            <p className="text-[14px] mb-0">8</p>
-          </div>
-        );
+      {
+        title: "News Count",
+        dataIndex: "news-count",
+        key: "news-count",
+        width: "10%",
+        render: (_, record) => {
+          return (
+            <div className="flex flex-wrap">
+              {/* count isn't available in the API */}
+              <p className="text-[14px] mb-0">0</p>
+            </div>
+          );
+        },
       },
-    },
-    {
-      title: "Actions",
-      dataIndex: "actions",
-      key: "actions",
-      align: "right",
-      width: "10%",
-      render: (_, record) => <TagsAction isTrash={isTrash} record={record} />,
-    },
-  ];
-
+      {
+        title: "Actions",
+        dataIndex: "actions",
+        key: "actions",
+        align: "right",
+        width: "10%",
+        render: (_, record) => (
+          <CategoryAction
+            handleModal={handleCategoryModal}
+            isTrash={isTrash}
+            record={record}
+          />
+        ),
+      },
+    ];
   const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: Tag[]) => {
-      const getId = selectedRows?.map((item) => item.id);
+    onChange: (selectedRowKeys: React.Key[], selectedRows: Category[]) => {
+      const getId: any = selectedRows?.map((item) => item.id);
       setIds(getId);
     },
   };
 
-  const [create, { isLoading }] = useCreateTagMutation();
-
   const createHandler = async (values: FormikValues) => {
     const data = {
-      title: values?.name,
+      name: values?.name,
       slug: values?.slug,
-      content: values?.description,
-      featuredImage: values?.featuredImage,
-      status: values?.status,
-      searchKeyword: values?.searchKeywords,
-      metaTitle: values?.metaTitle,
-      metaKeyword: values?.metaKeyword,
-      metaDescription: values?.metaDescription,
+      parentCategory: values?.parentCategory,
+      description: values?.description,
     };
 
-    try {
-      const payload = await create(data).unwrap();
+    console.log(data);
+  };
 
-      if (payload.id) {
-        message.success("Topic created successfully");
-        setIsTagModalOpen(false);
-        refetch();
-      }
-    } catch (error) {
-      if (typeof error === "object" && "message" in error!) {
-        message.error("Sorry! Something went wrong!");
-      }
-    }
+  const singleLoading = false;
+
+  const singleCategory = {
+    name: "sports",
+    slug: "sports",
+    parentId: 3,
+    description: "Best sports news you'll find here.",
   };
 
   return (
@@ -1010,13 +478,12 @@ const TagsList = () => {
       <PageHeader
         breadcrumbsData={[
           { title: "Admin", link: "/user/admin" },
-          { title: "Topics" },
+          { title: "Categories" },
         ]}
-        title="Topics"
-        btnTitle="Add Topics"
+        title="Categories"
+        btnTitle="Add Category"
+        btnLink={"/user/admin/categories/add"}
         setKeyword={setKeyword}
-        hasModal
-        handleModal={handleTagModal}
       />
 
       <div className="flex justify-between items-center my-4 gap-[10px]">
@@ -1050,7 +517,7 @@ const TagsList = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <SearchComponent setKeyword={setKeyword} searchType="Topics" />
+          <SearchComponent setKeyword={setKeyword} searchType="Category" />
         </div>
       </div>
 
@@ -1066,10 +533,14 @@ const TagsList = () => {
 
       <div>
         <Modal
-          title={<h4 className="uppercase text-lg">Add New Tag</h4>}
+          title={
+            <h4 className="uppercase text-lg">
+              {false ? "Update" : "Add New"} Category
+            </h4>
+          }
           centered
-          open={isTagModalOpen}
-          onCancel={() => setIsTagModalOpen(!isTagModalOpen)}
+          open={isCategoryModalOpen}
+          onCancel={() => setIsCategoryModalOpen(!isCategoryModalOpen)}
           width={825}
           styles={{
             body: {
@@ -1079,99 +550,134 @@ const TagsList = () => {
           footer={false}
         >
           <Formik
-            initialValues={initialTagDes}
+            initialValues={singleCategory ?? initialCategory}
             enableReinitialize
-            validationSchema={tagSchema}
+            validationSchema={categorySchema}
             onSubmit={(values) => {
               createHandler(values);
             }}
           >
-            {({ handleSubmit, isSubmitting }) => (
+            {({ setFieldValue, values }) => (
               <Form>
-                <div className="grid gap-5 mt-5">
-                  <div>
-                    <div className="grid grid-cols-1 gap-x-8 gap-y-5">
-                      <div className="col-span-1">
-                        <label
-                          htmlFor="name"
-                          className="text-base font-semibold text-gray-600"
-                        >
-                          Name <span className="text-danger">*</span>
-                        </label>
-                        <div>
-                          <Field
-                            type="text"
-                            name="name"
-                            id="name"
-                            placeholder="Add name"
-                            className="border rounded px-3 py-2 text-base w-full focus:outline-none focus:border-blue-200"
-                          />
-                          <ErrorMessage
-                            name="name"
-                            component="div"
-                            className="error text-red-500 text-xs mt-1"
-                          />
+                {!singleLoading ? (
+                  <div className="grid gap-5 mt-5">
+                    <div>
+                      <div className="grid grid-cols-1 gap-x-8 gap-y-5">
+                        <div className="col-span-1">
+                          <label
+                            htmlFor="name"
+                            className="text-base font-semibold text-gray-600"
+                          >
+                            Name <span className="text-danger">*</span>
+                          </label>
+                          <div>
+                            <Field
+                              type="text"
+                              name="name"
+                              id="name"
+                              placeholder="Add name"
+                              className="border rounded px-3 py-2 text-base w-full focus:outline-none focus:border-blue-200"
+                            />
+                            <ErrorMessage
+                              name="name"
+                              component="div"
+                              className="error text-red-500 text-xs mt-1"
+                            />
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="col-span-1">
-                        <label
-                          htmlFor="slug"
-                          className="text-base font-semibold text-gray-600"
-                        >
-                          Slug
-                        </label>
-                        <div>
-                          <Field
-                            type="text"
-                            name="slug"
-                            id="slug"
-                            placeholder="Enter slug"
-                            className="border rounded px-3 py-2 text-base w-full focus:outline-none focus:border-blue-200"
-                          />
+                        <div className="col-span-1">
+                          <label
+                            htmlFor="slug"
+                            className="text-base font-semibold text-gray-600"
+                          >
+                            Slug
+                          </label>
+                          <div>
+                            <Field
+                              type="text"
+                              name="slug"
+                              id="slug"
+                              placeholder="Enter slug"
+                              className="border rounded px-3 py-2 text-base w-full focus:outline-none focus:border-blue-200"
+                            />
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="col-span-1">
-                        <label
-                          htmlFor="description"
-                          className="text-base font-semibold text-gray-600"
-                        >
-                          Description
-                        </label>
-                        <div>
-                          <Field
-                            type="text"
-                            name="description"
-                            id="description"
-                            placeholder="Type here"
-                            as="textarea"
-                            className="border rounded py-3 px-2 text-base w-full focus:outline-none focus:border-blue-200"
-                          />
+                        <div className="col-span-1">
+                          <label
+                            htmlFor="parentCategory"
+                            className="text-base font-semibold text-gray-600"
+                          >
+                            Parent Category
+                          </label>
+                          <div>
+                            <Select
+                              size="large"
+                              defaultValue="Bulk Action"
+                              style={{ width: "100%" }}
+                              className="hover:!border-gray-300"
+                              placeholder="Select"
+                              onChange={(val) =>
+                                setFieldValue("parentCategory", val)
+                              }
+                              options={[
+                                {
+                                  value: "Bulk Action",
+                                  label: "Bulk Action",
+                                },
+                                { value: "lucy", label: "Lucy" },
+                                { value: "Yiminghe", label: "yiminghe" },
+                              ]}
+                            />
+                            <ErrorMessage
+                              name="parentCategory"
+                              component="div"
+                            />
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="flex gap-2 items-center justify-end">
-                        <button
-                          onClick={handleTagModal}
-                          className="uppercase font-medium text-base bg-[#E5E7EB] w-max py-2 px-4 text-slate-900 rounded-md"
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          className="uppercase font-medium text-base bg-[#F0614A] hover:hover:bg-[#F0614A]/90 w-max px-4 py-2 rounded-md text-white hover:text-white/90"
-                          type="submit"
-                          disabled={isSubmitting || isLoading}
-                          onClick={
-                            handleSubmit as unknown as MouseEventHandler<HTMLButtonElement>
-                          }
-                        >
-                          Add Tag
-                        </button>
+                        <div className="col-span-1">
+                          <label
+                            htmlFor="description"
+                            className="text-base font-semibold text-gray-600"
+                          >
+                            Description
+                          </label>
+                          <div>
+                            <Field
+                              type="text"
+                              name="description"
+                              id="description"
+                              as="textarea"
+                              placeholder="Type here"
+                              className="border rounded py-3 px-2 text-base w-full focus:outline-none focus:border-blue-200"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="flex gap-2 items-center justify-end">
+                          <button
+                            onClick={handleCategoryModal}
+                            className="uppercase font-medium text-base bg-[#E5E7EB] w-max py-2 px-4 text-slate-900 rounded-md"
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            className="uppercase font-medium text-base bg-[#F0614A] hover:hover:bg-[#F0614A]/90 w-max px-4 py-2 rounded-md text-white hover:text-white/90"
+                            type="submit"
+                          >
+                            Add Category
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="min-h-[100vh] flex justify-center items-center">
+                    <Spin className="large" />
+                  </div>
+                )}
               </Form>
             )}
           </Formik>
@@ -1182,7 +688,7 @@ const TagsList = () => {
         <Modal
           title={
             <div className="flex items-center gap-2 px-6 py-4 border-b">
-              <span>Search Keywords</span>
+              <span>Search Keyword</span>
             </div>
           }
           open={isModalOpen}
@@ -1216,6 +722,5 @@ const TagsList = () => {
   );
 };
 
-export default TagsList;
-
+export default CategoriesList;
 
