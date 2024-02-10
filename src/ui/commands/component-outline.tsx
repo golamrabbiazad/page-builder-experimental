@@ -10,7 +10,12 @@ export function ComponentOutline({ commandId }: { commandId: string }) {
   };
 
   return (
-    <Button type="primary" size="small" onClick={handleClick}>
+    <Button
+      aria-label="full screen mode"
+      type="primary"
+      size="small"
+      onClick={handleClick}
+    >
       <i className="fa-solid fa-expand fa-sm" />
     </Button>
   );

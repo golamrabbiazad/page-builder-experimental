@@ -21,7 +21,13 @@ export function Topbar({ showDrawer }: { showDrawer: () => void }) {
     >
       <Flex>
         <a href="/">
-          <img src="/assets/logo/editor.svg" alt="m4yours editor" />
+          <img
+            src="/assets/logo/editor.svg"
+            alt="m4yours editor"
+            loading="lazy"
+            height="18px"
+            width="125px"
+          />
         </a>
 
         <Badge
