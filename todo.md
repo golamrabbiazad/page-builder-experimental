@@ -2,7 +2,28 @@
 
 All work(bugs, fixes, features) for this page builder.
 
+## News Portal Admin
+
+- perf: Admin Dashboard super fast, previous admin dashboard rendered time 22s, now ~1.1 - 1.7s (Huge perfomance wins)
+- perf: navigate links between pages instant (Huge UX)
+- feat: dashboard, categories, topics, reporters, admin pages with typesafe codebase and UI.
+- searchbar.
+- ...bug fixes
+
+- fix: responsive dashboard mobile menu (todo)
+
+- suggestion: fonts and sizes which is in the newsportal folder.
+
 ## Priorities
+
+- fix image upload locally.
+- temporary remove online store, implement offline storage.
+- implement radix UI and tailwindCSS.
+- row block and add sections is same layout.
+- after blocks dropped customize menu should open.
+- for heading block, default text heading, and can changeable to heading type for ex, h1, h2, h3, h4, h5.
+
+- customize existing layout stucture.
 
 - feat: add text alignment to position of that text.
 - fix: double click to insert image not works because of the server can't store the image rtn. This may works if we can interact with real db.
