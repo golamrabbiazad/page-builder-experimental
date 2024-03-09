@@ -4,16 +4,14 @@ import PageBuilder from "./editor/page-builder";
 const config: ThemeConfig = {
   cssVar: true,
   token: {
-    colorPrimary: "#8CC665",
+    colorPrimary: "#4d842c",
     borderRadius: 0,
     borderRadiusLG: 0,
-    colorText: "#fff",
-    colorTextBase: "#000",
   },
   components: {
     Tabs: {
-      colorText: "#fff",
-      colorBorderBg: "#8CC665",
+      colorPrimary: "#a4d581",
+      colorText: "#f2f9ec",
     },
   },
 

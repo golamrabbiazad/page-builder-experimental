@@ -43,6 +43,7 @@ export function DiscardButton() {
             Commands.run("core:canvas-clear");
             openNotification("bottom");
           }}
+          aria-label="Discard Button"
         >
           Discard
         </Button>

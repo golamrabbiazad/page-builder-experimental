@@ -20,7 +20,12 @@ export function Preview() {
 
   return (
     <Tooltip title="Preview">
-      <Button size="small" type="text" onClick={handleClick}>
+      <Button
+        size="small"
+        type="text"
+        onClick={handleClick}
+        aria-label="Preview Button"
+      >
         <i className="cursor-pointer fa-solid fa-eye" />
       </Button>
     </Tooltip>

@@ -28,6 +28,7 @@ export function SaveToast() {
           Commands.run("core:save");
           openNotification("bottom");
         }}
+        aria-label="Save Button"
       >
         Save
       </Button>

@@ -48,6 +48,7 @@ export function UndoTask() {
         type="text"
         onClick={() => toggleCommand(editor, UNDO_COMMAND_ID)}
         disabled={isUndoDisabled()}
+        aria-label="Undo Button"
       >
         <i
           style={undoButtonStyle}

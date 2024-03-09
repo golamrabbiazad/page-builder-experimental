@@ -1,0 +1,2 @@
+user-agent: *
+sitemap: https://m4yours-page-builder.pages.dev/sitemap.xml

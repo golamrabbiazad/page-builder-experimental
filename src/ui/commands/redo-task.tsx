@@ -48,6 +48,7 @@ export function RedoTask() {
         type="text"
         onClick={() => toggleCommand(editor, REDO_COMMAND_ID)}
         disabled={isRedoDisabled()}
+        aria-label="Redo Button"
       >
         <i
           style={undoButtonStyle}

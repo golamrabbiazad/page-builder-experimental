@@ -13,6 +13,7 @@ export function CodePreview() {
         type="text"
         size="small"
         onClick={() => toggleCommand(editor, OPEN_CODE_COMMAND_ID)}
+        aria-label="Code Show Button"
       >
         <i className="fa-solid fa-code" />
       </Button>
