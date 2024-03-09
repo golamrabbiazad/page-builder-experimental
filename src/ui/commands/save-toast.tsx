@@ -12,8 +12,7 @@ export function SaveToast() {
 
   const openNotification = (placement: NotificaitonPlacement) => {
     api.info({
-      message: `Hello,`,
-      description: "Your changes are saved!",
+      message: `Your changes are saved!`,
       placement,
       duration: 0,
     });
@@ -24,10 +23,10 @@ export function SaveToast() {
       {contextHolder}
       <Button
         type="primary"
-        size="large"
+        size="middle"
         onClick={() => {
           Commands.run("core:save");
-          openNotification("bottomRight");
+          openNotification("bottom");
         }}
       >
         Save

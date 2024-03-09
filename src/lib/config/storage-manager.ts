@@ -1,18 +1,17 @@
 import { StorageManagerConfig } from "grapesjs";
-import { newsId, remoteStorageConfigs } from "./remote-storage";
+
+const projectId = 1;
 
 export const storageManagerConfig: StorageManagerConfig = {
-  type: "remote",
-  autoload: false,
+  type: "local",
+  autoload: true,
   autosave: false,
   stepsBeforeSave: 10,
 
   options: {
     local: {
-      key: `gjsProject-${newsId}`,
+      key: `m4yours-projectId-${projectId}`,
       checkLocal: true,
     },
-
-    remote: remoteStorageConfigs,
   },
 };

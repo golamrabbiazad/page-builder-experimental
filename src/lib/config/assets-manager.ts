@@ -1,6 +1,7 @@
 import { AssetManagerConfig } from "grapesjs";
+import ImageAssets from "./image-assets.json";
 
 export const assetsManagerConfig: AssetManagerConfig = {
-  multiUpload: true,
-  upload: "http://localhost:5173/api/v1/upload/assets",
+  assets: ImageAssets,
+  upload: false,
 };

@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 import { useEditor } from "@grapesjs/react";
 import { useCallback, useEffect, useState } from "react";
 import { toggleCommand } from "@/lib/utils";
@@ -43,15 +43,17 @@ export function UndoTask() {
   };
 
   return (
-    <Button
-      type="text"
-      onClick={() => toggleCommand(editor, UNDO_COMMAND_ID)}
-      disabled={isUndoDisabled()}
-    >
-      <i
-        style={undoButtonStyle}
-        className="cursor-pointer fa-solid fa-arrow-left"
-      />
-    </Button>
+    <Tooltip title="Undo">
+      <Button
+        type="text"
+        onClick={() => toggleCommand(editor, UNDO_COMMAND_ID)}
+        disabled={isUndoDisabled()}
+      >
+        <i
+          style={undoButtonStyle}
+          className="cursor-pointer fa-solid fa-undo"
+        />
+      </Button>
+    </Tooltip>
   );
 }

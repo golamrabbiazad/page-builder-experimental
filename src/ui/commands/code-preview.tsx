@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 import { useEditor } from "@grapesjs/react";
 import { toggleCommand } from "@/lib/utils";
 
@@ -8,13 +8,14 @@ export function CodePreview() {
   const OPEN_CODE_COMMAND_ID = "core:open-code";
 
   return (
-    <Button
-      type="primary"
-      size="small"
-      onClick={() => toggleCommand(editor, OPEN_CODE_COMMAND_ID)}
-    >
-      <i style={{ marginRight: "0.5rem" }} className="fa-solid fa-code fa-sm" />{" "}
-      Code
-    </Button>
+    <Tooltip title="Show Code">
+      <Button
+        type="text"
+        size="small"
+        onClick={() => toggleCommand(editor, OPEN_CODE_COMMAND_ID)}
+      >
+        <i className="fa-solid fa-code" />
+      </Button>
+    </Tooltip>
   );
 }

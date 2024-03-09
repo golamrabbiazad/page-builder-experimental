@@ -1,7 +1,7 @@
 import { toggleCommand } from "@/lib/utils";
 import { useEditor } from "@grapesjs/react";
 
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 
 export function Preview() {
   const editor = useEditor();
@@ -19,8 +19,10 @@ export function Preview() {
   };
 
   return (
-    <Button size="small" type="primary" onClick={handleClick}>
-      Preview
-    </Button>
+    <Tooltip title="Preview">
+      <Button size="small" type="text" onClick={handleClick}>
+        <i className="cursor-pointer fa-solid fa-eye" />
+      </Button>
+    </Tooltip>
   );
 }

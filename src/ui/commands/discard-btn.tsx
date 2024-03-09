@@ -36,11 +36,12 @@ export function DiscardButton() {
         onOpenChange={() => console.log("open change")}
       >
         <Button
-          type="text"
+          type="default"
           block
+          size="middle"
           onClick={() => {
             Commands.run("core:canvas-clear");
-            openNotification("bottomRight");
+            openNotification("bottom");
           }}
         >
           Discard

@@ -15,8 +15,8 @@
     "grapesjs": "^0.21.8",
     "grapesjs-blocks-basic": "^1.0.2",
     "million": "latest",
-    "react": "^18.3.0-canary-2f8f77602-20240229",
-    "react-dom": "^18.3.0-canary-2f8f77602-20240229"
+    "react": "^18.3.0-canary-338dddc08-20240307",
+    "react-dom": "^18.3.0-canary-338dddc08-20240307"
   },
   "devDependencies": {
     "@types/node": "^20",

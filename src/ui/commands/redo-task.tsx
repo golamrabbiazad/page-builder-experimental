@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 import { useEditor } from "@grapesjs/react";
 import { useCallback, useEffect, useState } from "react";
 import { toggleCommand } from "@/lib/utils";
@@ -43,15 +43,17 @@ export function RedoTask() {
   };
 
   return (
-    <Button
-      type="text"
-      onClick={() => toggleCommand(editor, REDO_COMMAND_ID)}
-      disabled={isRedoDisabled()}
-    >
-      <i
-        style={undoButtonStyle}
-        className="cursor-pointer fa-solid fa-arrow-right"
-      />
-    </Button>
+    <Tooltip title="Redo">
+      <Button
+        type="text"
+        onClick={() => toggleCommand(editor, REDO_COMMAND_ID)}
+        disabled={isRedoDisabled()}
+      >
+        <i
+          style={undoButtonStyle}
+          className="cursor-pointer fa-solid fa-redo"
+        />
+      </Button>
+    </Tooltip>
   );
 }

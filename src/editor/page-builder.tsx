@@ -1,5 +1,4 @@
 import { Flex } from "antd";
-import { useState } from "react";
 import { Editor } from "grapesjs";
 import GrapesJsEditor, {
   Canvas,
@@ -12,12 +11,6 @@ import { RightSidebar } from "@/ui/home/sidebar/rightside-bar";
 import { editorConfig } from "@/lib/config";
 
 export default function PageBuilder(props: Partial<EditorProps>) {
-  const [open, setOpen] = useState(false);
-
-  const showDrawer = () => {
-    setOpen(!open);
-  };
-
   function onEditor(editor: Editor) {
     editor.Commands.run("core:component-outline");
   }
@@ -31,7 +24,7 @@ export default function PageBuilder(props: Partial<EditorProps>) {
           flexDirection: "column",
         }}
       >
-        <Topbar showDrawer={showDrawer} />
+        <Topbar />
         <Flex
           style={{
             flexDirection: "row",
@@ -45,7 +38,8 @@ export default function PageBuilder(props: Partial<EditorProps>) {
               backgroundColor: "black",
             }}
           />
-          {open && <RightSidebar />}
+
+          <RightSidebar />
         </Flex>
       </Flex>
 

@@ -10,12 +10,6 @@ import { CSSICONS, TAILWINDCSS_SCRIPT } from "@/lib/external-urls";
 export const editorOptions: EditorConfig = {
   storageManager: storageManagerConfig,
   assetManager: assetsManagerConfig,
-  undoManager: {
-    trackSelection: false,
-  },
-  selectorManager: {
-    componentFirst: true,
-  },
   cssIcons: CSSICONS,
   canvas: {
     scripts: [TAILWINDCSS_SCRIPT],
