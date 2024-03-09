@@ -1,5 +1,5 @@
 import { BlocksResultProps } from "@grapesjs/react";
-import { Card, Flex, Input } from "antd";
+import { Card, Flex } from "antd";
 import styles from "./blocks.module.css";
 
 export type BlockManagerProps = Pick<
@@ -22,12 +22,6 @@ export function BlockManager({
 
   return (
     <div>
-      <Input
-        className={styles.searchBlockComponent}
-        type="text"
-        variant="borderless"
-        placeholder="Search for a block (e.g numbers, image wall, ...)"
-      />
       {restTemplates.map(([category, blocks]) => (
         <div key={category} className={styles.blockCategory__container}>
           <h2 className={styles.blockCategory__header}>{category}</h2>

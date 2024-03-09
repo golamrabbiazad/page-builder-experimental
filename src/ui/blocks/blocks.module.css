@@ -1,14 +1,14 @@
 /* search components */
 
 .searchBlockComponent {
-  color: white;
+  color: #f2f9ec;
   background-color: #1f1f29;
   padding: 1rem;
   font-size: 1rem;
 }
 
 .searchBlockComponent::placeholder {
-  color: white;
+  color: "#f2f9ec";
   font-style: italic;
 }
 
