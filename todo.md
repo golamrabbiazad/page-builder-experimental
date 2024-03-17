@@ -117,3 +117,46 @@ All work(bugs, fixes, features) for this page builder.
 - need more video gallery news.
 - in video gallery details page social media icons are not same. need same size.
 - in details page, comments section need attention.
+
+
+## unique id for menus
+
+- nanoid for categories, tags, and custom links, { id: nanoId, ...props}
+
+
+https://browserinc.notion.site/Getting-Started-with-Arc-for-Windows-145ece36acbb40f381ce1817747cb7ca
+
+https://releases.arc.net/windows/prod/Arc.appinstaller
+
+## Arc Browser
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<AppInstaller
+    Uri="https://releases.arc.net/windows/prod/Arc.appinstaller"
+    Version="0.13.1.15859" xmlns="http://schemas.microsoft.com/appx/appinstaller/2018">
+    <MainPackage
+        Name="TheBrowserCompany.Arc"
+        Version="0.13.1.15859"
+        Publisher="E=hello@thebrowser.company, CN=THE BROWSER COMPANY OF NEW YORK INC., O=THE BROWSER COMPANY OF NEW YORK INC., STREET=295 LAFAYETTE STREET, L=New York, S=New York, C=US, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US, SERIALNUMBER=7571542, OID.2.5.4.15=Private Organization"
+        Uri="https://releases.arc.net/windows/prod/0.13.1.15859/Arc.x64.msix"
+        ProcessorArchitecture="x64" />
+    <Dependencies>
+        <Package
+            Name="Microsoft.WindowsAppRuntime.1.4"
+            Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+            ProcessorArchitecture="x64"
+            Uri="https://releases.arc.net/windows/dependencies/x64/Microsoft.WindowsAppRuntime.1.4.4000.1136.2333.0.msix"
+            Version="4000.1136.2333.0" />
+        <Package
+            Name="Microsoft.VCLibs.140.00.UWPDesktop"
+            Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+            ProcessorArchitecture="x64"
+
+            Uri="https://releases.arc.net/windows/dependencies/x64/Microsoft.VCLibs.x64.14.00.Desktop.14.0.30704.0.appx"
+            Version="14.0.30704.0" />
+    </Dependencies>
+</AppInstaller>
+
+```
