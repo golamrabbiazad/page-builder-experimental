@@ -1,7 +1,7 @@
 {
-  "name": "ts-grapejs-react",
+  "name": "m4yours-page-builder",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.2.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,22 +12,22 @@
   "dependencies": {
     "@grapesjs/react": "^1.0.0",
     "antd": "^5",
-    "grapesjs": "^0.21.8",
+    "grapesjs": "^0.21.9",
     "grapesjs-blocks-basic": "^1.0.2",
     "million": "latest",
-    "react": "^18.3.0-canary-338dddc08-20240307",
-    "react-dom": "^18.3.0-canary-338dddc08-20240307"
+    "react": "^19.0.0-canary-a73c3450e-20240329",
+    "react-dom": "^19.0.0-canary-a73c3450e-20240329"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@typescript-eslint/eslint-plugin": "^6",
-    "@typescript-eslint/parser": "^6",
+    "@typescript-eslint/eslint-plugin": "^7",
+    "@typescript-eslint/parser": "^7",
     "@vitejs/plugin-react-swc": "^3",
     "eslint": "^8",
     "eslint-plugin-react-hooks": "^4",
-    "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5",
     "vite": "^5"
   }

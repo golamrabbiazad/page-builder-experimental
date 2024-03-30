@@ -10,6 +10,7 @@ import {
   SaveToast,
 } from "@/ui/commands";
 import styles from "./topbar.module.css";
+import { Image } from "antd";
 
 const EDITOR_STATUS = "Expermental";
 
@@ -24,11 +25,12 @@ export function Topbar() {
       }}
     >
       <Flex>
-        <a href="/">
-          <img
+        <a href="/" target="_self">
+          <Image
+            preview={false}
             src="/assets/logo/editor.svg"
             alt="m4yours editor"
-            loading="eager"
+            loading="lazy"
             height="18px"
             width="125px"
           />

@@ -1,5 +1,5 @@
 import { BlocksResultProps } from "@grapesjs/react";
-import { Card, Flex } from "antd";
+import { Card, Flex, Image } from "antd";
 import styles from "./blocks.module.css";
 
 export type BlockManagerProps = Pick<
@@ -72,7 +72,8 @@ export function BlockManager({
                 draggable
                 key={block.getId()}
               >
-                <img
+                <Image
+                  preview={false}
                   draggable="false"
                   src={block.getMedia()!}
                   alt={block.getLabel()}
