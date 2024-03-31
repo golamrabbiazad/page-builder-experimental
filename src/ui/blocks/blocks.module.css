@@ -15,8 +15,8 @@
 /* category blocks */
 
 .blockCategory__header {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 0.025rem;
   padding: 1rem;
 }
 
@@ -53,18 +53,18 @@
 } */
 
 .blockTemplate__header {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 0.025rem;
   padding: 1rem;
 }
 
 .blockTemplate__card {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-items: center;
+  gap: 1rem;
   padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
+
   background-color: #3e3e46;
   cursor: pointer;
 }

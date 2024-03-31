@@ -63,7 +63,7 @@ export function BlockManager({
       ))}
       {templateBlocks.map(([category, blocks]) => (
         <div key={category}>
-          <h2 className={styles.blockTemplate__header}>{category}</h2>
+          <h3 className={styles.blockTemplate__header}>{category}</h3>
           <div className={styles.blockTemplate__card}>
             {blocks.map((block) => (
               <div
