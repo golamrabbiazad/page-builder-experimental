@@ -12,11 +12,11 @@
   "dependencies": {
     "@grapesjs/react": "^1.0.0",
     "antd": "^5",
-    "grapesjs": "^0.21.9",
+    "grapesjs": "^0.21.10",
     "grapesjs-blocks-basic": "^1.0.2",
     "million": "latest",
-    "react": "^19.0.0-canary-a73c3450e-20240329",
-    "react-dom": "^19.0.0-canary-a73c3450e-20240329"
+    "react": "^19.0.0-beta-26f2496093-20240514",
+    "react-dom": "^19.0.0-beta-26f2496093-20240514"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -27,7 +27,7 @@
     "@vitejs/plugin-react-swc": "^3",
     "eslint": "^8",
     "eslint-plugin-react-hooks": "^4",
-    "eslint-plugin-react-refresh": "^0.4.6",
+    "eslint-plugin-react-refresh": "^0.4.7",
     "typescript": "^5",
     "vite": "^5"
   }
